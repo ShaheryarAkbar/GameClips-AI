@@ -29,7 +29,9 @@
 
 html, body {
     height: 100vh;
+    height: 100dvh;
     max-height: 100vh;
+    max-height: 100dvh;
     overflow: hidden !important;
 }
 
@@ -62,7 +64,9 @@ body.dark-theme {
 .app-layout {
     display: flex;
     height: 100vh;
+    height: 100dvh;
     max-height: 100vh;
+    max-height: 100dvh;
     width: 100vw;
     overflow: hidden;
     position: relative;
@@ -72,7 +76,9 @@ body.dark-theme {
 .sidebar {
     width: 260px;
     height: 100vh;
+    height: 100dvh;
     max-height: 100vh;
+    max-height: 100dvh;
     background-color: var(--bg-sidebar);
     border-right: 1px solid var(--border-color);
     display: flex;
@@ -80,6 +86,8 @@ body.dark-theme {
     flex-shrink: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 .brand {
@@ -161,12 +169,12 @@ body.dark-theme {
 
 /* NAV MENU */
 .nav-menu {
-    flex: 1;
     padding: 0 12px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    overflow-y: auto;
+    flex-shrink: 0;
+    overflow: visible;
 }
 
 .nav-item {
@@ -215,8 +223,10 @@ body.dark-theme {
 
 /* SIDEBAR FOOTER & STORAGE WIDGET */
 .sidebar-footer {
-    padding: 16px;
+    padding: 16px 16px 60px;
     border-top: 1px solid var(--border-color);
+    margin-top: 24px;
+    flex-shrink: 0;
 }
 
 .storage-widget {
@@ -260,14 +270,17 @@ body.dark-theme {
 .main-content {
     flex: 1;
     min-width: 0;
-    display: flex;
-    flex-direction: column;
+    display: block;
     overflow-y: auto;
     overflow-x: hidden;
     height: 100vh;
+    height: 100dvh;
     max-height: 100vh;
+    max-height: 100dvh;
     padding: 0;
     margin: 0;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 .top-header {
@@ -362,8 +375,7 @@ body.dark-theme {
 /* TAB CONTENT */
 .tab-pane {
     display: none;
-    padding: 28px 32px 40px;
-    flex: 1;
+    padding: 24px 32px 100px;
     min-width: 0;
 }
 
@@ -1117,20 +1129,28 @@ body.dark-theme {
         top: 0;
         left: 0;
         bottom: 0;
-        z-index: 999;
+        z-index: 1000;
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 8px 0 32px rgba(0, 0, 0, 0.75);
+        box-shadow: 8px 0 32px rgba(0, 0, 0, 0.8);
         width: 280px;
         height: 100vh;
+        height: 100dvh;
         max-height: 100vh;
+        max-height: 100dvh;
         overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
     .sidebar.mobile-open {
         transform: translateX(0);
     }
+    .sidebar-footer {
+        padding: 16px 16px 100px !important;
+    }
     .tab-pane {
-        padding: 20px 24px 32px;
+        padding: 20px 24px 120px !important;
     }
     .top-header {
         padding: 16px 24px;
@@ -1153,24 +1173,32 @@ body.dark-theme {
         top: 0;
         left: 0;
         bottom: 0;
-        z-index: 999;
+        z-index: 1000;
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        width: 82vw;
+        width: 84vw;
         max-width: 320px;
         height: 100vh;
+        height: 100dvh;
         max-height: 100vh;
+        max-height: 100dvh;
         overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
         box-shadow: 8px 0 32px rgba(0, 0, 0, 0.85);
     }
     .sidebar.mobile-open {
         transform: translateX(0);
     }
+    .sidebar-footer {
+        padding: 16px 16px 130px !important;
+    }
     .main-content {
         padding: 0;
     }
     .tab-pane {
-        padding: 14px 14px 28px;
+        padding: 14px 14px 150px !important;
     }
     .top-header {
         padding: 14px 14px;
@@ -1286,8 +1314,11 @@ body.dark-theme {
     body {
         font-size: 13px;
     }
+    .sidebar-footer {
+        padding: 16px 16px 150px !important;
+    }
     .tab-pane {
-        padding: 10px 10px 24px;
+        padding: 10px 10px 170px !important;
     }
     .top-header {
         padding: 12px 10px;
