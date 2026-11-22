@@ -110,19 +110,25 @@ def render_video_project(project_id, is_preview=False, quality_preset="ultrafast
     )
 
     # 6. Build Concat Demuxer File (UTF-8 without BOM)
+    is_video_scenes = any(sc.get("visual_asset_path", "").endswith(".mp4") for sc in scenes)
     concat_lines = []
-    for sc in scenes:
-        frame_path = sc["visual_asset_path"]
-        duration = max(1.0, sc["end_time"] - sc["start_time"])
-        # Format path for FFmpeg concat
-        norm_path = frame_path.replace("\\", "/")
-        concat_lines.append(f"file '{norm_path}'")
-        concat_lines.append(f"duration {duration:.2f}")
 
-    # Repeat last image as required by FFmpeg concat demuxer
-    if scenes:
-        last_path = scenes[-1]["visual_asset_path"].replace("\\", "/")
-        concat_lines.append(f"file '{last_path}'")
+    if is_video_scenes:
+        for sc in scenes:
+            frame_path = sc["visual_asset_path"]
+            norm_path = frame_path.replace("\\", "/")
+            concat_lines.append(f"file '{norm_path}'")
+    else:
+        for sc in scenes:
+            frame_path = sc["visual_asset_path"]
+            duration = max(1.0, sc["end_time"] - sc["start_time"])
+            norm_path = frame_path.replace("\\", "/")
+            concat_lines.append(f"file '{norm_path}'")
+            concat_lines.append(f"duration {duration:.2f}")
+        # Repeat last image as required by FFmpeg concat demuxer for images
+        if scenes:
+            last_path = scenes[-1]["visual_asset_path"].replace("\\", "/")
+            concat_lines.append(f"file '{last_path}'")
 
     with open(paths["concat_file"], "w", encoding="utf-8") as f:
         f.write("\n".join(concat_lines) + "\n")
@@ -132,6 +138,13 @@ def render_video_project(project_id, is_preview=False, quality_preset="ultrafast
     target_res = "720:1280" if is_preview else "1080:1920"
     target_fps = 24 if is_preview else 30
 
+    # Build video filter chain with subtitle burning
+    vf_filters = [f"scale={target_res}", f"fps={target_fps}"]
+    if os.path.isfile(paths["ass_file"]):
+        escaped_ass = paths["ass_file"].replace("\\", "/").replace(":", "\\:")
+        vf_filters.append(f"ass='{escaped_ass}'")
+    vf_chain = ",".join(vf_filters)
+
     # FFmpeg command
     cmd = [
         "ffmpeg", "-y",
@@ -139,12 +152,12 @@ def render_video_project(project_id, is_preview=False, quality_preset="ultrafast
         "-safe", "0",
         "-i", paths["concat_file"],
         "-i", paths["audio_file"],
-        "-vf", f"scale={target_res},fps={target_fps}",
+        "-vf", vf_chain,
         "-c:v", "libx264",
         "-preset", quality_preset,
         "-pix_fmt", "yuv420p",
         "-c:a", "aac",
-        "-b:a", "128k",
+        "-b:a", "192k",
         "-ar", "44100",
         "-shortest",
         "-movflags", "+faststart",
@@ -154,15 +167,39 @@ def render_video_project(project_id, is_preview=False, quality_preset="ultrafast
     try:
         proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=120)
         if proc.returncode != 0 or not os.path.isfile(output_mp4):
-            return {
-                "success": False,
-                "error": f"FFmpeg error: {proc.stderr[-400:] if proc.stderr else 'Failed to produce MP4.'}"
-            }
+            # If ASS filter failed, retry with simple scale filter
+            cmd_retry = [
+                "ffmpeg", "-y",
+                "-f", "concat", "-safe", "0",
+                "-i", paths["concat_file"],
+                "-i", paths["audio_file"],
+                "-vf", f"scale={target_res},fps={target_fps}",
+                "-c:v", "libx264", "-preset", quality_preset,
+                "-pix_fmt", "yuv420p",
+                "-c:a", "aac", "-b:a", "192k", "-ar", "44100",
+                "-shortest", "-movflags", "+faststart",
+                output_mp4
+            ]
+            proc_retry = subprocess.run(cmd_retry, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=120)
+            if proc_retry.returncode != 0 or not os.path.isfile(output_mp4):
+                return {
+                    "success": False,
+                    "error": f"FFmpeg error: {proc.stderr[-400:] if proc.stderr else 'Failed to produce MP4.'}"
+                }
 
-        # 8. Create Thumbnail
-        if scenes and scenes[0].get("visual_asset_path"):
-            import shutil
-            shutil.copyfile(scenes[0]["visual_asset_path"], paths["thumbnail"])
+        # 8. Create Thumbnail Frame
+        try:
+            subprocess.run([
+                "ffmpeg", "-y", "-ss", "00:00:01",
+                "-i", output_mp4,
+                "-vframes", "1",
+                paths["thumbnail"]
+            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10)
+        except Exception:
+            if scenes and scenes[0].get("visual_asset_path"):
+                import shutil
+                if scenes[0]["visual_asset_path"].endswith(".png"):
+                    shutil.copyfile(scenes[0]["visual_asset_path"], paths["thumbnail"])
 
         # 9. Update Database Record
         conn = get_connection()

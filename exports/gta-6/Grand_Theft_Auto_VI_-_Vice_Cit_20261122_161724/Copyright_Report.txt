@@ -2,18 +2,18 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795330306-358
+Project ID:              proj-gta6-master
 Game Target:             Grand Theft Auto VI
-Video Title:             Vice City Map Size: 2.5x Bigger Than Los Santos?
+Video Title:             State of Leonida: Confirmed Setting & Map Scale
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-22 11:51:53
+Export Date:             2026-11-22 16:17:24
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       NEEDS_REVIEW
 Copyright Risk Level:    MEDIUM
 Asset License Status:    VERIFIED
-Fact Verification:       VERIFIED_FACTS
+Fact Verification:       FACTS_AND_THEORIES
 Duplicate Usage Flag:    NO
 
 --- AUDIO LICENSING AUDIT ---

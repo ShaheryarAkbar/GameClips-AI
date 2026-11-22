@@ -56,8 +56,8 @@ def generate_subtitles_for_scenes(scenes, output_srt_path, output_ass_path=None)
             "",
             "[V4+ Styles]",
             "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
-            # Style: Yellow font (&H0000FFFF), black thick outline (&H00000000), alignment 2 (bottom center), marginV 180 (above TikTok UI)
-            "Style: Default,Segoe UI,44,&H0000FFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3,0,2,60,60,180,1",
+            # Style: Yellow font (&H0000FFFF), black thick outline (&H00000000), alignment 2 (bottom center), marginV 490 (placed between video viewport and bottom HUD)
+            "Style: Default,Segoe UI,38,&H0000FFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.5,1,2,60,60,490,1",
             "",
             "[Events]",
             "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
