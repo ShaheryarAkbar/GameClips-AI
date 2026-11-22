@@ -1,173 +1,18 @@
-// ============================================================================
-// GITHUB PAGES LIVE DEMO INTERCEPTOR
-// Provides offline demo data when hosted on GitHub Pages (static web environment)
-// ============================================================================
-(function() {
-    const isGitHubPages = window.location.hostname.includes('github.io') || window.location.protocol === 'file:';
-    if (!isGitHubPages) return;
-
-    console.log('[GameClips AI] Initializing GitHub Pages Live Showcase Mode');
-
-    const MOCK_GAMES = [
-        { id: 'game-gta6', name: 'Grand Theft Auto VI', slug: 'gta-6', developer: 'Rockstar Games', publisher: 'Take-Two Interactive', fan_content_policy_url: 'https://support.rockstargames.com/articles/200153756/Policy-on-posting-copyrighted-Rockstar-Games-material', commercial_rules: 'Educational commentary & review allowed. Direct monetized gameplay unauthorized.', is_active: 1 },
-        { id: 'game-gta5', name: 'Grand Theft Auto V', slug: 'gta-5', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gta4', name: 'Grand Theft Auto IV', slug: 'gta-4', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gtasa', name: 'GTA: San Andreas', slug: 'gta-sa', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gtavc', name: 'GTA: Vice City', slug: 'gta-vc', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gta3', name: 'Grand Theft Auto III', slug: 'gta-3', developer: 'DMA Design', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-rdr2', name: 'Red Dead Redemption 2', slug: 'rdr-2', developer: 'Rockstar Games', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-minecraft', name: 'Minecraft', slug: 'minecraft', developer: 'Mojang Studios', publisher: 'Xbox Game Studios', is_active: 0 }
-    ];
-
-    const MOCK_TOPICS = [
-        { id: 'top-1', game_id: 'game-gta6', category: 'Facts & Secrets', title: 'State of Leonida Map Scale & Ecosystems', description: 'Officially confirmed to include Vice City and surrounding wetland biomes with dynamic water physics.', relevance_score: 9.8, status: 'APPROVED', is_duplicate: 0 },
-        { id: 'top-2', game_id: 'game-gta6', category: 'Facts & Secrets', title: 'Lucia & Jason Dual Protagonists Dynamic', description: 'Official trailer confirms Bonnie and Clyde inspired criminal partnership with coordinated robbery mechanics.', relevance_score: 9.5, status: 'APPROVED', is_duplicate: 0 },
-        { id: 'top-3', game_id: 'game-gta6', category: 'Cars & Comparisons', title: 'Next-Gen Vehicle Deformation & Interior Physics', description: 'Comparison of vehicle collision meshes, dynamic interior mirrors, and real-world automotive analogs.', relevance_score: 9.2, status: 'APPROVED', is_duplicate: 0 },
-        { id: 'top-4', game_id: 'game-gta6', category: 'Stories', title: 'Vice City Contraband Smugglers Fictional Lore', description: 'Original speculative narrative exploring the underwater drug-running routes along the Florida Keys.', relevance_score: 8.7, status: 'APPROVED', is_duplicate: 0 }
-    ];
-
-    const MOCK_STATS = {
-        topics_count: 14,
-        scripts_count: 6,
-        awaiting_approval_count: 2,
-        exported_count: 4,
-        rejected_assets_count: 0,
-        active_game: MOCK_GAMES[0],
-        storage: {
-            project_drive: { drive: 'E:\\', total_gb: 86.03, used_gb: 61.36, free_gb: 24.67, free_percent: 28.7 },
-            os_drive: { drive: 'C:\\', total_gb: 237.19, used_gb: 219.89, free_gb: 17.3, free_percent: 7.3 },
-            temp_render: { size_mb: 2.45, file_count: 8 },
-            exports: { size_mb: 18.2, file_count: 24 },
-            thresholds: { storage_limit_gb: 2.5, min_disk_headroom_gb: 5.0, auto_cleanup_temp: true },
-            is_safe_to_render: true,
-            warning: null
-        }
-    };
-
-    const MOCK_QUEUE = [
-        {
-            id: 'proj-demo-1',
-            project_name: 'GTA 6 Leonida Scale Breakdown',
-            game_name: 'Grand Theft Auto VI',
-            status: 'NEEDS_REVIEW',
-            vrf_status: 'VERIFIED',
-            copyright_risk_level: 'LOW',
-            duration_seconds: 42,
-            youtube_title: 'GTA 6 Leonida Map Reveal | Mindblowing Scale #Shorts',
-            youtube_description: 'Full factual breakdown of Vice City and the state of Leonida. Verified against Rockstar Games official releases.',
-            tiktok_caption: 'Is the GTA 6 map really 2.5x bigger than GTA 5? 🌊🌴 #GTA6 #Gaming',
-            hashtags: '#GTA6 #GrandTheftAuto #GamingShorts #ViceCity',
-            preview_path: 'demo.mp4',
-            final_video_path: null,
-            scenes: [
-                { scene_number: 1, start_time: 0, end_time: 8, narration_text: 'GTA 6 officially takes place in Leonida, Rockstar largest open world ever created.', visual_type: 'SVG_MAP' },
-                { scene_number: 2, start_time: 8, end_time: 22, narration_text: 'From the neon strip of Vice City to the swampy wetlands, every biome has unique wildlife.', visual_type: 'SVG_TYPOGRAPHY' },
-                { scene_number: 3, start_time: 22, end_time: 42, narration_text: 'Subscribe for daily verified facts and vehicle comparisons!', visual_type: 'SVG_COUNTDOWN' }
-            ],
-            sources: [
-                { source_name: 'Rockstar Games Official Trailer 1', title: 'Grand Theft Auto VI Announcement', url: 'https://www.youtube.com/watch?v=QdBZY2fkU-0' },
-                { source_name: 'Take-Two Interactive SEC Filing', title: 'Take-Two Interactive Form 10-K', url: 'https://www.sec.gov/' }
-            ]
-        }
-    ];
-
-    const MOCK_EXPORTS = [
-        {
-            id: 'exp-demo-01',
-            project_name: 'GTA 6 Leonida Scale Breakdown',
-            game_name: 'Grand Theft Auto VI',
-            script_title: 'Leonida Map Scale & Ecosystems',
-            export_timestamp: '2026-11-22 11:51:05',
-            video_size_mb: 4.82,
-            duration_seconds: 42,
-            youtube_title: 'GTA 6 Leonida Map Scale Revealed! #Shorts',
-            tiktok_caption: 'GTA 6 Map size confirmed by official disclosures! #GTA6',
-            video_path: 'final_video.mp4'
-        }
-    ];
-
-    const MOCK_ANALYTICS = {
-        funnel: {
-            topics_discovered: 14,
-            scripts_generated: 6,
-            videos_rendered: 4,
-            approved: 3,
-            rejected: 0,
-            pending_review: 1,
-            exported: 3,
-            approval_rate_percent: 100.0,
-            rejection_rate_percent: 0.0
-        },
-        topics: {
-            total: 14,
-            duplicates_filtered: 3,
-            unique_topics: 11,
-            by_category: {
-                facts_and_secrets: 6,
-                cars_and_comparisons: 4,
-                stories_and_theories: 4
-            }
-        },
-        compliance_safety: {
-            total_reports: 4,
-            verified: 4,
-            needs_review: 0,
-            rejected: 0,
-            safety_score_index: 100.0,
-            disclaimer_enforced: true
-        },
-        game_distribution: [
-            { name: 'Grand Theft Auto VI', topic_count: 8 },
-            { name: 'Grand Theft Auto V', topic_count: 2 },
-            { name: 'Red Dead Redemption 2', topic_count: 2 },
-            { name: 'Minecraft', topic_count: 2 }
-        ],
-        storage: MOCK_STATS.storage
-    };
-
-    const originalFetch = window.fetch;
-    window.fetch = async function(url, options) {
-        const u = String(url);
-
-        // Try real server first if running locally
-        try {
-            const res = await originalFetch(url, options);
-            if (res.ok) return res;
-        } catch (_) {}
-
-        // Mock Endpoints
-        if (u.includes('/api/stats')) {
-            return new Response(JSON.stringify(MOCK_STATS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/games')) {
-            return new Response(JSON.stringify(MOCK_GAMES), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/topics')) {
-            return new Response(JSON.stringify(MOCK_TOPICS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/queue')) {
-            return new Response(JSON.stringify(MOCK_QUEUE), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/exports')) {
-            return new Response(JSON.stringify(MOCK_EXPORTS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/analytics')) {
-            return new Response(JSON.stringify(MOCK_ANALYTICS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/automation/status')) {
-            return new Response(JSON.stringify({ daily_video_target: 3, candidates_today: 1, is_safe_to_render: true, auto_publishing_allowed: false }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/settings')) {
-            return new Response(JSON.stringify(MOCK_STATS.storage.thresholds), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/footage')) {
-            return new Response(JSON.stringify([]), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-
-        return new Response(JSON.stringify({ success: true, message: 'Showcase Live Action Completed' }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-    };
-})();
-
+// Professional SVG Icon Definitions for Dynamic Elements
+const UI_ICONS = {
+    package: '<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    shield: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>',
+    download: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+    refresh: '<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>',
+    search: '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+    file: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    edit: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+    check: '<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>',
+    x: '<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    video: '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>',
+    device: '<svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
+    clapper: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m4 11 16-5"/><path d="m4 6 16-5"/><path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>'
+};
 
 // GameClips AI - Dashboard Application Frontend Logic
 
@@ -217,6 +62,12 @@ function initTabs() {
             const activePane = document.getElementById(`${targetTab}Tab`);
             if (activePane) activePane.classList.add('active');
 
+            // Close mobile sidebar drawer if open
+            const sidebarEl = document.querySelector('.sidebar');
+            const backdropEl = document.getElementById('sidebarBackdrop');
+            if (sidebarEl) sidebarEl.classList.remove('mobile-open');
+            if (backdropEl) backdropEl.classList.remove('active');
+
             if (tabMeta[targetTab]) {
                 headerTitle.textContent = tabMeta[targetTab].title;
                 headerSubtitle.textContent = tabMeta[targetTab].subtitle;
@@ -235,6 +86,22 @@ function initTabs() {
 }
 
 function initEventListeners() {
+    // Mobile Drawer Toggle
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const sidebarEl = document.querySelector('.sidebar');
+    const backdropEl = document.getElementById('sidebarBackdrop');
+
+    if (mobileToggle && sidebarEl && backdropEl) {
+        mobileToggle.addEventListener('click', () => {
+            sidebarEl.classList.toggle('mobile-open');
+            backdropEl.classList.toggle('active');
+        });
+
+        backdropEl.addEventListener('click', () => {
+            sidebarEl.classList.remove('mobile-open');
+            backdropEl.classList.remove('active');
+        });
+    }
     // Refresh button
     const refreshBtn = document.getElementById('refreshMetricsBtn');
     if (refreshBtn) refreshBtn.addEventListener('click', () => {
@@ -542,7 +409,7 @@ function initEventListeners() {
             const custom_audio_path = voice_name === 'CUSTOM' ? (document.getElementById('studioCustomAudioPath')?.value.trim() || null) : null;
 
             btnRenderVideo.disabled = true;
-            btnRenderVideo.textContent = '🎬 Rendering with FFmpeg & Audio...';
+            btnRenderVideo.textContent = 'Rendering with FFmpeg & Audio...';
 
             try {
                 const res = await fetch('/api/video/render', {
@@ -570,7 +437,7 @@ function initEventListeners() {
                 showNotification('Error communicating with FFmpeg render engine', 'danger');
             } finally {
                 btnRenderVideo.disabled = false;
-                btnRenderVideo.textContent = '🎬 Render Video (FFmpeg + TTS)';
+                btnRenderVideo.textContent = 'Render Video';
             }
         });
     }
@@ -799,7 +666,7 @@ function renderTopicsTable(topics) {
             <td><small class="text-muted">${t.source_count || 1} verified source</small></td>
             <td>
                 <div style="display:flex; gap:6px;">
-                    <button class="btn btn-sm btn-outline" onclick="viewEvidenceModal('${t.id}')">🔍 Evidence</button>
+                    <button class="btn btn-sm btn-outline" onclick="viewEvidenceModal('${t.id}')">${UI_ICONS.search} Evidence</button>
                     <button class="btn btn-sm btn-primary" onclick="selectForStudio('${t.id}', '${encodeURIComponent(t.title)}')">Studio</button>
                 </div>
             </td>
@@ -898,7 +765,7 @@ async function loadApprovalQueue() {
         if (items.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    <span class="empty-icon">🛡️</span>
+                    <span class="empty-icon"><svg class="icon icon-xl" style="color:var(--neon-cyan);" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
                     <h3>Approval Queue is Clear</h3>
                     <p>No video candidates currently waiting for review. Generate and render one in the AI Video Studio.</p>
                 </div>
@@ -995,14 +862,14 @@ async function loadApprovalQueue() {
                             <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
                                 ${item.status === 'APPROVED' ? `
                                     <button class="btn btn-primary" style="background:var(--neon-green); color:#05070f; font-weight:700;" onclick="exportProjectPackage('${item.id}')">
-                                        📦 Export Video Package
+                                        ${UI_ICONS.package} Export Package
                                     </button>
                                 ` : `
-                                    <button class="btn btn-primary" onclick="reviewAction('${item.id}', 'APPROVE')">✓ Approve Video</button>
+                                    <button class="btn btn-primary" onclick="reviewAction('${item.id}', 'APPROVE')">${UI_ICONS.check} Approve Video</button>
                                 `}
-                                <button class="btn btn-outline" onclick="openEditMetadataModal('${item.id}', '${encodeURIComponent(item.youtube_title || '')}', '${encodeURIComponent(item.youtube_description || '')}', '${encodeURIComponent(item.tiktok_caption || '')}', '${encodeURIComponent(item.hashtags || '')}')">✏️ Edit Metadata</button>
-                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REGENERATE')">🔄 Regenerate</button>
-                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REJECT')">✕ Reject</button>
+                                <button class="btn btn-outline" onclick="openEditMetadataModal('${item.id}', '${encodeURIComponent(item.youtube_title || '')}', '${encodeURIComponent(item.youtube_description || '')}', '${encodeURIComponent(item.tiktok_caption || '')}', '${encodeURIComponent(item.hashtags || '')}')">${UI_ICONS.edit} Edit Metadata</button>
+                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REGENERATE')">${UI_ICONS.refresh} Regenerate</button>
+                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REJECT')">${UI_ICONS.x} Reject</button>
                             </div>
                         </div>
                     </div>
@@ -1291,7 +1158,7 @@ async function loadExports() {
         if (!exports || exports.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    <span class="empty-icon">📦</span>
+                    <span class="empty-icon"><svg class="icon icon-xl" style="color:var(--neon-gold);" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
                     <h3>No distribution packages exported yet</h3>
                     <p>Approve candidate videos in the Approval Queue and click "Export Package" to generate release bundles.</p>
                 </div>
@@ -1356,20 +1223,20 @@ async function loadExports() {
                     <!-- Package Action Buttons -->
                     <div style="display:flex; flex-direction:column; gap:8px;">
                         <a href="/api/exports/${exp.id}/file/final_video.mp4?download=true" class="btn btn-primary btn-block" style="text-align:center; text-decoration:none;">
-                            📥 Download Final 1080x1920 MP4
+                            ${UI_ICONS.download} Download Final 1080x1920 MP4
                         </a>
                         <div style="display:flex; gap:6px;">
                             <a href="/api/exports/${exp.id}/file/Copyright_Report.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                📄 Rights Report
+                                ${UI_ICONS.file} Rights Report
                             </a>
                             <a href="/api/exports/${exp.id}/file/Sources.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                🔍 Citations
+                                ${UI_ICONS.search} Citations
                             </a>
                             <a href="/api/exports/${exp.id}/file/youtube_package/yt_description.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                📺 YouTube
+                                ${UI_ICONS.video} YouTube
                             </a>
                             <a href="/api/exports/${exp.id}/file/tiktok_package/tiktok_caption.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                📱 TikTok
+                                ${UI_ICONS.device} TikTok
                             </a>
                         </div>
                     </div>
