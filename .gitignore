@@ -1,0 +1,40 @@
+# Python Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+
+# Operating System & IDE Artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Temporary Renders & Cache (Preserve directory structure)
+temp_render/*
+!temp_render/.gitkeep
+
+# Rendered Video Exports (Keep text metadata, ignore heavy media)
+exports/**/*.mp4
+exports/**/*.png
+exports/**/*.wav
+exports/**/*.ass
+exports/**/*.srt
+
+# Local SQLite Journal Files
+data/*.db-wal
+data/*.db-shm
+data/*.db-journal
+
+# Intermediate temporary files
+initial_prompt.txt
+*.log
