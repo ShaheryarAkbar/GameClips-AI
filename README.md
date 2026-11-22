@@ -1,5 +1,11 @@
 # GameClips AI — Free Local-First Gaming Content Automation
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-ShaheryarAkbar%2FGameClips--AI-blue?logo=github)](https://github.com/ShaheryarAkbar/GameClips-AI)
+[![Tests Passing](https://img.shields.io/badge/Tests-38%2F38%20Passing-brightgreen)](https://github.com/ShaheryarAkbar/GameClips-AI)
+[![License](https://img.shields.io/badge/License-MIT-purple.svg)](https://github.com/ShaheryarAkbar/GameClips-AI)
+
+**Repository Link:** [https://github.com/ShaheryarAkbar/GameClips-AI](https://github.com/ShaheryarAkbar/GameClips-AI)
+
 **GameClips AI** is a lightweight, local-first gaming content research, script generation, and video production automation engine designed for YouTube Shorts and TikTok.
 
 ---
