@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameClips AI — Local Gaming Content Studio</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <!-- Responsive Mobile Header -->
+    <header class="mobile-topbar">
+        <button class="hamburger-btn" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+            <svg class="icon" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="mobile-brand">
+            <div class="logo-icon logo-icon-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </div>
+            <span class="mobile-brand-title">GameClips<span>AI</span></span>
+        </div>
+        <span class="pill-badge" id="mobileActiveBadge">GTA 6</span>
+    </header>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h2>GameClips<span>AI</span></h2>
+                    <span class="badge-local">LOCAL-FIRST</span>
+                </div>
+            </div>
+
+            <!-- Active Game Selector Pill -->
+            <div class="active-game-banner" id="activeGamePill">
+                <span class="pill-label">CURRENT GAME</span>
+                <div class="pill-game-name" id="currentActiveGameName">GTA 6</div>
+                <span class="pill-badge" id="currentActiveGameSlug">gta-6</span>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="games">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/></svg></span>
+                    <span>Game Library</span>
+                </button>
+                <button class="nav-item" data-tab="research">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    <span>Trending Research</span>
+                </button>
+                <button class="nav-item" data-tab="facts">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/></svg></span>
+                    <span>Facts & Secrets</span>
+                </button>
+                <button class="nav-item" data-tab="cars">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 3C2 11.2 2 11.6 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>
+                    <span>Cars & Comparisons</span>
+                </button>
+                <button class="nav-item" data-tab="stories">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+                    <span>Stories & Lore</span>
+                </button>
+                <button class="nav-item" data-tab="footage">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg></span>
+                    <span>Footage Library</span>
+                </button>
+                <button class="nav-item" data-tab="studio">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><path d="m4 11 16-5"/><path d="m4 6 16-5"/><path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></span>
+                    <span>AI Video Studio</span>
+                </button>
+                <button class="nav-item queue-item" data-tab="approval">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+                    <span>Approval Queue</span>
+                    <span class="queue-counter" id="approvalCountBadge">0</span>
+                </button>
+                <button class="nav-item" data-tab="exports">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+                    <span>Export Center</span>
+                </button>
+                <button class="nav-item" data-tab="analytics">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <span>Analytics</span>
+                </button>
+                <button class="nav-item" data-tab="settings">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+                    <span>Settings & Storage</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="storage-widget">
+                    <div class="storage-label">
+                        <span>Drive E: Free Space</span>
+                        <strong id="sidebarDiskFree">-- GB</strong>
+                    </div>
+                    <div class="storage-bar-track">
+                        <div class="storage-bar-fill" id="sidebarDiskBar" style="width: 28%;"></div>
+                    </div>
+                    <div class="hardware-note">i5 CPU / Intel HD 4000 Mode</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-title">
+                    <h1 id="tabHeaderTitle">Command Center</h1>
+                    <p id="tabHeaderSubtitle">Multi-Game Content Automation & Rights-Verified Production</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="refreshMetricsBtn">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> <span>Refresh Status</span>
+                    </button>
+                    <button class="btn btn-primary" id="openNewGameModalBtn">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> <span>Add Game</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Alert Banner Container -->
+            <div id="globalAlertBanner" class="global-alert hidden"></div>
+
+            <!-- TAB 1: DASHBOARD OVERVIEW -->
+            <section id="dashboardTab" class="tab-pane active">
+                <div class="stats-grid">
+                    <div class="stat-card cyan">
+                        <div class="stat-header">
+                            <span class="stat-title">Discovered Topics</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="statTopics">0</div>
+                        <div class="stat-desc">Factual gaming leads</div>
+                    </div>
+                    <div class="stat-card purple">
+                        <div class="stat-header">
+                            <span class="stat-title">Generated Scripts</span>
+                            <span class="stat-icon">📝</span>
+                        </div>
+                        <div class="stat-value" id="statScripts">0</div>
+                        <div class="stat-desc">30-90s Scene plans</div>
+                    </div>
+                    <div class="stat-card gold">
+                        <div class="stat-header">
+                            <span class="stat-title">Approval Queue</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="statAwaitingApproval">0</div>
+                        <div class="stat-desc">Pending human review</div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-header">
+                            <span class="stat-title">Ready Exports</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="statExported">0</div>
+                        <div class="stat-desc">Shorts & TikTok bundles</div>
+                    </div>
+                    <div class="stat-card red">
+                        <div class="stat-header">
+                            <span class="stat-title">Rejected Assets</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="statRejected">0</div>
+                        <div class="stat-desc">Failed copyright safety</div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-header">
+                            <span class="stat-title">Temp Cache</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="statTempCache">0.0 MB</div>
+                        <div class="stat-desc" id="statTempLimit">Limit: 2.0 GB</div>
+                    </div>
+                </div>
+
+                <!-- Dual Quick Panels -->
+                <div class="dashboard-columns">
+                    <div class="card panel-left">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/></svg> Active Game Context</h3>
+                            <span class="badge badge-success" id="activeGameStatusBadge">ACTIVE</span>
+                        </div>
+                        <div class="card-body" id="activeGameDetailsBody">
+                            <div class="game-details-item">
+                                <label>Title:</label>
+                                <span id="dashGameName">Grand Theft Auto VI</span>
+                            </div>
+                            <div class="game-details-item">
+                                <label>Developer / Publisher:</label>
+                                <span id="dashGameDev">Rockstar Games</span>
+                            </div>
+                            <div class="game-details-item">
+                                <label>Fan Content Policy:</label>
+                                <span id="dashGamePolicy" class="text-truncate">Rockstar Non-Commercial Policy</span>
+                            </div>
+                            <div class="game-details-item">
+                                <label>Commercial Footage Rules:</label>
+                                <span id="dashGameRules">Factual educational & commentary allowed with original transformation. Leaked clips strictly banned.</span>
+                            </div>
+                            <div class="game-details-item">
+                                <label>Approved Footage Sources:</label>
+                                <div class="tags-container" id="dashGameSources">
+                                    <span class="tag">Pexels</span>
+                                    <span class="tag">Pixabay</span>
+                                    <span class="tag">Original SVG/CSS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card panel-right">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> Free-First & Copyright Safety Rules</h3>
+                            <span class="badge badge-cyan">ENFORCED</span>
+                        </div>
+                        <div class="card-body">
+                            <ul class="policy-list">
+                                <li><strong>100% Free:</strong> Zero paid APIs, no subscriptions, no credit card requirements.</li>
+                                <li><strong>Privacy First:</strong> No personal emails, passwords, or direct platform logins.</li>
+                                <li><strong>Mandatory Human Gate:</strong> No automatic publishing. Every video requires human sign-off.</li>
+                                <li><strong>Authenticity:</strong> Never misrepresent generated animations as official GTA 6 gameplay.</li>
+                                <li><strong>Zero Leaks:</strong> Strictly no unauthorized leaked or pirated footage.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automated Production Scheduler Card -->
+                <div class="card" style="margin-top:24px;">
+                    <div class="card-header">
+                        <h3><svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Automated Research & Video Candidate Production</h3>
+                        <span class="badge badge-cyan" id="dashAutomationBadge">SCHEDULE ACTIVE</span>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                            <div>
+                                <p style="margin-bottom:6px; font-size:14px;">
+                                    <strong>Daily Target:</strong> Up to <span id="dashAutoTarget" style="color:var(--neon-cyan); font-weight:700;">3</span> candidate videos daily &bull; 
+                                    <strong>Generated Today:</strong> <span id="dashAutoToday" style="color:var(--neon-pink); font-weight:700;">0</span> &bull;
+                                    <strong>Status:</strong> <span id="dashAutoStatusText" style="color:var(--neon-green);">Ready</span>
+                                </p>
+                                <p style="font-size:12px; color:var(--text-muted); margin:0;">
+                                    Automated cycle gathers verified public facts, renders vertical preview videos via FFmpeg & offline SAPI, and queues candidates into the Approval Queue. Zero auto-publishing.
+                                </p>
+                            </div>
+                            <button class="btn btn-primary" id="btnTriggerAutomation">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Run Automation Cycle</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: GAME LIBRARY (Modular Multi-Game Architecture) -->
+            <section id="gamesTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <h2>Modular Game Library</h2>
+                    <p>Switch active game or configure copyright and footage policies per title.</p>
+                </div>
+                <div class="games-grid" id="gamesListContainer">
+                    <!-- Populated via JavaScript -->
+                </div>
+            </section>
+
+            <!-- TAB 3: TRENDING RESEARCH -->
+            <section id="researchTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <div>
+                        <h2>Trending Research Engine</h2>
+                        <p>Factual topic discovery, source traceability, and evidence tracking.</p>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-outline" id="btnRunResearch">⚡ Run Automated Research</button>
+                        <button class="btn btn-primary" id="btnAddNewTopic">➕ Add Topic</button>
+                    </div>
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="ALL">All Categories</button>
+                    <button class="filter-btn" data-filter="Facts & Secrets">Facts & Secrets</button>
+                    <button class="filter-btn" data-filter="Cars & Comparisons">Cars & Comparisons</button>
+                    <button class="filter-btn" data-filter="Stories">Stories & Theories</button>
+                </div>
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Topic Title</th>
+                                    <th>Relevance</th>
+                                    <th>Status</th>
+                                    <th>Sources</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topicsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: FACTS & SECRETS -->
+            <section id="factsTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <h2>Verified Facts & Environmental Secrets</h2>
+                    <p>Officially confirmed game mechanics, development milestones, and map discoveries.</p>
+                </div>
+                <div class="content-cards-grid" id="factsCardsContainer">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- TAB 5: CARS & COMPARISONS -->
+            <section id="carsTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <h2>Vehicle Intelligence & Real-World Comparisons</h2>
+                    <p>In-depth automotive breakdown, physics improvements, and interior mechanics.</p>
+                </div>
+                <div class="content-cards-grid" id="carsCardsContainer">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- TAB 6: STORIES & LORE -->
+            <section id="storiesTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <h2>Original Narratives & Clearly-Labeled Theories</h2>
+                    <p>Fictional mini-stories and speculative explorations with strict non-misrepresentation tags.</p>
+                </div>
+                <div class="content-cards-grid" id="storiesCardsContainer">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- TAB 7: FOOTAGE LIBRARY -->
+            <section id="footageTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <div>
+                        <h2>Rights-Verified Asset Library</h2>
+                        <p>Pexels, Pixabay, Mixkit, and Original Visual assets with commercial licensing audit.</p>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-outline" id="btnSeedFootage">⚡ Load Verified Catalog</button>
+                        <button class="btn btn-primary" id="btnOpenAddAssetModal">➕ Add Asset</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Asset</th>
+                                    <th>Source</th>
+                                    <th>License</th>
+                                    <th>Commercial Use</th>
+                                    <th>Attribution</th>
+                                    <th>Rights Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="footageTableBody">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">No external assets downloaded. Using lightweight original vector animations.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 8: AI VIDEO STUDIO -->
+            <section id="studioTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <h2>Lightweight Video Production Studio</h2>
+                    <p>CPU-optimized FFmpeg rendering with SVG typography and offline Windows TTS.</p>
+                </div>
+                <div class="studio-workspace">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Generate New Video Candidate</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Select Target Topic</label>
+                                <select id="studioTopicSelect" class="form-control">
+                                    <option value="">Select an approved topic...</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Target Duration</label>
+                                    <select id="studioDurationSelect" class="form-control">
+                                        <option value="30-50s">30–50 seconds (Shorts/TikTok)</option>
+                                        <option value="60-90s">60–90 seconds (Extended Short)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Voiceover Engine</label>
+                                    <select id="studioVoiceSelect" class="form-control">
+                                        <option value="Microsoft David Desktop">Microsoft David Desktop (Offline Free SAPI)</option>
+                                        <option value="Microsoft Zira Desktop">Microsoft Zira Desktop (Offline Free SAPI)</option>
+                                        <option value="SILENT">Silent Mode (Subtitles Only)</option>
+                                        <option value="CUSTOM">Custom Audio File (User Supplied)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group hidden" id="studioCustomAudioGroup">
+                                <label>Custom Audio File Path (.wav or .mp3)</label>
+                                <input type="text" id="studioCustomAudioPath" class="form-control" placeholder="e.g. E:\Shery\gaming video\my_narration.wav">
+                                <small style="color:var(--text-muted); font-size:11px;">Enter the absolute path to a local voice or audio file on your machine.</small>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Visual Style</label>
+                                    <select id="studioVisualSelect" class="form-control">
+                                        <option value="SVG_ANIMATION">Original SVG Vector & Neon Typography</option>
+                                        <option value="BROLL_HYBRID">Creative Commons B-Roll + Motion Titles</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Encoding Preset (Hardware Optimized)</label>
+                                    <select id="studioPresetSelect" class="form-control">
+                                        <option value="ultrafast">ultrafast (Recommended for i5-3427U)</option>
+                                        <option value="fast">fast (Slightly smaller, higher CPU)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block" id="btnTriggerRender">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Generate Script & Visual Plan</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live Generation Results Preview Panel -->
+                    <div class="card hidden" id="studioResultsCard" style="margin-top: 24px;">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><path d="m4 11 16-5"/><path d="m4 6 16-5"/><path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg> Generated Video Plan & Visual Frames</h3>
+                            <span class="badge badge-success" id="studioPlanBadge">PLAN READY</span>
+                        </div>
+                        <div class="card-body">
+                            <h4 id="studioResultTitle" style="color:var(--neon-cyan); margin-bottom:10px;">Title</h4>
+                            
+                            <!-- Visual Frames Strip -->
+                            <h5 style="text-transform:uppercase; font-size:11px; color:var(--text-muted); margin-bottom:8px;">1080x1920 (9:16 Vertical) Scene Frames</h5>
+                            <div class="frames-strip" id="studioFramesStrip" style="display:flex; gap:16px; overflow-x:auto; padding-bottom:12px; margin-bottom:20px;">
+                                <!-- Populated dynamically with generated frames -->
+                            </div>
+
+                            <!-- Scene-by-Scene Script Breakdown -->
+                            <h5 style="text-transform:uppercase; font-size:11px; color:var(--text-muted); margin-bottom:8px;">Scene Breakdown & Subtitles</h5>
+                            <div id="studioScenesContainer" style="margin-bottom:20px;"></div>
+
+                            <!-- Publishing Metadata Package Preview -->
+                            <div style="background:var(--bg-darkest); border:1px solid var(--border-color); padding:16px; border-radius:8px; margin-bottom:20px;">
+                                <h5 style="text-transform:uppercase; font-size:11px; color:var(--neon-pink); margin-bottom:8px;">Ready Metadata Package</h5>
+                                <p style="font-size:12px; margin-bottom:6px;"><strong>YouTube Title:</strong> <span id="studioYtTitle"></span></p>
+                                <p style="font-size:12px; margin-bottom:6px;"><strong>TikTok Caption:</strong> <span id="studioTtCaption"></span></p>
+                                <p style="font-size:12px;"><strong>Hashtags:</strong> <span id="studioHashtags" style="color:var(--neon-cyan);"></span></p>
+                            </div>
+
+                            <div style="display:flex; gap:12px;">
+                                <button class="btn btn-primary" id="btnRenderVideo">
+                                    <svg class="icon" viewBox="0 0 24 24"><path d="m4 11 16-5"/><path d="m4 6 16-5"/><path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg> <span>Render Video</span>
+                                </button>
+                                <button class="btn btn-outline" id="btnProceedToApproval">
+                                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> <span>View in Queue</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 9: APPROVAL QUEUE -->
+            <section id="approvalTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <div>
+                        <h2>Mandatory Human Approval Queue</h2>
+                        <p>Review video previews, verify citations, inspect rights audit, and decide export.</p>
+                    </div>
+                </div>
+                <div id="approvalQueueContainer">
+                    <div class="empty-state">
+                        <span class="empty-icon">🛡️</span>
+                        <h3>Queue is clear</h3>
+                        <p>New candidate videos generated in the Studio will appear here for manual approval.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 10: EXPORT CENTER -->
+            <section id="exportsTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <div>
+                        <h2>Export Center & Distribution Packages</h2>
+                        <p>Organized local packages with MP4, thumbnails, tags, and copyright reports.</p>
+                    </div>
+                    <button class="btn btn-outline" id="btnRefreshExports">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> <span>Refresh Exports</span>
+                    </button>
+                </div>
+                <div id="exportsContainer">
+                    <div class="empty-state">
+                        <span class="empty-icon">📦</span>
+                        <h3>No exports yet</h3>
+                        <p>Approved videos are exported here into separate YouTube Shorts and TikTok packages.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 11: ANALYTICS -->
+            <section id="analyticsTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <div>
+                        <h2>Channel & Production Analytics</h2>
+                        <p>Funnel conversion, copyright safety metrics, category distributions, and storage trends.</p>
+                    </div>
+                    <button class="btn btn-outline" id="btnRefreshAnalytics">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> <span>Refresh Analytics</span>
+                    </button>
+                </div>
+
+                <!-- 6 KPI Stat Cards -->
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 24px;">
+                    <div class="stat-card cyan">
+                        <div class="stat-header">
+                            <span class="stat-title">Discovered Topics</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="anaTotalTopics">0</div>
+                        <div class="stat-desc" id="anaDupTopics">0 duplicates filtered</div>
+                    </div>
+                    <div class="stat-card purple">
+                        <div class="stat-header">
+                            <span class="stat-title">Scripts Generated</span>
+                            <span class="stat-icon"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="anaTotalScripts">0</div>
+                        <div class="stat-desc">Original scene plans</div>
+                    </div>
+                    <div class="stat-card pink">
+                        <div class="stat-header">
+                            <span class="stat-title">Rendered Videos</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><path d="m4 11 16-5"/><path d="m4 6 16-5"/><path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="anaTotalVideos">0</div>
+                        <div class="stat-desc">FFmpeg 1080x1920</div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-header">
+                            <span class="stat-title">Approval Rate</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="anaApprovalRate">0%</div>
+                        <div class="stat-desc" id="anaApprovedCount">0 approved videos</div>
+                    </div>
+                    <div class="stat-card yellow">
+                        <div class="stat-header">
+                            <span class="stat-title">Export Packages</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="anaTotalExports">0</div>
+                        <div class="stat-desc">Ready for publishing</div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-header">
+                            <span class="stat-title">Safety Score</span>
+                            <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+                        </div>
+                        <div class="stat-value" id="anaSafetyScore">100%</div>
+                        <div class="stat-desc">Low copyright risk</div>
+                    </div>
+                </div>
+
+                <!-- Two-Column Breakdown -->
+                <div class="dashboard-columns" style="margin-bottom: 24px;">
+                    <!-- Left: Production Funnel -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Content Production Funnel</h3>
+                            <span class="badge badge-cyan">CONVERSION</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="funnel-step" style="margin-bottom: 16px;">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>1. Discovered Topics</span>
+                                    <strong id="funnelTopics">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" style="width:100%; background:var(--neon-cyan);"></div>
+                                </div>
+                            </div>
+                            <div class="funnel-step" style="margin-bottom: 16px;">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>2. Generated Scripts</span>
+                                    <strong id="funnelScripts">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" id="barScripts" style="width:0%; background:var(--neon-purple);"></div>
+                                </div>
+                            </div>
+                            <div class="funnel-step" style="margin-bottom: 16px;">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>3. Rendered Candidate Videos</span>
+                                    <strong id="funnelRendered">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" id="barRendered" style="width:0%; background:var(--neon-pink);"></div>
+                                </div>
+                            </div>
+                            <div class="funnel-step" style="margin-bottom: 16px;">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>4. Human Approved Videos</span>
+                                    <strong id="funnelApproved">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" id="barApproved" style="width:0%; background:var(--neon-green);"></div>
+                                </div>
+                            </div>
+                            <div class="funnel-step">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>5. Packaged & Exported</span>
+                                    <strong id="funnelExported">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" id="barExported" style="width:0%; background:var(--neon-yellow);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Category Distribution -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/></svg> Content Category Distribution</h3>
+                            <span class="badge badge-purple">PIPELINE</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="category-stat-row" style="margin-bottom: 16px;">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>🔍 Facts & Environmental Secrets</span>
+                                    <strong id="anaCatFacts">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" id="barCatFacts" style="width:0%; background:var(--neon-cyan);"></div>
+                                </div>
+                            </div>
+                            <div class="category-stat-row" style="margin-bottom: 16px;">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>🏎️ Cars & Comparisons</span>
+                                    <strong id="anaCatCars">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" id="barCatCars" style="width:0%; background:var(--neon-pink);"></div>
+                                </div>
+                            </div>
+                            <div class="category-stat-row">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                                    <span>📖 Stories & Fictional Lore</span>
+                                    <strong id="anaCatStories">0</strong>
+                                </div>
+                                <div class="storage-bar-track" style="height:10px;">
+                                    <div class="storage-bar-fill" id="barCatStories" style="width:0%; background:var(--neon-purple);"></div>
+                                </div>
+                            </div>
+
+                            <hr class="divider" style="margin:20px 0;">
+
+                            <h4 style="font-size:12px; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px;">Multi-Game Topic Volume</h4>
+                            <div id="anaGameDistributionList" style="font-size:13px;">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Section: Rights Compliance & Hardware Health -->
+                <div class="dashboard-columns">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> Rights & Copyright Compliance Audit</h3>
+                            <span class="badge badge-success">8-POINT AUDIT</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:flex; gap:16px; margin-bottom:16px;">
+                                <div style="flex:1; background:var(--bg-darkest); padding:12px; border-radius:8px; text-align:center;">
+                                    <div style="font-size:22px; font-weight:700; color:var(--neon-green);" id="anaVrfVerified">0</div>
+                                    <div style="font-size:11px; color:var(--text-muted);">Verified Safe</div>
+                                </div>
+                                <div style="flex:1; background:var(--bg-darkest); padding:12px; border-radius:8px; text-align:center;">
+                                    <div style="font-size:22px; font-weight:700; color:var(--neon-yellow);" id="anaVrfReview">0</div>
+                                    <div style="font-size:11px; color:var(--text-muted);">Needs Review</div>
+                                </div>
+                                <div style="flex:1; background:var(--bg-darkest); padding:12px; border-radius:8px; text-align:center;">
+                                    <div style="font-size:22px; font-weight:700; color:var(--neon-pink);" id="anaVrfRejected">0</div>
+                                    <div style="font-size:11px; color:var(--text-muted);">Rejected</div>
+                                </div>
+                            </div>
+                            <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin-bottom:0;">
+                                🛡️ <strong>Zero Copyright Infringement Rule:</strong> Visual assets must be original vector graphics or verified Creative Commons. Windows SAPI audio produces 100% royalty-free offline speech.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg> Storage & Hardware Health Monitor</h3>
+                            <span class="badge badge-cyan" id="anaStorageBadge">OPTIMAL</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="storage-stat-row" style="margin-bottom:10px;">
+                                <span>Project Drive (E:):</span>
+                                <strong id="anaDiskE">-- GB Free</strong>
+                            </div>
+                            <div class="storage-stat-row" style="margin-bottom:10px;">
+                                <span>OS Drive (C:):</span>
+                                <strong id="anaDiskC">-- GB Free</strong>
+                            </div>
+                            <div class="storage-stat-row" style="margin-bottom:10px;">
+                                <span>Render Temp Cache:</span>
+                                <strong id="anaTempCache">0.0 MB</strong>
+                            </div>
+                            <div class="storage-stat-row">
+                                <span>Completed Export Packages:</span>
+                                <strong id="anaExportSize">0.0 MB</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 11: SETTINGS & STORAGE -->
+            <section id="settingsTab" class="tab-pane">
+                <div class="section-toolbar">
+                    <h2>System Configuration & Hardware Quotas</h2>
+                    <p>Fine-tune storage limits, CPU encoding, and offline speech parameters.</p>
+                </div>
+                <div class="settings-grid">
+                    <!-- Storage Monitor Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg> Storage & Cache Controller</h3>
+                            <button class="btn btn-sm btn-outline" id="btnRunCleanup">🧹 Purge Temp Cache</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="storage-stat-row">
+                                <span>Project Drive (E:):</span>
+                                <strong id="setDiskFreeE">-- GB Free</strong>
+                            </div>
+                            <div class="storage-stat-row">
+                                <span>OS Drive (C:):</span>
+                                <strong id="setDiskFreeC">-- GB Free</strong>
+                            </div>
+                            <div class="storage-stat-row">
+                                <span>Active Render Cache:</span>
+                                <strong id="setTempCacheSize">0.0 MB</strong>
+                            </div>
+                            <hr class="divider">
+                            <div class="form-group">
+                                <label>Render Cache Ceiling (GB)</label>
+                                <input type="number" step="0.5" min="1.0" max="10.0" id="settingStorageLimit" class="form-control" value="2.0">
+                                <small>Automatic cleanup triggers when temporary renders exceed this quota.</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Minimum Free Space Safety Margin (GB)</label>
+                                <input type="number" step="1.0" min="2.0" max="20.0" id="settingMinHeadroom" class="form-control" value="5.0">
+                                <small>Rendering is immediately halted if free space falls below this threshold.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hardware & Video Settings -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>⚙️ Hardware & Rendering Configuration</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>FFmpeg CPU Encoding Preset</label>
+                                <select id="settingRenderPreset" class="form-control">
+                                    <option value="ultrafast">ultrafast (Lowest CPU usage)</option>
+                                    <option value="superfast">superfast</option>
+                                    <option value="veryfast">veryfast</option>
+                                    <option value="faster">faster</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Target Output Resolution</label>
+                                <select id="settingResolution" class="form-control">
+                                    <option value="1080x1920">1080x1920 (9:16 Full HD)</option>
+                                    <option value="720x1280">720x1280 (9:16 HD - Low CPU Preview)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Target Framerate</label>
+                                <select id="settingFps" class="form-control">
+                                    <option value="30">30 FPS (Recommended for Core i5)</option>
+                                    <option value="24">24 FPS (Cinematic / Low CPU)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Offline Speech Voice</label>
+                                <select id="settingTtsVoice" class="form-control">
+                                    <option value="Microsoft David Desktop">Microsoft David Desktop (Offline SAPI)</option>
+                                    <option value="Microsoft Zira Desktop">Microsoft Zira Desktop (Offline SAPI)</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" id="btnSaveSettings">💾 Save System Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL: ADD NEW GAME -->
+    <div class="modal-overlay hidden" id="newGameModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>🎮 Add New Game to Library</h3>
+                <button class="modal-close" id="closeNewGameModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="newGameForm">
+                    <div class="form-group">
+                        <label>Game Name *</label>
+                        <input type="text" id="newGameName" class="form-control" placeholder="e.g. Cyberpunk 2077" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Developer / Publisher *</label>
+                        <input type="text" id="newGameDev" class="form-control" placeholder="e.g. CD Projekt Red" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Official Information Source URL</label>
+                        <input type="url" id="newGameSourceUrl" class="form-control" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>Fan-Content / Copyright Policy URL</label>
+                        <input type="url" id="newGamePolicyUrl" class="form-control" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>Commercial-Use Rules</label>
+                        <textarea id="newGameCommercialRules" class="form-control" rows="2" placeholder="Summary of publisher video and monetization policies..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Approved Footage Sources</label>
+                        <input type="text" id="newGameFootageSources" class="form-control" value="Original SVG/CSS Graphics, Pexels, Pixabay">
+                    </div>
+                    <div class="form-group">
+                        <label>Restricted Content Guidelines</label>
+                        <textarea id="newGameRestrictedRules" class="form-control" rows="2" placeholder="e.g. No leaked footage, no copyrighted radio tracks..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" id="cancelNewGameBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Game</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: TOPIC EVIDENCE & CITATIONS -->
+    <div class="modal-overlay hidden" id="topicEvidenceModal">
+        <div class="modal-card" style="width: 650px;">
+            <div class="modal-header">
+                <h3>🔍 Topic Research & Evidence Audit</h3>
+                <button class="modal-close" id="closeEvidenceModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 id="evidenceTopicTitle" style="color:var(--neon-cyan); margin-bottom:6px;">Topic Title</h4>
+                <p id="evidenceTopicDesc" style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">Description</p>
+                
+                <h5 style="text-transform:uppercase; font-size:11px; color:var(--text-muted); margin-bottom:8px;">Supporting Sources & Public URLs</h5>
+                <div id="evidenceSourcesList" style="margin-bottom:16px;"></div>
+
+                <h5 style="text-transform:uppercase; font-size:11px; color:var(--text-muted); margin-bottom:8px;">Extracted Claims & Truth Verification</h5>
+                <div id="evidenceClaimsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD ASSET & RIGHTS AUDIT -->
+    <div class="modal-overlay hidden" id="addAssetModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>🎞️ Register Asset & Commercial License Audit</h3>
+                <button class="modal-close" id="closeAddAssetModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addAssetForm">
+                    <div class="form-group">
+                        <label>Asset Name *</label>
+                        <input type="text" id="newAssetName" class="form-control" placeholder="e.g. Vice City Neon Palm Trees" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Source Platform *</label>
+                            <select id="newAssetPlatform" class="form-control">
+                                <option value="Pexels">Pexels</option>
+                                <option value="Pixabay">Pixabay</option>
+                                <option value="Mixkit">Mixkit</option>
+                                <option value="Original Visuals">Original Visuals (SVG/CSS)</option>
+                                <option value="Other Public Repository">Other Public Repository</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Creator / Author</label>
+                            <input type="text" id="newAssetAuthor" class="form-control" placeholder="e.g. John Doe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Source Webpage URL *</label>
+                        <input type="url" id="newAssetSourceUrl" class="form-control" placeholder="https://..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Direct Asset Download URL</label>
+                        <input type="url" id="newAssetDirectUrl" class="form-control" placeholder="https://...">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>License Name *</label>
+                            <input type="text" id="newAssetLicense" class="form-control" placeholder="e.g. Pexels License, CC0" required>
+                        </div>
+                        <div class="form-group col">
+                            <label>License URL</label>
+                            <input type="url" id="newAssetLicenseUrl" class="form-control" placeholder="https://...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Attribution Notice</label>
+                        <input type="text" id="newAssetAttribution" class="form-control" placeholder="e.g. Video by Kelly Lacy on Pexels">
+                    </div>
+                    <div style="margin-bottom:16px; display:flex; gap:20px;">
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                            <input type="checkbox" id="newAssetCanCommercial" checked>
+                            Commercial Use Permitted
+                        </label>
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                            <input type="checkbox" id="newAssetAttrRequired">
+                            Attribution Required
+                        </label>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" id="cancelAddAssetBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Audit & Register Asset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD NEW TOPIC -->
+    <div class="modal-overlay hidden" id="newTopicModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Add Topic Manually</h3>
+                <button class="modal-close" id="closeNewTopicModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="newTopicForm">
+                    <div class="form-group">
+                        <label>Topic Title *</label>
+                        <input type="text" id="newTopicTitle" class="form-control" placeholder="e.g. GTA 6 Physics Engine Upgrades" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="newTopicCategory" class="form-control">
+                            <option value="Facts & Secrets">Facts & Secrets</option>
+                            <option value="Cars & Comparisons">Cars & Comparisons</option>
+                            <option value="Stories">Stories & Theories</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description & Facts</label>
+                        <textarea id="newTopicDescription" class="form-control" rows="3" placeholder="Summary of verified information or topic overview..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" id="cancelNewTopicBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Topic</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT METADATA -->
+    <div class="modal-overlay hidden" id="editMetadataModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Edit Video Publishing Metadata</h3>
+                <button class="modal-close" id="closeEditMetadataModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editMetadataForm">
+                    <input type="hidden" id="editMetaProjectId">
+                    <div class="form-group">
+                        <label>YouTube Title (Target: Under 60 chars) *</label>
+                        <input type="text" id="editMetaYtTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>YouTube Description & Citations</label>
+                        <textarea id="editMetaYtDesc" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>TikTok Caption</label>
+                        <input type="text" id="editMetaTtCaption" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Hashtags</label>
+                        <input type="text" id="editMetaHashtags" class="form-control">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline" id="cancelEditMetadataBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/app.js"></script>
+</body>
+</html>

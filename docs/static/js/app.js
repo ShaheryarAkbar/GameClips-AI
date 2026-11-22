@@ -1,4 +1,4 @@
-// ============================================================================
+==
 // GITHUB PAGES LIVE DEMO INTERCEPTOR
 // Provides offline demo data when hosted on GitHub Pages (static web environment)
 // ============================================================================
@@ -168,6 +168,21 @@
     };
 })();
 
+// Professional SVG Icon Definitions for Dynamic Elements
+const UI_ICONS = {
+    package: '<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    shield: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>',
+    download: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+    refresh: '<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>',
+    search: '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+    file: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    edit: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+    check: '<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>',
+    x: '<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    video: '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>',
+    device: '<svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
+    clapper: '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m4 11 16-5"/><path d="m4 6 16-5"/><path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>'
+};
 
 // GameClips AI - Dashboard Application Frontend Logic
 
@@ -217,6 +232,12 @@ function initTabs() {
             const activePane = document.getElementById(`${targetTab}Tab`);
             if (activePane) activePane.classList.add('active');
 
+            // Close mobile sidebar drawer if open
+            const sidebarEl = document.querySelector('.sidebar');
+            const backdropEl = document.getElementById('sidebarBackdrop');
+            if (sidebarEl) sidebarEl.classList.remove('mobile-open');
+            if (backdropEl) backdropEl.classList.remove('active');
+
             if (tabMeta[targetTab]) {
                 headerTitle.textContent = tabMeta[targetTab].title;
                 headerSubtitle.textContent = tabMeta[targetTab].subtitle;
@@ -235,6 +256,22 @@ function initTabs() {
 }
 
 function initEventListeners() {
+    // Mobile Drawer Toggle
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const sidebarEl = document.querySelector('.sidebar');
+    const backdropEl = document.getElementById('sidebarBackdrop');
+
+    if (mobileToggle && sidebarEl && backdropEl) {
+        mobileToggle.addEventListener('click', () => {
+            sidebarEl.classList.toggle('mobile-open');
+            backdropEl.classList.toggle('active');
+        });
+
+        backdropEl.addEventListener('click', () => {
+            sidebarEl.classList.remove('mobile-open');
+            backdropEl.classList.remove('active');
+        });
+    }
     // Refresh button
     const refreshBtn = document.getElementById('refreshMetricsBtn');
     if (refreshBtn) refreshBtn.addEventListener('click', () => {
@@ -542,7 +579,7 @@ function initEventListeners() {
             const custom_audio_path = voice_name === 'CUSTOM' ? (document.getElementById('studioCustomAudioPath')?.value.trim() || null) : null;
 
             btnRenderVideo.disabled = true;
-            btnRenderVideo.textContent = '🎬 Rendering with FFmpeg & Audio...';
+            btnRenderVideo.textContent = 'Rendering with FFmpeg & Audio...';
 
             try {
                 const res = await fetch('/api/video/render', {
@@ -570,7 +607,7 @@ function initEventListeners() {
                 showNotification('Error communicating with FFmpeg render engine', 'danger');
             } finally {
                 btnRenderVideo.disabled = false;
-                btnRenderVideo.textContent = '🎬 Render Video (FFmpeg + TTS)';
+                btnRenderVideo.textContent = 'Render Video';
             }
         });
     }
@@ -799,7 +836,7 @@ function renderTopicsTable(topics) {
             <td><small class="text-muted">${t.source_count || 1} verified source</small></td>
             <td>
                 <div style="display:flex; gap:6px;">
-                    <button class="btn btn-sm btn-outline" onclick="viewEvidenceModal('${t.id}')">🔍 Evidence</button>
+                    <button class="btn btn-sm btn-outline" onclick="viewEvidenceModal('${t.id}')">${UI_ICONS.search} Evidence</button>
                     <button class="btn btn-sm btn-primary" onclick="selectForStudio('${t.id}', '${encodeURIComponent(t.title)}')">Studio</button>
                 </div>
             </td>
@@ -898,7 +935,7 @@ async function loadApprovalQueue() {
         if (items.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    <span class="empty-icon">🛡️</span>
+                    <span class="empty-icon"><svg class="icon icon-xl" style="color:var(--neon-cyan);" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
                     <h3>Approval Queue is Clear</h3>
                     <p>No video candidates currently waiting for review. Generate and render one in the AI Video Studio.</p>
                 </div>
@@ -995,14 +1032,14 @@ async function loadApprovalQueue() {
                             <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
                                 ${item.status === 'APPROVED' ? `
                                     <button class="btn btn-primary" style="background:var(--neon-green); color:#05070f; font-weight:700;" onclick="exportProjectPackage('${item.id}')">
-                                        📦 Export Video Package
+                                        ${UI_ICONS.package} Export Package
                                     </button>
                                 ` : `
-                                    <button class="btn btn-primary" onclick="reviewAction('${item.id}', 'APPROVE')">✓ Approve Video</button>
+                                    <button class="btn btn-primary" onclick="reviewAction('${item.id}', 'APPROVE')">${UI_ICONS.check} Approve Video</button>
                                 `}
-                                <button class="btn btn-outline" onclick="openEditMetadataModal('${item.id}', '${encodeURIComponent(item.youtube_title || '')}', '${encodeURIComponent(item.youtube_description || '')}', '${encodeURIComponent(item.tiktok_caption || '')}', '${encodeURIComponent(item.hashtags || '')}')">✏️ Edit Metadata</button>
-                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REGENERATE')">🔄 Regenerate</button>
-                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REJECT')">✕ Reject</button>
+                                <button class="btn btn-outline" onclick="openEditMetadataModal('${item.id}', '${encodeURIComponent(item.youtube_title || '')}', '${encodeURIComponent(item.youtube_description || '')}', '${encodeURIComponent(item.tiktok_caption || '')}', '${encodeURIComponent(item.hashtags || '')}')">${UI_ICONS.edit} Edit Metadata</button>
+                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REGENERATE')">${UI_ICONS.refresh} Regenerate</button>
+                                <button class="btn btn-outline" onclick="reviewAction('${item.id}', 'REJECT')">${UI_ICONS.x} Reject</button>
                             </div>
                         </div>
                     </div>
@@ -1291,7 +1328,7 @@ async function loadExports() {
         if (!exports || exports.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    <span class="empty-icon">📦</span>
+                    <span class="empty-icon"><svg class="icon icon-xl" style="color:var(--neon-gold);" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
                     <h3>No distribution packages exported yet</h3>
                     <p>Approve candidate videos in the Approval Queue and click "Export Package" to generate release bundles.</p>
                 </div>
@@ -1356,20 +1393,20 @@ async function loadExports() {
                     <!-- Package Action Buttons -->
                     <div style="display:flex; flex-direction:column; gap:8px;">
                         <a href="/api/exports/${exp.id}/file/final_video.mp4?download=true" class="btn btn-primary btn-block" style="text-align:center; text-decoration:none;">
-                            📥 Download Final 1080x1920 MP4
+                            ${UI_ICONS.download} Download Final 1080x1920 MP4
                         </a>
                         <div style="display:flex; gap:6px;">
                             <a href="/api/exports/${exp.id}/file/Copyright_Report.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                📄 Rights Report
+                                ${UI_ICONS.file} Rights Report
                             </a>
                             <a href="/api/exports/${exp.id}/file/Sources.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                🔍 Citations
+                                ${UI_ICONS.search} Citations
                             </a>
                             <a href="/api/exports/${exp.id}/file/youtube_package/yt_description.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                📺 YouTube
+                                ${UI_ICONS.video} YouTube
                             </a>
                             <a href="/api/exports/${exp.id}/file/tiktok_package/tiktok_caption.txt" target="_blank" class="btn btn-outline btn-sm" style="flex:1; text-align:center; text-decoration:none;">
-                                📱 TikTok
+                                ${UI_ICONS.device} TikTok
                             </a>
                         </div>
                     </div>
