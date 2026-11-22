@@ -165,7 +165,7 @@ function initEventListeners() {
     if (btnRunResearch) {
         btnRunResearch.addEventListener('click', async () => {
             btnRunResearch.disabled = true;
-            btnRunResearch.textContent = '⏳ Researching Public Feeds...';
+            btnRunResearch.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Researching Public Feeds...</span>';
             try {
                 const res = await fetch('/api/research/run', { method: 'POST' });
                 const data = await res.json();
@@ -180,7 +180,7 @@ function initEventListeners() {
                 showNotification('Error during research execution', 'danger');
             } finally {
                 btnRunResearch.disabled = false;
-                btnRunResearch.textContent = '⚡ Run Automated Research';
+                btnRunResearch.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Run Automated Research</span>';
             }
         });
     }
@@ -226,7 +226,7 @@ function initEventListeners() {
     if (btnSeedFootage) {
         btnSeedFootage.addEventListener('click', async () => {
             btnSeedFootage.disabled = true;
-            btnSeedFootage.textContent = '⏳ Loading Catalog...';
+            btnSeedFootage.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Loading Catalog...</span>';
             try {
                 const res = await fetch('/api/footage/seed', { method: 'POST' });
                 const data = await res.json();
@@ -235,7 +235,7 @@ function initEventListeners() {
                 loadDashboardData();
             } finally {
                 btnSeedFootage.disabled = false;
-                btnSeedFootage.textContent = '⚡ Load Verified Catalog';
+                btnSeedFootage.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Load Verified Catalog</span>';
             }
         });
     }
@@ -348,7 +348,7 @@ function initEventListeners() {
             }
 
             btnTriggerRender.disabled = true;
-            btnTriggerRender.textContent = '⚡ Generating Script & Visual Frames...';
+            btnTriggerRender.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Generating Script & Visual Frames...</span>';
 
             try {
                 const res = await fetch('/api/studio/generate', {
@@ -368,7 +368,7 @@ function initEventListeners() {
                 showNotification('Error contacting Studio engine', 'danger');
             } finally {
                 btnTriggerRender.disabled = false;
-                btnTriggerRender.textContent = '⚡ Generate Script & Visual Plan';
+                btnTriggerRender.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Generate Script & Visual Plan</span>';
             }
         });
     }
@@ -982,7 +982,7 @@ async function viewEvidenceModal(topicId) {
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
                         <span style="font-size:13px; color:var(--text-primary);">${c.claim_text}</span>
                         <span class="badge ${isSpec ? 'badge-warning' : 'badge-success'}" style="white-space:nowrap;">
-                            ${isSpec ? '⚠️ SPECULATION / RUMOR' : '✓ VERIFIED FACT'}
+                            ${isSpec ? 'SPECULATION / RUMOR' : 'VERIFIED FACT'}
                         </span>
                     </div>
                 `;
@@ -1029,7 +1029,7 @@ async function loadFootageLibrary() {
                 </td>
                 <td>
                     <span class="badge ${a.commercial_permission === 1 ? 'badge-success' : 'badge-danger'}">
-                        ${a.commercial_permission === 1 ? '✓ ALLOWED' : '✕ PROHIBITED'}
+                        ${a.commercial_permission === 1 ? 'ALLOWED' : 'PROHIBITED'}
                     </span>
                 </td>
                 <td>
@@ -1345,7 +1345,7 @@ async function triggerAutomationCycle() {
     const btn = document.getElementById('btnTriggerAutomation');
     if (btn) {
         btn.disabled = true;
-        btn.innerHTML = '<span>⏳</span> Running Automation Cycle...';
+        btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Running Automation Cycle...</span>';
     }
 
     try {
@@ -1372,7 +1372,7 @@ async function triggerAutomationCycle() {
     } finally {
         if (btn) {
             btn.disabled = false;
-            btn.innerHTML = '<span>⚡</span> Run Automation Cycle';
+            btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Run Automation Cycle</span>';
         }
     }
 }

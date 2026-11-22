@@ -45,12 +45,17 @@ if (-not $remoteUrl) {
     exit 0
 }
 
-# 5. Push to GitHub
-Write-Host "`n[INFO] Pushing latest changes to GitHub ($remoteUrl)..." -ForegroundColor Yellow
+# 5. Push to GitHub (main and gh-pages)
+Write-Host "`n[INFO] Pushing latest changes to GitHub main branch ($remoteUrl)..." -ForegroundColor Yellow
 git push origin main
 
 if ($LASTEXITCODE -eq 0) {
-    Write-Host "`n[SUCCESS] All code successfully synced and updated on GitHub!" -ForegroundColor Green
+    Write-Host "`n[INFO] Updating gh-pages branch..." -ForegroundColor Yellow
+    git checkout gh-pages
+    git merge main -m "Sync main to gh-pages: $CommitMessage"
+    git push origin gh-pages
+    git checkout main
+    Write-Host "`n[SUCCESS] All code and live site successfully synced and updated on GitHub!" -ForegroundColor Green
 } else {
     Write-Warning "`n[NOTICE] Push failed or requires authentication. If this is your first push, please verify credentials."
 }

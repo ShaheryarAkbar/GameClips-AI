@@ -1,173 +1,3 @@
-==
-// GITHUB PAGES LIVE DEMO INTERCEPTOR
-// Provides offline demo data when hosted on GitHub Pages (static web environment)
-// ============================================================================
-(function() {
-    const isGitHubPages = window.location.hostname.includes('github.io') || window.location.protocol === 'file:';
-    if (!isGitHubPages) return;
-
-    console.log('[GameClips AI] Initializing GitHub Pages Live Showcase Mode');
-
-    const MOCK_GAMES = [
-        { id: 'game-gta6', name: 'Grand Theft Auto VI', slug: 'gta-6', developer: 'Rockstar Games', publisher: 'Take-Two Interactive', fan_content_policy_url: 'https://support.rockstargames.com/articles/200153756/Policy-on-posting-copyrighted-Rockstar-Games-material', commercial_rules: 'Educational commentary & review allowed. Direct monetized gameplay unauthorized.', is_active: 1 },
-        { id: 'game-gta5', name: 'Grand Theft Auto V', slug: 'gta-5', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gta4', name: 'Grand Theft Auto IV', slug: 'gta-4', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gtasa', name: 'GTA: San Andreas', slug: 'gta-sa', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gtavc', name: 'GTA: Vice City', slug: 'gta-vc', developer: 'Rockstar North', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-gta3', name: 'Grand Theft Auto III', slug: 'gta-3', developer: 'DMA Design', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-rdr2', name: 'Red Dead Redemption 2', slug: 'rdr-2', developer: 'Rockstar Games', publisher: 'Take-Two Interactive', is_active: 0 },
-        { id: 'game-minecraft', name: 'Minecraft', slug: 'minecraft', developer: 'Mojang Studios', publisher: 'Xbox Game Studios', is_active: 0 }
-    ];
-
-    const MOCK_TOPICS = [
-        { id: 'top-1', game_id: 'game-gta6', category: 'Facts & Secrets', title: 'State of Leonida Map Scale & Ecosystems', description: 'Officially confirmed to include Vice City and surrounding wetland biomes with dynamic water physics.', relevance_score: 9.8, status: 'APPROVED', is_duplicate: 0 },
-        { id: 'top-2', game_id: 'game-gta6', category: 'Facts & Secrets', title: 'Lucia & Jason Dual Protagonists Dynamic', description: 'Official trailer confirms Bonnie and Clyde inspired criminal partnership with coordinated robbery mechanics.', relevance_score: 9.5, status: 'APPROVED', is_duplicate: 0 },
-        { id: 'top-3', game_id: 'game-gta6', category: 'Cars & Comparisons', title: 'Next-Gen Vehicle Deformation & Interior Physics', description: 'Comparison of vehicle collision meshes, dynamic interior mirrors, and real-world automotive analogs.', relevance_score: 9.2, status: 'APPROVED', is_duplicate: 0 },
-        { id: 'top-4', game_id: 'game-gta6', category: 'Stories', title: 'Vice City Contraband Smugglers Fictional Lore', description: 'Original speculative narrative exploring the underwater drug-running routes along the Florida Keys.', relevance_score: 8.7, status: 'APPROVED', is_duplicate: 0 }
-    ];
-
-    const MOCK_STATS = {
-        topics_count: 14,
-        scripts_count: 6,
-        awaiting_approval_count: 2,
-        exported_count: 4,
-        rejected_assets_count: 0,
-        active_game: MOCK_GAMES[0],
-        storage: {
-            project_drive: { drive: 'E:\\', total_gb: 86.03, used_gb: 61.36, free_gb: 24.67, free_percent: 28.7 },
-            os_drive: { drive: 'C:\\', total_gb: 237.19, used_gb: 219.89, free_gb: 17.3, free_percent: 7.3 },
-            temp_render: { size_mb: 2.45, file_count: 8 },
-            exports: { size_mb: 18.2, file_count: 24 },
-            thresholds: { storage_limit_gb: 2.5, min_disk_headroom_gb: 5.0, auto_cleanup_temp: true },
-            is_safe_to_render: true,
-            warning: null
-        }
-    };
-
-    const MOCK_QUEUE = [
-        {
-            id: 'proj-demo-1',
-            project_name: 'GTA 6 Leonida Scale Breakdown',
-            game_name: 'Grand Theft Auto VI',
-            status: 'NEEDS_REVIEW',
-            vrf_status: 'VERIFIED',
-            copyright_risk_level: 'LOW',
-            duration_seconds: 42,
-            youtube_title: 'GTA 6 Leonida Map Reveal | Mindblowing Scale #Shorts',
-            youtube_description: 'Full factual breakdown of Vice City and the state of Leonida. Verified against Rockstar Games official releases.',
-            tiktok_caption: 'Is the GTA 6 map really 2.5x bigger than GTA 5? 🌊🌴 #GTA6 #Gaming',
-            hashtags: '#GTA6 #GrandTheftAuto #GamingShorts #ViceCity',
-            preview_path: 'demo.mp4',
-            final_video_path: null,
-            scenes: [
-                { scene_number: 1, start_time: 0, end_time: 8, narration_text: 'GTA 6 officially takes place in Leonida, Rockstar largest open world ever created.', visual_type: 'SVG_MAP' },
-                { scene_number: 2, start_time: 8, end_time: 22, narration_text: 'From the neon strip of Vice City to the swampy wetlands, every biome has unique wildlife.', visual_type: 'SVG_TYPOGRAPHY' },
-                { scene_number: 3, start_time: 22, end_time: 42, narration_text: 'Subscribe for daily verified facts and vehicle comparisons!', visual_type: 'SVG_COUNTDOWN' }
-            ],
-            sources: [
-                { source_name: 'Rockstar Games Official Trailer 1', title: 'Grand Theft Auto VI Announcement', url: 'https://www.youtube.com/watch?v=QdBZY2fkU-0' },
-                { source_name: 'Take-Two Interactive SEC Filing', title: 'Take-Two Interactive Form 10-K', url: 'https://www.sec.gov/' }
-            ]
-        }
-    ];
-
-    const MOCK_EXPORTS = [
-        {
-            id: 'exp-demo-01',
-            project_name: 'GTA 6 Leonida Scale Breakdown',
-            game_name: 'Grand Theft Auto VI',
-            script_title: 'Leonida Map Scale & Ecosystems',
-            export_timestamp: '2026-11-22 11:51:05',
-            video_size_mb: 4.82,
-            duration_seconds: 42,
-            youtube_title: 'GTA 6 Leonida Map Scale Revealed! #Shorts',
-            tiktok_caption: 'GTA 6 Map size confirmed by official disclosures! #GTA6',
-            video_path: 'final_video.mp4'
-        }
-    ];
-
-    const MOCK_ANALYTICS = {
-        funnel: {
-            topics_discovered: 14,
-            scripts_generated: 6,
-            videos_rendered: 4,
-            approved: 3,
-            rejected: 0,
-            pending_review: 1,
-            exported: 3,
-            approval_rate_percent: 100.0,
-            rejection_rate_percent: 0.0
-        },
-        topics: {
-            total: 14,
-            duplicates_filtered: 3,
-            unique_topics: 11,
-            by_category: {
-                facts_and_secrets: 6,
-                cars_and_comparisons: 4,
-                stories_and_theories: 4
-            }
-        },
-        compliance_safety: {
-            total_reports: 4,
-            verified: 4,
-            needs_review: 0,
-            rejected: 0,
-            safety_score_index: 100.0,
-            disclaimer_enforced: true
-        },
-        game_distribution: [
-            { name: 'Grand Theft Auto VI', topic_count: 8 },
-            { name: 'Grand Theft Auto V', topic_count: 2 },
-            { name: 'Red Dead Redemption 2', topic_count: 2 },
-            { name: 'Minecraft', topic_count: 2 }
-        ],
-        storage: MOCK_STATS.storage
-    };
-
-    const originalFetch = window.fetch;
-    window.fetch = async function(url, options) {
-        const u = String(url);
-
-        // Try real server first if running locally
-        try {
-            const res = await originalFetch(url, options);
-            if (res.ok) return res;
-        } catch (_) {}
-
-        // Mock Endpoints
-        if (u.includes('/api/stats')) {
-            return new Response(JSON.stringify(MOCK_STATS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/games')) {
-            return new Response(JSON.stringify(MOCK_GAMES), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/topics')) {
-            return new Response(JSON.stringify(MOCK_TOPICS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/queue')) {
-            return new Response(JSON.stringify(MOCK_QUEUE), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/exports')) {
-            return new Response(JSON.stringify(MOCK_EXPORTS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/analytics')) {
-            return new Response(JSON.stringify(MOCK_ANALYTICS), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/automation/status')) {
-            return new Response(JSON.stringify({ daily_video_target: 3, candidates_today: 1, is_safe_to_render: true, auto_publishing_allowed: false }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/settings')) {
-            return new Response(JSON.stringify(MOCK_STATS.storage.thresholds), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-        if (u.includes('/api/footage')) {
-            return new Response(JSON.stringify([]), { status: 200, headers: { 'Content-Type': 'application/json' } });
-        }
-
-        return new Response(JSON.stringify({ success: true, message: 'Showcase Live Action Completed' }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-    };
-})();
-
 // Professional SVG Icon Definitions for Dynamic Elements
 const UI_ICONS = {
     package: '<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
@@ -335,7 +165,7 @@ function initEventListeners() {
     if (btnRunResearch) {
         btnRunResearch.addEventListener('click', async () => {
             btnRunResearch.disabled = true;
-            btnRunResearch.textContent = '⏳ Researching Public Feeds...';
+            btnRunResearch.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Researching Public Feeds...</span>';
             try {
                 const res = await fetch('/api/research/run', { method: 'POST' });
                 const data = await res.json();
@@ -350,7 +180,7 @@ function initEventListeners() {
                 showNotification('Error during research execution', 'danger');
             } finally {
                 btnRunResearch.disabled = false;
-                btnRunResearch.textContent = '⚡ Run Automated Research';
+                btnRunResearch.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Run Automated Research</span>';
             }
         });
     }
@@ -396,7 +226,7 @@ function initEventListeners() {
     if (btnSeedFootage) {
         btnSeedFootage.addEventListener('click', async () => {
             btnSeedFootage.disabled = true;
-            btnSeedFootage.textContent = '⏳ Loading Catalog...';
+            btnSeedFootage.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Loading Catalog...</span>';
             try {
                 const res = await fetch('/api/footage/seed', { method: 'POST' });
                 const data = await res.json();
@@ -405,7 +235,7 @@ function initEventListeners() {
                 loadDashboardData();
             } finally {
                 btnSeedFootage.disabled = false;
-                btnSeedFootage.textContent = '⚡ Load Verified Catalog';
+                btnSeedFootage.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Load Verified Catalog</span>';
             }
         });
     }
@@ -518,7 +348,7 @@ function initEventListeners() {
             }
 
             btnTriggerRender.disabled = true;
-            btnTriggerRender.textContent = '⚡ Generating Script & Visual Frames...';
+            btnTriggerRender.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Generating Script & Visual Frames...</span>';
 
             try {
                 const res = await fetch('/api/studio/generate', {
@@ -538,7 +368,7 @@ function initEventListeners() {
                 showNotification('Error contacting Studio engine', 'danger');
             } finally {
                 btnTriggerRender.disabled = false;
-                btnTriggerRender.textContent = '⚡ Generate Script & Visual Plan';
+                btnTriggerRender.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Generate Script & Visual Plan</span>';
             }
         });
     }
@@ -1152,7 +982,7 @@ async function viewEvidenceModal(topicId) {
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
                         <span style="font-size:13px; color:var(--text-primary);">${c.claim_text}</span>
                         <span class="badge ${isSpec ? 'badge-warning' : 'badge-success'}" style="white-space:nowrap;">
-                            ${isSpec ? '⚠️ SPECULATION / RUMOR' : '✓ VERIFIED FACT'}
+                            ${isSpec ? 'SPECULATION / RUMOR' : 'VERIFIED FACT'}
                         </span>
                     </div>
                 `;
@@ -1199,7 +1029,7 @@ async function loadFootageLibrary() {
                 </td>
                 <td>
                     <span class="badge ${a.commercial_permission === 1 ? 'badge-success' : 'badge-danger'}">
-                        ${a.commercial_permission === 1 ? '✓ ALLOWED' : '✕ PROHIBITED'}
+                        ${a.commercial_permission === 1 ? 'ALLOWED' : 'PROHIBITED'}
                     </span>
                 </td>
                 <td>
@@ -1515,7 +1345,7 @@ async function triggerAutomationCycle() {
     const btn = document.getElementById('btnTriggerAutomation');
     if (btn) {
         btn.disabled = true;
-        btn.innerHTML = '<span>⏳</span> Running Automation Cycle...';
+        btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span>Running Automation Cycle...</span>';
     }
 
     try {
@@ -1542,7 +1372,7 @@ async function triggerAutomationCycle() {
     } finally {
         if (btn) {
             btn.disabled = false;
-            btn.innerHTML = '<span>⚡</span> Run Automation Cycle';
+            btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Run Automation Cycle</span>';
         }
     }
 }
