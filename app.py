@@ -120,7 +120,7 @@ def activate_game(game_id):
 @app.route("/api/games/add", methods=["POST"])
 def add_game():
     """Adds a new game to the library with full policy and footage configurations."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     name = data.get("name", "").strip()
     if not name:
         return jsonify({"success": False, "error": "Game name is required"}), 400
@@ -196,7 +196,7 @@ def get_topics():
 @app.route("/api/topics", methods=["POST"])
 def add_topic():
     """Adds a new topic to the active game."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     title = data.get("title", "").strip()
     if not title:
         return jsonify({"success": False, "error": "Topic title is required"}), 400
@@ -257,7 +257,7 @@ def get_settings():
 @app.route("/api/settings", methods=["POST"])
 def update_settings():
     """Updates system settings in SQLite."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     conn = get_connection()
     cur = conn.cursor()
     now = datetime.now().isoformat()
@@ -308,7 +308,7 @@ def get_approval_queue():
 @app.route("/api/approval/<project_id>/action", methods=["POST"])
 def handle_approval_action(project_id):
     """Processes human reviewer decisions: APPROVE, REJECT, or REGENERATE."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     action = data.get("action", "").upper()
     reviewer_notes = data.get("reviewer_notes", "")
     warning_ack = data.get("warning_acknowledged", True)
@@ -332,7 +332,7 @@ def trigger_project_verification(project_id):
 @app.route("/api/approval/<project_id>/metadata", methods=["POST"])
 def update_project_metadata(project_id):
     """Allows human reviewer to edit publishing metadata before sign-off."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     yt_title = data.get("youtube_title")
     yt_desc = data.get("youtube_description")
     tt_caption = data.get("tiktok_caption")
@@ -365,7 +365,7 @@ def update_project_metadata(project_id):
 @app.route("/api/export/<project_id>", methods=["POST"])
 def export_project(project_id):
     """Packages an approved project into release directory."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     force = data.get("force", False)
     result = export_approved_project(project_id, force_export=force)
     status_code = 200 if result.get("success") else 400
@@ -414,7 +414,7 @@ def get_automation_status():
 @app.route("/api/automation/run", methods=["POST"])
 def trigger_automation_run():
     """Triggers an automated candidate production cycle."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     game_id = data.get("game_id")
     max_candidates = data.get("max_candidates")
     result = run_automation_cycle(game_id=game_id, max_candidates=max_candidates)
@@ -425,7 +425,7 @@ def trigger_automation_run():
 @app.route("/api/research/run", methods=["POST"])
 def trigger_research():
     """Executes a research cycle for the active game."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     game_id = data.get("game_id")
     result = run_research_cycle(game_id)
     return jsonify(result)
@@ -453,6 +453,32 @@ def list_footage():
     conn.close()
     return jsonify(assets)
 
+@app.route("/api/footage/search", methods=["GET", "POST"])
+def search_footage():
+    """Searches rights-verified assets matching topic keywords or query string."""
+    from footage_agent import search_assets_for_topic
+    import re
+    if request.method == "POST":
+        data = request.get_json(silent=True) or {}
+        query = data.get("query", "")
+        game_id = data.get("game_id")
+    else:
+        query = request.args.get("q", "")
+        game_id = request.args.get("game_id")
+
+    keywords = [k.strip() for k in re.split(r"[\s,;]+", query) if k.strip()] if query else []
+    results = search_assets_for_topic(keywords, game_id=game_id)
+    return jsonify({"success": True, "results": results, "count": len(results)})
+
+@app.route("/api/footage/<asset_id>/download", methods=["POST"])
+def download_footage_endpoint(asset_id):
+    """Downloads or caches a permitted commercial footage asset into local library."""
+    from footage_agent import download_permitted_asset
+    result = download_permitted_asset(asset_id)
+    if not result.get("success"):
+        return jsonify(result), 400
+    return jsonify(result)
+
 @app.route("/api/footage/seed", methods=["POST"])
 def seed_footage():
     """Seeds verified initial footage assets for the active game."""
@@ -468,14 +494,14 @@ def seed_footage():
 @app.route("/api/footage/verify", methods=["POST"])
 def audit_footage_license():
     """Audits an asset's commercial use rights and copyright risks."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     audit = verify_asset_rights(data)
     return jsonify({"success": True, "audit": audit})
 
 @app.route("/api/footage/add", methods=["POST"])
 def add_footage_asset():
     """Records a new footage asset with full license traceability."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     asset_name = data.get("asset_name", "").strip()
     source_platform = data.get("source_platform", "Unknown")
     source_url = data.get("source_url", "").strip()
@@ -545,7 +571,7 @@ def list_scripts():
 @app.route("/api/studio/generate", methods=["POST"])
 def studio_generate():
     """Generates a script, visual plan, and 1080x1920 graphic frames for a topic."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     topic_id = data.get("topic_id")
     target_duration = data.get("target_duration", "30-50s")
 
@@ -610,7 +636,7 @@ def get_preview_image(project_id, scene_num):
 @app.route("/api/video/render", methods=["POST"])
 def video_render():
     """Renders a preview or final video candidate using FFmpeg."""
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) or {}
     project_id = data.get("project_id")
     is_preview = data.get("is_preview", False)
     quality_preset = data.get("quality_preset", "ultrafast")

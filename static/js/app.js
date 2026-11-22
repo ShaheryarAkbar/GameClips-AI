@@ -240,6 +240,16 @@ function initEventListeners() {
         });
     }
 
+    // Search Footage
+    const btnSearchFootage = document.getElementById('btnSearchFootage');
+    const footageSearchInput = document.getElementById('footageSearchInput');
+    if (btnSearchFootage && footageSearchInput) {
+        btnSearchFootage.addEventListener('click', () => searchFootage(footageSearchInput.value.trim()));
+        footageSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') searchFootage(footageSearchInput.value.trim());
+        });
+    }
+
     // Add Asset Modal & Form
     const btnOpenAddAssetModal = document.getElementById('btnOpenAddAssetModal');
     const addAssetModal = document.getElementById('addAssetModal');
@@ -996,53 +1006,97 @@ async function viewEvidenceModal(topicId) {
     }
 }
 
+function renderFootageRows(assets) {
+    const tbody = document.getElementById('footageTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    if (!assets || assets.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">No footage assets found in library.</td></tr>`;
+        return;
+    }
+
+    assets.forEach(a => {
+        const tr = document.createElement('tr');
+        let statusBadge = 'badge-cyan';
+        if (a.rights_status === 'VERIFIED') statusBadge = 'badge-success';
+        else if (a.rights_status === 'REJECTED') statusBadge = 'badge-danger';
+        else if (a.rights_status === 'NEEDS_REVIEW') statusBadge = 'badge-warning';
+
+        const isLocal = a.local_path && a.file_size_mb > 0;
+        const localHtml = isLocal
+            ? `<span class="badge badge-success" style="font-size:11px;">✓ Local (${a.file_size_mb} MB)</span>`
+            : (a.rights_status === 'VERIFIED' && a.commercial_permission === 1
+                ? `<button class="btn btn-sm btn-outline" onclick="downloadFootageAsset('${a.id}')">Download</button>`
+                : `<span class="text-muted" style="font-size:11px;">Not Cleared</span>`);
+
+        tr.innerHTML = `
+            <td>
+                <strong>${a.asset_name}</strong><br>
+                <small class="text-muted">${a.author_name ? 'Author: ' + a.author_name : ''}</small>
+            </td>
+            <td><span class="tag">${a.source_platform}</span></td>
+            <td>
+                <span style="font-size:12px;">${a.license_name}</span><br>
+                ${a.license_url ? `<a href="${a.license_url}" target="_blank" style="font-size:10px; color:var(--neon-cyan);">License Terms</a>` : ''}
+            </td>
+            <td>
+                <span class="badge ${a.commercial_permission === 1 ? 'badge-success' : 'badge-danger'}">
+                    ${a.commercial_permission === 1 ? 'ALLOWED' : 'PROHIBITED'}
+                </span>
+            </td>
+            <td>
+                <small style="font-size:11px; color:var(--text-secondary);">
+                    ${a.attribution_required === 1 ? 'Required' : 'Optional / Free'}
+                </small>
+            </td>
+            <td><span class="badge ${statusBadge}">${a.rights_status}</span></td>
+            <td>${localHtml}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
 // LOAD FOOTAGE LIBRARY
 async function loadFootageLibrary() {
     try {
         const res = await fetch('/api/footage');
         const assets = await res.json();
-        const tbody = document.getElementById('footageTableBody');
-        if (!tbody) return;
-        tbody.innerHTML = '';
-
-        if (assets.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">No footage assets in library. Click "Load Verified Catalog" above.</td></tr>`;
-            return;
-        }
-
-        assets.forEach(a => {
-            const tr = document.createElement('tr');
-            let statusBadge = 'badge-cyan';
-            if (a.rights_status === 'VERIFIED') statusBadge = 'badge-success';
-            else if (a.rights_status === 'REJECTED') statusBadge = 'badge-danger';
-            else if (a.rights_status === 'NEEDS_REVIEW') statusBadge = 'badge-warning';
-
-            tr.innerHTML = `
-                <td>
-                    <strong>${a.asset_name}</strong><br>
-                    <small class="text-muted">${a.author_name ? 'Author: ' + a.author_name : ''}</small>
-                </td>
-                <td><span class="tag">${a.source_platform}</span></td>
-                <td>
-                    <span style="font-size:12px;">${a.license_name}</span><br>
-                    ${a.license_url ? `<a href="${a.license_url}" target="_blank" style="font-size:10px; color:var(--neon-cyan);">License Terms</a>` : ''}
-                </td>
-                <td>
-                    <span class="badge ${a.commercial_permission === 1 ? 'badge-success' : 'badge-danger'}">
-                        ${a.commercial_permission === 1 ? 'ALLOWED' : 'PROHIBITED'}
-                    </span>
-                </td>
-                <td>
-                    <small style="font-size:11px; color:var(--text-secondary);">
-                        ${a.attribution_required === 1 ? 'Required' : 'Optional / Free'}
-                    </small>
-                </td>
-                <td><span class="badge ${statusBadge}">${a.rights_status}</span></td>
-            `;
-            tbody.appendChild(tr);
-        });
+        renderFootageRows(assets);
     } catch (err) {
         console.error('Failed to load footage library:', err);
+    }
+}
+
+async function searchFootage(query) {
+    try {
+        const res = await fetch('/api/footage/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: query })
+        });
+        const data = await res.json();
+        renderFootageRows(data.results);
+    } catch (err) {
+        console.error('Footage search failed:', err);
+        showNotification('Footage search failed', 'danger');
+    }
+}
+
+async function downloadFootageAsset(assetId) {
+    try {
+        showNotification('Downloading asset into local Footage Library...', 'info');
+        const res = await fetch(`/api/footage/${assetId}/download`, { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+            showNotification(`Downloaded ${data.asset_name} (${data.file_size_mb} MB) into local library!`, 'success');
+            loadFootageLibrary();
+            loadDashboardData();
+        } else {
+            showNotification(`Download failed: ${data.error}`, 'danger');
+        }
+    } catch (err) {
+        showNotification('Failed to download asset', 'danger');
     }
 }
 

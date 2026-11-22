@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <rect width="1080" height="1920" fill="#0b0e14"/>
+  <rect x="140" y="760" width="800" height="400" rx="20" fill="#161b26" stroke="#00f0ff" stroke-width="3"/>
+  <text x="540" y="870" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#ff2a85" text-anchor="middle">VERIFIED INTEL</text>
+  <line x1="240" y1="910" x2="840" y2="910" stroke="#242d3e" stroke-width="2"/>
+  <text x="540" y="980" font-family="Arial, sans-serif" font-size="36" font-weight="600" fill="#f0f4fc" text-anchor="middle">GRAND THEFT AUTO VI</text>
+  <text x="540" y="1040" font-family="Arial, sans-serif" font-size="24" fill="#00ff88" text-anchor="middle">OFFICIAL RESEARCH BREAKDOWN</text>
+  <rect x="340" y="1220" width="400" height="50" rx="25" fill="#ff2a85" opacity="0.2"/>
+  <text x="540" y="1252" font-family="Arial, sans-serif" font-size="20" fill="#ff2a85" font-weight="bold" text-anchor="middle">COMMERCIAL COMPLIANT</text>
+</svg>
