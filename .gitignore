@@ -35,6 +35,12 @@ data/*.db-wal
 data/*.db-shm
 data/*.db-journal
 
+# Assets media cache (Keep text metadata & manifests, ignore heavy raw clips)
+assets/video/*.mp4
+assets/video/*.wav
+assets/video/*.mkv
+assets/video/*.webm
+
 # Intermediate temporary files
 initial_prompt.txt
 *.log
