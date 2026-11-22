@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <rect width="1080" height="1920" fill="#0b0e14"/>
+  <circle cx="540" cy="960" r="420" stroke="#00f0ff" stroke-width="2" fill="none" opacity="0.3"/>
+  <circle cx="540" cy="960" r="280" stroke="#ff2a85" stroke-width="2" fill="none" opacity="0.4"/>
+  <line x1="120" y1="960" x2="960" y2="960" stroke="#00f0ff" stroke-width="2" stroke-dasharray="12,12" opacity="0.3"/>
+  <line x1="540" y1="540" x2="540" y2="1380" stroke="#00f0ff" stroke-width="2" stroke-dasharray="12,12" opacity="0.3"/>
+  <text x="540" y="860" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="#00f0ff" text-anchor="middle">LEONIDA RADAR</text>
+  <text x="540" y="930" font-family="Arial, sans-serif" font-size="28" fill="#9aa5b9" text-anchor="middle">VICE CITY METROPOLITAN SECTOR</text>
+  <circle cx="540" cy="1020" r="18" fill="#00ff88"/>
+  <text x="540" y="1080" font-family="Arial, sans-serif" font-size="24" fill="#00ff88" text-anchor="middle">GPS: 25.7617 N | 80.1918 W</text>
+  <rect x="240" y="1140" width="600" height="40" rx="8" fill="#161b26" stroke="#242d3e"/>
+  <text x="540" y="1166" font-family="Arial, sans-serif" font-size="18" fill="#5c677d" text-anchor="middle">100% ORIGINAL VECTOR INTELLIGENCE</text>
+</svg>
