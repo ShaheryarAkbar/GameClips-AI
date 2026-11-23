@@ -843,7 +843,7 @@ async function loadApprovalQueue() {
                                 </div>
                                 <div class="game-details-item">
                                     <label>Visual Engine:</label>
-                                    <span class="badge badge-cyan">1080x1920 ORIGINAL VECTORS</span>
+                                    <span class="badge badge-cyan">HYBRID (MOVING GAMEPLAY + 3D SIM)</span>
                                 </div>
                                 <div class="game-details-item">
                                     <label>Citations Linked:</label>

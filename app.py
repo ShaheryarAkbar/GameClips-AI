@@ -570,29 +570,30 @@ def list_scripts():
 
 @app.route("/api/studio/generate", methods=["POST"])
 def studio_generate():
-    """Generates a script, visual plan, and 1080x1920 graphic frames for a topic."""
+    """Generates a script, visual plan, and continuous-motion scenes in HYBRID MODE."""
     data = request.get_json(silent=True) or {}
     topic_id = data.get("topic_id")
-    target_duration = data.get("target_duration", "30-50s")
+    target_duration = data.get("target_duration", "45-60s")
 
     if not topic_id:
         return jsonify({"success": False, "error": "Please select a target topic."}), 400
 
-    # 1. Generate Script & Scene Plan
+    # 1. Generate Script & Scene Plan (Default: 45-60s)
     script_res = generate_script_for_topic(topic_id, target_duration)
     if not script_res.get("success"):
         return jsonify(script_res), 400
 
     project_id = script_res["project_id"]
 
-    # 2. Generate Original 1080x1920 Visual Frames for every scene
-    visual_res = generate_visuals_for_project(project_id)
+    # 2. Generate Hybrid Visual Scenes (Authentic Gameplay + Realistic Moving Simulation)
+    visual_res = generate_visuals_for_project(project_id, hybrid_mode=True)
 
     return jsonify({
         "success": True,
         "script": script_res,
         "visuals": visual_res,
-        "project_id": project_id
+        "project_id": project_id,
+        "mode": "HYBRID"
     })
 
 @app.route("/api/studio/project/<project_id>", methods=["GET"])

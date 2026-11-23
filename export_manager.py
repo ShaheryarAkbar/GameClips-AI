@@ -183,20 +183,32 @@ def export_approved_project(project_id: str, force_export: bool = False) -> dict
             f.write("Audio License:           Public Domain / OS Native (100% Free Offline, No Royalty)\n")
 
             # Check visual types
-            cur.execute("SELECT visual_type, visual_prompt FROM video_scenes WHERE project_id = ?", (project_id,))
+            cur.execute("SELECT scene_number, visual_type, visual_prompt FROM video_scenes WHERE project_id = ? ORDER BY scene_number ASC", (project_id,))
             scene_rows = cur.fetchall()
             has_gameplay = any("GAMEPLAY" in (s["visual_type"] or "") for s in scene_rows)
+            has_simulation = any("SIMULATION" in (s["visual_type"] or "") for s in scene_rows)
 
-            f.write("\n--- VISUAL ASSET AUDIT ---\n")
-            if has_gameplay:
+            f.write("\n--- VISUAL ASSET AUDIT (HYBRID MODE) ---\n")
+            if has_gameplay and has_simulation:
+                f.write("Production Mode:         HYBRID (Authentic Gameplay + Original Realistic 3D Simulation)\n")
+                f.write("Authentic Footage:       Open Gaming Preservation Archive (Public Domain / Transformative Fair Use)\n")
+                f.write("Simulation Scenes:       Original Procedural 3D Motion Graphics (100% Rights-Cleared)\n")
+                f.write("Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATION // NOT ACTUAL GAMEPLAY'\n")
+            elif has_gameplay:
+                f.write("Production Mode:         100% Authentic Licensed Gameplay\n")
                 f.write("Visual Engine:           Continuous Moving 3D Gameplay Footage (Open Gaming Preservation Archive)\n")
                 f.write("Licensing & Rights:      Public Domain & Transformative Educational Commentary / Fair Use\n")
-                f.write("Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry\n")
                 f.write("Anti-Misrepresentation:  Enforced. Disclosed as community analysis and gameplay showcase.\n")
             else:
-                f.write("Visual Engine:           Original Procedural Vector & SVG Motion Graphics\n")
-                f.write("Anti-Misrepresentation:  Enforced. Procedural scenes are educational explanations\n")
-                f.write("                         and are NEVER represented as authentic or leaked gameplay.\n")
+                f.write("Production Mode:         Original Realistic 3D Game Simulation\n")
+                f.write("Visual Engine:           Original Procedural 3D Motion Graphics (100% Rights-Cleared)\n")
+                f.write("Anti-Misrepresentation:  Enforced. All scenes watermarked: 'SIMULATION // NOT ACTUAL GAMEPLAY'\n")
+            
+            f.write("Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry\n")
+            f.write("\nScene-by-Scene Visual Registry:\n")
+            for sc_row in scene_rows:
+                v_tag = "AUTHENTIC GAMEPLAY" if "GAMEPLAY" in (sc_row["visual_type"] or "") else "ORIGINAL SIMULATION"
+                f.write(f"  - Scene {sc_row['scene_number']}: [{v_tag}] {sc_row['visual_prompt'] or ''}\n")
 
             f.write("\n--- MANDATORY LEGAL DISCLAIMER ---\n")
             f.write("Automated detection and verification checks do NOT guarantee 100% legal immunity\n")

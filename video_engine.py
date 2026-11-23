@@ -102,6 +102,23 @@ def render_video_project(project_id, is_preview=False, quality_preset="ultrafast
         )
         actual_audio_duration = voice_res.get("duration", scenes[-1]["end_time"])
 
+    # 4b. Dual-Track Sound Design: Mix in Authentic Game Engine Ambiance (Ducked to -14dB)
+    ambiance_path = os.path.join(TEMP_DIR, "master_build", "game_engine_ambiance.wav")
+    if os.path.isfile(ambiance_path):
+        mixed_audio_path = os.path.join(paths["project_dir"], "mixed_audio.wav")
+        mix_cmd = [
+            "ffmpeg", "-y",
+            "-i", paths["audio_file"],
+            "-stream_loop", "-1", "-i", ambiance_path,
+            "-filter_complex", "[0:a]volume=1.0[v];[1:a]volume=0.20[bg];[v][bg]amix=inputs=2:duration=first:dropout_transition=2[outa]",
+            "-map", "[outa]",
+            "-c:a", "pcm_s16le",
+            mixed_audio_path
+        ]
+        res_mix = subprocess.run(mix_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if res_mix.returncode == 0 and os.path.isfile(mixed_audio_path):
+            paths["audio_file"] = mixed_audio_path
+
     # 5. Generate Subtitles
     subtitle_engine_res = generate_subtitles_for_scenes(
         scenes=scenes,
