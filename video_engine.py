@@ -176,13 +176,14 @@ def render_video_project(project_id, is_preview=False, quality_preset="ultrafast
         "-c:a", "aac",
         "-b:a", "192k",
         "-ar", "44100",
+        "-threads", "2",
         "-shortest",
         "-movflags", "+faststart",
         output_mp4
     ]
 
     try:
-        proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=120)
+        proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=600)
         if proc.returncode != 0 or not os.path.isfile(output_mp4):
             # If ASS filter failed, retry with simple scale filter
             cmd_retry = [
@@ -191,88 +192,109 @@ def render_video_project(project_id, is_preview=False, quality_preset="ultrafast
                 "-i", paths["concat_file"],
                 "-i", paths["audio_file"],
                 "-vf", f"scale={target_res},fps={target_fps}",
+                "-threads", "2",
                 "-c:v", "libx264", "-preset", quality_preset,
                 "-pix_fmt", "yuv420p",
                 "-c:a", "aac", "-b:a", "192k", "-ar", "44100",
                 "-shortest", "-movflags", "+faststart",
                 output_mp4
             ]
-            proc_retry = subprocess.run(cmd_retry, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=120)
+            proc_retry = subprocess.run(cmd_retry, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=600)
             if proc_retry.returncode != 0 or not os.path.isfile(output_mp4):
                 return {
                     "success": False,
-                    "error": f"FFmpeg error: {proc.stderr[-400:] if proc.stderr else 'Failed to produce MP4.'}"
+                    "error": f"FFmpeg error: {proc_retry.stderr[-400:] if proc_retry.stderr else 'Failed to produce MP4.'}"
                 }
-
-        # 8. Create Thumbnail Frame
-        try:
-            subprocess.run([
-                "ffmpeg", "-y", "-ss", "00:00:01",
-                "-i", output_mp4,
-                "-vframes", "1",
-                paths["thumbnail"]
-            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10)
-        except Exception:
-            if scenes and scenes[0].get("visual_asset_path"):
-                import shutil
-                if scenes[0]["visual_asset_path"].endswith(".png"):
-                    shutil.copyfile(scenes[0]["visual_asset_path"], paths["thumbnail"])
-
-        # 9. Update Database Record
-        conn = get_connection()
-        try:
-            cur = conn.cursor()
-            now = datetime.now().isoformat()
-            if is_preview:
-                cur.execute("""
-                UPDATE video_projects SET
-                    preview_path = ?, thumbnail_path = ?, duration_seconds = ?,
-                    status = 'NEEDS_REVIEW', updated_at = ?
-                WHERE id = ?
-                """, (output_mp4, paths["thumbnail"], actual_audio_duration, now, project_id))
-            else:
-                cur.execute("""
-                UPDATE video_projects SET
-                    final_video_path = ?, preview_path = ?, thumbnail_path = ?,
-                    duration_seconds = ?, status = 'NEEDS_REVIEW', updated_at = ?
-                WHERE id = ?
-                """, (output_mp4, output_mp4, paths["thumbnail"], actual_audio_duration, now, project_id))
-
-            # Seed / Update Verification Report entry for Phase 5 approval
-            rep_id = f"vrf-{project_id[5:]}"
-            cur.execute("""
-            INSERT INTO verification_reports (
-                id, project_id, asset_license_status, rights_traceability_status,
-                duplicate_usage_flag, fact_verification_status, copyright_risk_level,
-                status, warning_notes, disclaimer_notice, created_at
-            ) VALUES (?, ?, 'VERIFIED', 'TRACEABLE', 0, 'VERIFIED_FACTS', 'LOW', 'NEEDS_REVIEW',
-                      'Original vector animation and free commercial audio.',
-                      'All commentary and graphic animations are original fan transformations.', ?)
-            ON CONFLICT(project_id) DO UPDATE SET status = 'NEEDS_REVIEW'
-            """, (rep_id, project_id, now))
-
-            conn.commit()
-        finally:
-            conn.close()
-
-        file_size_mb = round(os.path.getsize(output_mp4) / (1024 * 1024), 2)
-
-        return {
-            "success": True,
-            "project_id": project_id,
-            "video_path": output_mp4,
-            "thumbnail_path": paths["thumbnail"],
-            "duration": actual_audio_duration,
-            "file_size_mb": file_size_mb,
-            "is_preview": is_preview,
-            "resolution": target_res.replace(":", "x"),
-            "fps": target_fps,
-            "audio_track": paths["audio_file"],
-            "subtitles_srt": paths["srt_file"]
-        }
-
+    except subprocess.TimeoutExpired:
+        # Fallback to retry without subtitle filter if timeout occurred
+        cmd_fallback = [
+            "ffmpeg", "-y",
+            "-f", "concat", "-safe", "0",
+            "-i", paths["concat_file"],
+            "-i", paths["audio_file"],
+            "-vf", f"scale={target_res},fps={target_fps}",
+            "-threads", "2",
+            "-c:v", "libx264", "-preset", quality_preset,
+            "-pix_fmt", "yuv420p",
+            "-c:a", "aac", "-b:a", "192k", "-ar", "44100",
+            "-shortest", "-movflags", "+faststart",
+            output_mp4
+        ]
+        proc_fb = subprocess.run(cmd_fallback, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=600)
+        if proc_fb.returncode != 0 or not os.path.isfile(output_mp4):
+            return {
+                "success": False,
+                "error": f"FFmpeg timeout/error: {proc_fb.stderr[-400:] if proc_fb.stderr else 'Failed after fallback.'}"
+            }
     except Exception as e:
         return {"success": False, "error": str(e)}
+
+    # 8. Create Thumbnail Frame
+    try:
+        subprocess.run([
+            "ffmpeg", "-y", "-ss", "00:00:01",
+            "-i", output_mp4,
+            "-vframes", "1",
+            paths["thumbnail"]
+        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10)
+    except Exception:
+        if scenes and scenes[0].get("visual_asset_path"):
+            import shutil
+            if scenes[0]["visual_asset_path"].endswith(".png"):
+                shutil.copyfile(scenes[0]["visual_asset_path"], paths["thumbnail"])
+
+    # 9. Update Database Record
+    conn = get_connection()
+    try:
+        cur = conn.cursor()
+        now = datetime.now().isoformat()
+        if is_preview:
+            cur.execute("""
+            UPDATE video_projects SET
+                preview_path = ?, thumbnail_path = ?, duration_seconds = ?,
+                status = 'NEEDS_REVIEW', updated_at = ?
+            WHERE id = ?
+            """, (output_mp4, paths["thumbnail"], actual_audio_duration, now, project_id))
+        else:
+            cur.execute("""
+            UPDATE video_projects SET
+                final_video_path = ?, preview_path = ?, thumbnail_path = ?,
+                duration_seconds = ?, status = 'NEEDS_REVIEW', updated_at = ?
+            WHERE id = ?
+            """, (output_mp4, output_mp4, paths["thumbnail"], actual_audio_duration, now, project_id))
+
+        # Seed / Update Verification Report entry for Phase 5 approval
+        rep_id = f"vrf-{project_id[5:]}"
+        cur.execute("""
+        INSERT INTO verification_reports (
+            id, project_id, asset_license_status, rights_traceability_status,
+            duplicate_usage_flag, fact_verification_status, copyright_risk_level,
+            status, warning_notes, disclaimer_notice, created_at
+        ) VALUES (?, ?, 'VERIFIED', 'TRACEABLE', 0, 'VERIFIED_FACTS', 'LOW', 'NEEDS_REVIEW',
+                  'Original vector animation and free commercial audio.',
+                  'All commentary and graphic animations are original fan transformations.', ?)
+        ON CONFLICT(project_id) DO UPDATE SET status = 'NEEDS_REVIEW'
+        """, (rep_id, project_id, now))
+
+        conn.commit()
+    finally:
+        conn.close()
+
+    file_size_mb = round(os.path.getsize(output_mp4) / (1024 * 1024), 2)
+
+    return {
+        "success": True,
+        "project_id": project_id,
+        "video_path": output_mp4,
+        "thumbnail_path": paths["thumbnail"],
+        "duration": actual_audio_duration,
+        "file_size_mb": file_size_mb,
+        "is_preview": is_preview,
+        "resolution": target_res.replace(":", "x"),
+        "fps": target_fps,
+        "audio_track": paths["audio_file"],
+        "subtitles_srt": paths["srt_file"]
+    }
 
 if __name__ == "__main__":
     # Test runner on first project
