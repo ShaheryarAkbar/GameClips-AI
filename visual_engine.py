@@ -645,6 +645,87 @@ def generate_visuals_for_project(project_id, hybrid_mode=True):
     finally:
         conn.close()
 
+def generate_viral_hook_banner(line1: str, line2: str, line3: str, out_png_path: str) -> str:
+    """
+    Generates a viral angled brush-style hook banner matching top gaming Shorts
+    (e.g., 'FIGHT MECHANIC / IN GTA 6 IS / BAD??' or 'SECRET IN GTA 6 / IS INSANE??').
+    Returns the path to the generated transparent PNG.
+    """
+    os.makedirs(os.path.dirname(os.path.abspath(out_png_path)), exist_ok=True)
+    img = Image.new('RGBA', (1080, 460), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    font_path = 'C:/Windows/Fonts/impact.ttf'
+    if not os.path.exists(font_path):
+        font_path = 'C:/Windows/Fonts/ariblk.ttf'
+
+    font_l1 = ImageFont.truetype(font_path, 98)
+    font_l2 = ImageFont.truetype(font_path, 98)
+    font_l3 = ImageFont.truetype(font_path, 140)
+
+    # Jagged brush-like polygon points
+    points = [
+        (20, 70), (120, 60), (280, 50), (540, 40), (850, 30), (1050, 20),
+        (1070, 70), (1050, 140), (1070, 200), (1040, 280), (1060, 360), (1030, 420),
+        (800, 430), (540, 435), (280, 440), (40, 445),
+        (20, 380), (45, 300), (15, 220), (35, 140)
+    ]
+    shadow_points = [(x + 8, y + 8) for x, y in points]
+    draw.polygon(shadow_points, fill=(10, 10, 10, 230))
+    draw.polygon(points, fill=(233, 30, 99, 255))
+
+    def draw_centered_text_with_outline(draw_ctx, y, text, font, fill_color, outline_color=(0, 0, 0, 255), outline_width=9):
+        bbox = draw_ctx.textbbox((0, 0), text, font=font)
+        text_w = bbox[2] - bbox[0]
+        x = int((1080 - text_w) / 2)
+        for dx in range(-outline_width, outline_width + 1):
+            for dy in range(-outline_width, outline_width + 1):
+                if dx * dx + dy * dy <= outline_width * outline_width:
+                    draw_ctx.text((x + dx, y + dy), text, font=font, fill=outline_color)
+        draw_ctx.text((x, y), text, font=font, fill=fill_color)
+
+    draw_centered_text_with_outline(draw, 50, line1.upper(), font_l1, (255, 230, 245, 255), outline_width=9)
+    draw_centered_text_with_outline(draw, 155, line2.upper(), font_l2, (255, 255, 255, 255), outline_width=10)
+    draw_centered_text_with_outline(draw, 260, line3.upper(), font_l3, (255, 240, 0, 255), outline_width=13)
+
+    img.save(out_png_path)
+    return out_png_path
+
+def render_viral_single_take_video(raw_gameplay_path: str, out_mp4_path: str,
+                                   line1: str, line2: str, line3: str,
+                                   start_ts: str = "00:00:00", duration: float = 24.0) -> str:
+    """
+    Renders a 1080x1920 (9:16 vertical) viral single-take gameplay Short with an
+    unbroken continuous camera shot from 0.1s to the end and a top viral hook banner.
+    """
+    os.makedirs(os.path.dirname(os.path.abspath(out_mp4_path)), exist_ok=True)
+    banner_png = os.path.join(TEMP_DIR, "viral_banner_temp.png")
+    generate_viral_hook_banner(line1, line2, line3, banner_png)
+
+    filter_str = (
+        "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30[bg];"
+        "[bg][1:v]overlay=0:30[outv]"
+    )
+
+    cmd = [
+        "ffmpeg", "-y",
+        "-ss", start_ts,
+        "-i", raw_gameplay_path,
+        "-i", banner_png,
+        "-filter_complex", filter_str,
+        "-map", "[outv]",
+        "-map", "0:a?",
+        "-c:v", "libx264",
+        "-preset", "ultrafast",
+        "-pix_fmt", "yuv420p",
+        "-c:a", "aac",
+        "-b:a", "192k",
+        "-t", str(duration),
+        out_mp4_path
+    ]
+    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return out_mp4_path
+
 if __name__ == "__main__":
     test_scene = {"scene_number": 1, "visual_type": "ORIGINAL_SIMULATION", "is_fictional": True}
     test_out = os.path.join(TEMP_DIR, "test_sim_out.mp4")
