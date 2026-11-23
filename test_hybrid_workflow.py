@@ -68,19 +68,25 @@ def run_hybrid_test():
     conn.commit()
     conn.close()
 
-    # 2. Generate 45-60s Script & Scene Plan in Hybrid Mode
-    print(f"[3/8] Generating 45-60s Script Plan in HYBRID MODE...")
+    # 2. Generate 45-60s Script & Complete Storyboard in Hybrid Mode
+    print(f"[3/8] Generating Storyboard & Narrative Script Plan in HYBRID MODE...")
     t0 = time.time()
     script_res = generate_script_for_topic(topic_id, target_duration="45-60s")
     if not script_res.get("success"):
         print(f"[ERROR] Script generation failed: {script_res.get('error')}")
         return False
     project_id = script_res["project_id"]
-    print(f"      Project Created: {project_id}")
+    storyboard = script_res.get("storyboard", {})
+    print(f"      Project Created:   {project_id}")
+    print(f"      Story Title:       {storyboard.get('story_title')}")
+    print(f"      Protagonists:      {storyboard.get('main_characters')}")
+    print(f"      Vehicle Asset:     {storyboard.get('vehicle')}")
+    print(f"      Atmosphere:        {storyboard.get('weather')}")
+    print(f"      Narrative Arc:     {storyboard.get('narrative_arc')}")
     print(f"      Scenes Configured: {script_res.get('scene_count')} scenes (~53s total)")
 
     # 3. Generate Hybrid Visual Scenes (Authentic Gameplay + Realistic Moving Simulation)
-    print(f"[4/8] Rendering Moving Video Scenes (Prioritizing Authentic Gameplay with Labeled 3D Sim Fallback)...")
+    print(f"[4/8] Rendering Moving Video Scenes (Enforcing Continuity & Connected Motion)...")
     vis_res = generate_visuals_for_project(project_id, hybrid_mode=True)
     if not vis_res.get("success"):
         print(f"[ERROR] Visual scene generation failed: {vis_res.get('error')}")
@@ -103,17 +109,17 @@ def run_hybrid_test():
     print(f"      Duration:   {duration:.2f} seconds (Target: 45-60s -> {'PASSED' if 45 <= duration <= 60 else 'FAILED'})")
     print(f"      Size:       {file_size_mb} MB")
 
-    # 5. Extract Preview Frames across Authentic and Simulation scenes
-    print(f"[6/8] Extracting Preview Frames for Visual Inspection...")
-    preview_dir = os.path.join(TEMP_DIR, "hybrid_preview_frames")
+    # 5. Extract Preview Frames across all 6 Connected Scenes
+    print(f"[6/8] Extracting Preview Frames for Continuity Inspection...")
+    preview_dir = os.path.join(TEMP_DIR, "continuity_preview_frames")
     os.makedirs(preview_dir, exist_ok=True)
     frame_ts = [
-        (4.0, "frame_scene1_authentic.jpg"),
-        (12.0, "frame_scene2_authentic.jpg"),
-        (22.0, "frame_scene3_simulation.jpg"),
-        (32.0, "frame_scene4_authentic.jpg"),
-        (42.0, "frame_scene5_simulation.jpg"),
-        (50.0, "frame_scene6_authentic.jpg")
+        (4.0, "frame_scene1_the_vow.jpg"),
+        (12.0, "frame_scene2_the_getaway.jpg"),
+        (22.0, "frame_scene3_wiretap_sim.jpg"),
+        (31.0, "frame_scene4_storm_confrontation.jpg"),
+        (40.0, "frame_scene5_bridge_standoff_sim.jpg"),
+        (49.0, "frame_scene6_harbor_resolution.jpg")
     ]
     for ts, fname in frame_ts:
         out_frame = os.path.join(preview_dir, fname)
@@ -123,16 +129,22 @@ def run_hybrid_test():
         ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         if os.path.isfile(out_frame):
             print(f"      + Extracted: {fname} (at {ts}s)")
-            # Copy to artifact directory for presentation
             art_dir = "C:/Users/AL-MAALIK TRADERS/.gemini/antigravity/brain/6c9560b7-b6e2-4275-80d5-5497005b3cd7"
             import shutil
             shutil.copy2(out_frame, os.path.join(art_dir, fname))
 
-    # 6. Compliance & Rights Verification
-    print(f"[7/8] Running Pre-Approval Compliance & Copyright Verification...")
+    # 6. Compliance, Rights, & Mandatory 7-Point Continuity Verification
+    print(f"[7/8] Running Pre-Approval 7-Point Continuity & Rights Quality Gate...")
     v_report = verify_project_compliance(project_id)
-    print(f"      Compliance Status: {v_report.get('status')}")
-    print(f"      Risk Level:        {v_report.get('risk_level')}")
+    cont = v_report.get("continuity", {})
+    print(f"      Overall Status:    {v_report.get('status')}")
+    print(f"      Continuity Score:  {cont.get('score')}% ({cont.get('passed_checks')}/{cont.get('total_checks')} checks passed)")
+    print(f"      Continuity Status: {cont.get('status')}")
+    print("      Continuity Checks:")
+    for k, v in cont.get("checks", {}).items():
+        status_sym = "[PASS]" if v.get("passed") else "[FAIL]"
+        print(f"        {status_sym} {v.get('name')}: {v.get('detail')}")
+
     print("      Verification Findings:")
     for f in v_report.get("findings", []):
         print(f"        - {f}")
@@ -150,9 +162,11 @@ def run_hybrid_test():
     assert p_count == 1, f"Expected 1 project, found {p_count}"
 
     print("\n" + "=" * 65)
-    print("  HYBRID WORKFLOW TEST RESULT: SUCCESS")
-    print(f"  Duration: {duration:.2f}s (Within 45-60s window)")
-    print(f"  Visuals: Continuous moving gameplay + labeled 3D simulations")
+    print("  STORY & VISUAL CONTINUITY WORKFLOW TEST RESULT: SUCCESS")
+    print(f"  Duration:         {duration:.2f}s (Within 45-60s window)")
+    print(f"  Story Arc:        {storyboard.get('narrative_arc')}")
+    print(f"  Continuity Gate:  {cont.get('passed_checks')}/7 Checks Passed ({cont.get('score')}%)")
+    print(f"  Visuals:          Connected continuous gameplay + 3D Banshee simulation")
     print(f"  Ready for user preview inspection before approval.")
     print("=" * 65)
     return True

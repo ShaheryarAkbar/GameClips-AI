@@ -257,6 +257,16 @@ def render_procedural_simulation_clip(scene, duration_seconds, output_mp4):
         draw.ellipse([car_cx - 50, car_cy + 38, car_cx - 30, car_cy + 52], fill=(255, 120, 0))
         draw.ellipse([car_cx + 30, car_cy + 38, car_cx + 50, car_cy + 52], fill=(255, 120, 0))
 
+        # Banshee GT signature dual titanium racing stripes
+        draw.line([(car_cx - 10, car_cy - 72), (car_cx - 10, car_cy + 45)], fill=(225, 235, 245), width=5)
+        draw.line([(car_cx + 10, car_cy - 72), (car_cx + 10, car_cy + 45)], fill=(225, 235, 245), width=5)
+
+        # Dynamic rain streaks for storm atmosphere
+        for i in range(12):
+            rx = int((f_idx * 19 + i * 87) % w)
+            ry = int((f_idx * 27 + i * 53) % (h - 220))
+            draw.line([(rx, ry), (rx - 3, ry + 14)], fill=(120, 160, 220), width=1)
+
         # Speed dust particles
         for px, py in [(car_cx - 160, car_cy + 10), (car_cx - 200, car_cy - 30),
                        (car_cx + 170, car_cy + 15), (car_cx + 210, car_cy - 20)]:
@@ -267,7 +277,7 @@ def render_procedural_simulation_clip(scene, duration_seconds, output_mp4):
 
         # Telemetry Strip
         draw.rectangle([0, h - 35, w, h], fill=(10, 14, 22))
-        draw.text((30, h - 28), f"VEHICLE SIM // SCENE 0{scene_num}", font=font_small, fill=(0, 240, 255))
+        draw.text((30, h - 28), f"BRAVADO BANSHEE GT // SCENE 0{scene_num}", font=font_small, fill=(0, 240, 255))
         draw.text((w - 280, h - 28), f"EST. SPEED: {int(base_speed + math.sin(t * 3) * 8)} MPH", font=font_small, fill=(0, 255, 136))
 
         proc.stdin.write(img.tobytes())
@@ -297,64 +307,71 @@ def render_gaming_stream_hud(scene, project_name="GTA 6", output_png_path=None):
     scene_num = scene.get("scene_number", 1)
     is_fictional = scene.get("is_fictional", False) or "SIMULATION" in scene.get("visual_type", "")
 
-    # Dynamic HUD details depending on scene phase
+    # Dynamic HUD details enforcing Story & Visual Continuity
     hud_configs = {
         1: {
-            "phase": "PHASE 01 // OVERVIEW & HOOK",
-            "loc": "GPS: LEONIDA HARBOR",
-            "status": "LOCATION: VICE CITY PENTHOUSE",
-            "speed": "ELEVATION: 680 FT",
-            "gear": "SURVEILLANCE: ACTIVE",
+            "phase": "PHASE 01 // THE SOLEMN VOW",
+            "loc": "GPS: OCEAN DRIVE BOULEVARD",
+            "status": "PROTAGONISTS: LUCIA & JASON",
+            "speed": "VEHICLE: BRAVADO BANSHEE GT",
+            "gear": "SPEED: 115 MPH | GEAR: D4",
+            "wanted_stars": 2,
+            "wanted_label": "WANTED LEVEL 2/5",
         },
         2: {
-            "phase": "PHASE 02 // HIGHWAY ACCELERATION",
-            "loc": "GPS: OCEAN DRIVE BOULEVARD",
-            "status": "VEHICLE: VAPID DOMINATOR GT",
-            "speed": "SPEED: 152 MPH",
-            "gear": "GEAR: D6 | RPM: 7,500",
+            "phase": "PHASE 02 // BISCAYNE GETAWAY",
+            "loc": "GPS: BISCAYNE EXPRESSWAY",
+            "status": "PROTAGONISTS: LUCIA & JASON",
+            "speed": "VEHICLE: BRAVADO BANSHEE GT",
+            "gear": "SPEED: 148 MPH | GEAR: D5",
+            "wanted_stars": 3,
+            "wanted_label": "WANTED LEVEL 3/5",
         },
         3: {
-            "phase": "PHASE 03 // VEHICLE DYNAMICS",
-            "loc": "GPS: FREEWAY INTERSECTION",
-            "status": "PHYSICS MODEL: RAGE 9 SIMULATION",
-            "speed": "SPEED: 138 MPH",
-            "gear": "TRACTION: DYNAMIC SLIP",
+            "phase": "PHASE 03 // WIRETAP ULTIMATUM",
+            "loc": "GPS: INTERCHANGE 95 OVERPASS",
+            "status": "PROTAGONISTS: LUCIA & JASON",
+            "speed": "VEHICLE: BRAVADO BANSHEE GT",
+            "gear": "SPEED: 156 MPH | GEAR: D6",
+            "wanted_stars": 3,
+            "wanted_label": "WANTED LEVEL 3/5",
         },
         4: {
-            "phase": "PHASE 04 // EXOTIC SUPERCAR VAULT",
-            "loc": "GPS: LEONIDA SUPERCAR VAULT",
-            "status": "GARAGE: UNDERGROUND CAR MEET",
-            "speed": "FLEET: 12 CUSTOM SUPER VEHICLES",
-            "gear": "STATUS: CUSTOM TUNED",
+            "phase": "PHASE 04 // RAIN CONFRONTATION",
+            "loc": "GPS: PORT ACCESS HIGHWAY",
+            "status": "PROTAGONISTS: LUCIA & JASON",
+            "speed": "VEHICLE: BRAVADO BANSHEE GT",
+            "gear": "SPEED: 162 MPH | TRACTION: WET",
+            "wanted_stars": 4,
+            "wanted_label": "WANTED LEVEL 4/5",
         },
         5: {
-            "phase": "PHASE 05 // DYNAMIC WEATHER SIM",
-            "loc": "GPS: LEONIDA WETLANDS",
-            "status": "TERRAIN: WETLANDS RIDGE",
-            "speed": "ALTITUDE: +420 FT",
-            "gear": "VISIBILITY: VOLUMETRIC STORM",
+            "phase": "PHASE 05 // BRIDGE STANDOFF",
+            "loc": "GPS: BISCAYNE PORT BRIDGE",
+            "status": "PROTAGONISTS: LUCIA & JASON",
+            "speed": "VEHICLE: BRAVADO BANSHEE GT",
+            "gear": "SPEED: 168 MPH | GEAR: D6",
+            "wanted_stars": 4,
+            "wanted_label": "WANTED LEVEL 4/5",
         },
         6: {
-            "phase": "PHASE 06 // RAY-TRACED NIGHTLIFE",
-            "loc": "GPS: NIGHT BOULEVARD STRIP",
-            "status": "LIGHTING: RAY-TRACED GLOW",
-            "speed": "CRUISE SPEED: 95 MPH",
-            "gear": "VISIBILITY: 100% CLEAR",
-        },
-        7: {
-            "phase": "PHASE 07 // VERDICT & OUTRO",
-            "loc": "GPS: OCEAN DRIVE OVERLOOK",
-            "status": "COMMUNITY CALL-TO-ACTION",
-            "speed": "STATUS: NEXT-GEN VERDICT",
-            "gear": "ENGAGEMENT: ACTIVE",
+            "phase": "PHASE 06 // HARBOR RESOLUTION",
+            "loc": "GPS: VICE CITY HARBOR OVERLOOK",
+            "status": "PROTAGONISTS: LUCIA & JASON",
+            "speed": "VEHICLE: BRAVADO BANSHEE GT",
+            "gear": "STATUS: GETAWAY CONCLUDED",
+            "wanted_stars": 0,
+            "wanted_label": "PURSUIT CLEAR // SAFE HAVEN",
         }
     }
     cfg = hud_configs.get(scene_num, {
-        "phase": f"PHASE 0{scene_num} // INTEL",
-        "loc": "GPS: LEONIDA METROPOLIS",
-        "status": "TELEMETRY: ACTIVE STREAM",
-        "speed": "SPEED: 125 MPH",
-        "gear": "STATUS: VERIFIED"
+        "phase": f"PHASE 0{scene_num} // STORY SEQUENCE",
+        "loc": "GPS: VICE CITY FREEWAY",
+        "status": "PROTAGONISTS: LUCIA & JASON",
+        "speed": "VEHICLE: BRAVADO BANSHEE GT",
+        "gear": "SPEED: 140 MPH | GEAR: D5",
+        "wanted_stars": 3,
+        "wanted_label": "WANTED LEVEL 3/5"
     })
 
     # 1. Top Livestream Header Bar (Y: 0 to 220)
@@ -372,7 +389,7 @@ def render_gaming_stream_hud(scene, project_name="GTA 6", output_png_path=None):
     t_box = draw.textbbox((0, 0), title_text, font=font_title)
     draw.text(((width - (t_box[2] - t_box[0])) // 2, 85), title_text, font=font_title, fill=(255, 255, 255, 255))
 
-    sub_text = "VICE CITY 2025 // NEXT-GEN GAMEPLAY SHOWCASE"
+    sub_text = "LUCIA & JASON: THE TRUST PARADOX // VICE CITY"
     s_box = draw.textbbox((0, 0), sub_text, font=font_sub)
     draw.text(((width - (s_box[2] - s_box[0])) // 2, 148), sub_text, font=font_sub, fill=(0, 240, 255, 255))
 
@@ -430,11 +447,13 @@ def render_gaming_stream_hud(scene, project_name="GTA 6", output_png_path=None):
     draw.text((width - 500, 1650), cfg["gear"], font=font_sub, fill=(255, 184, 0, 255))
     draw.text((width - 500, 1700), "ARMOR: 100%  |  HEALTH: 100%", font=font_sub, fill=(0, 255, 136, 255))
 
-    # 5 Gold Wanted Level Stars
+    # Gold Wanted Level Stars
     star_x = width - 500
+    stars_count = cfg.get("wanted_stars", 3)
     for s_idx in range(5):
-        draw_star(draw, star_x + s_idx * 38, 1770, 14, fill=(255, 184, 0, 255))
-    draw.text((star_x + 210, 1760), "WANTED LEVEL 2/5", font=font_small, fill=(140, 150, 170, 255))
+        star_fill = (255, 184, 0, 255) if s_idx < stars_count else (60, 70, 90, 200)
+        draw_star(draw, star_x + s_idx * 38, 1770, 14, fill=star_fill)
+    draw.text((star_x + 210, 1760), cfg.get("wanted_label", "WANTED LEVEL"), font=font_small, fill=(140, 150, 170, 255))
 
     if output_png_path:
         os.makedirs(os.path.dirname(output_png_path), exist_ok=True)
@@ -505,13 +524,13 @@ def generate_visuals_for_project(project_id, hybrid_mode=True):
         longplay_path = os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
         has_longplay = os.path.isfile(longplay_path)
 
-        # Authentic gameplay timestamps for GTA 6 longplay archive
+        # Connected continuous gameplay timestamps from verified longplay archive
         authentic_timestamps = {
-            1: "00:01:10",  # Penthouse skyline & ocean overlook
-            2: "00:03:45",  # High-speed muscle car acceleration
-            4: "00:12:15",  # Underground exotic vehicle vault
-            6: "00:19:00",  # Downtown ray-traced night boulevard cruise
-            7: "00:22:40",  # Sunset coastal overlook
+            1: "00:03:15",  # Ocean Drive high-speed boulevard tracking
+            2: "00:03:45",  # Biscayne elevated highway chase & weaving
+            4: "00:04:45",  # Highway pursuit under overpasses & water spray
+            6: "00:05:45",  # Harbor approach & coastal deceleration cruise
+            7: "00:05:55",  # Coastal overlook outro
         }
 
         generated_scenes = []

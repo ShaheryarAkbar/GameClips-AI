@@ -283,7 +283,8 @@ def get_approval_queue():
         SELECT p.*, s.title as script_title, s.hook, s.voiceover_text,
                s.youtube_title, s.youtube_description, s.tiktok_caption, s.hashtags,
                s.topic_id, g.name as game_name,
-               v.status as vrf_status, v.copyright_risk_level, v.warning_notes, v.disclaimer_notice
+               v.status as vrf_status, v.copyright_risk_level, v.warning_notes, v.disclaimer_notice,
+               v.continuity_status, v.continuity_score, v.continuity_details
         FROM video_projects p
         JOIN scripts s ON p.script_id = s.id
         JOIN games g ON p.game_id = g.id
@@ -293,13 +294,18 @@ def get_approval_queue():
         """)
         rows = [dict(row) for row in cur.fetchall()]
 
-        # Enhance each project with sources
+        # Enhance each project with sources & storyboard
         queue = []
         for r in rows:
             topic_id = r.get("topic_id")
             cur.execute("SELECT title, url, source_name FROM research_sources WHERE topic_id = ?", (topic_id,))
             sources = [dict(s) for s in cur.fetchall()]
             r["sources"] = sources
+
+            cur.execute("SELECT * FROM storyboards WHERE project_id = ?", (r["id"],))
+            sb_row = cur.fetchone()
+            r["storyboard"] = dict(sb_row) if sb_row else None
+
             queue.append(r)
         return jsonify(queue)
     finally:
@@ -615,12 +621,39 @@ def get_project_details(project_id):
 
     cur.execute("SELECT * FROM video_scenes WHERE project_id = ? ORDER BY scene_number ASC", (project_id,))
     scenes = [dict(r) for r in cur.fetchall()]
+
+    cur.execute("SELECT * FROM storyboards WHERE project_id = ?", (project_id,))
+    sb_row = cur.fetchone()
+    storyboard = dict(sb_row) if sb_row else None
     conn.close()
 
     return jsonify({
         "success": True,
         "project": project,
         "script": script,
+        "scenes": scenes,
+        "storyboard": storyboard
+    })
+
+@app.route("/api/storyboard/<project_id>", methods=["GET"])
+def get_storyboard(project_id):
+    """Retrieves the narrative and visual continuity storyboard for a project."""
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM storyboards WHERE project_id = ?", (project_id,))
+    sb_row = cur.fetchone()
+    if not sb_row:
+        conn.close()
+        return jsonify({"success": False, "error": "Storyboard not found"}), 404
+    storyboard = dict(sb_row)
+
+    cur.execute("SELECT * FROM video_scenes WHERE project_id = ? ORDER BY scene_number ASC", (project_id,))
+    scenes = [dict(r) for r in cur.fetchall()]
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "storyboard": storyboard,
         "scenes": scenes
     })
 

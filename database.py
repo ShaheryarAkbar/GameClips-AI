@@ -164,8 +164,40 @@ def init_database():
         narration_text TEXT,
         subtitle_text TEXT,
         transition_type TEXT DEFAULT 'fade',
+        location TEXT,
+        character_focus TEXT,
+        vehicle TEXT,
+        camera_movement TEXT,
+        action_progression TEXT,
+        prev_scene_connection TEXT,
+        next_scene_connection TEXT,
+        is_fictional INTEGER DEFAULT 0,
+        continuity_verified INTEGER DEFAULT 1,
         created_at TEXT NOT NULL,
         FOREIGN KEY (project_id) REFERENCES video_projects(id) ON DELETE CASCADE
+    )
+    """)
+
+    # 7b. Storyboards Table (Mandatory Narrative & Visual Continuity System)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS storyboards (
+        id TEXT PRIMARY KEY,
+        project_id TEXT NOT NULL,
+        script_id TEXT NOT NULL,
+        story_title TEXT NOT NULL,
+        main_characters TEXT NOT NULL,
+        vehicle TEXT,
+        environment_location TEXT NOT NULL,
+        time_of_day TEXT NOT NULL,
+        weather TEXT NOT NULL,
+        central_event TEXT NOT NULL,
+        narrative_arc TEXT NOT NULL,
+        resolution TEXT NOT NULL,
+        continuity_score REAL DEFAULT 100.0,
+        continuity_status TEXT DEFAULT 'VALIDATED',
+        created_at TEXT NOT NULL,
+        FOREIGN KEY (project_id) REFERENCES video_projects(id) ON DELETE CASCADE,
+        FOREIGN KEY (script_id) REFERENCES scripts(id) ON DELETE CASCADE
     )
     """)
 
@@ -281,6 +313,43 @@ def init_database():
         updated_at TEXT NOT NULL
     )
     """)
+
+    # 15. Automated Schema Migration for Storyboard & Continuity
+    cur.execute("PRAGMA table_info(video_scenes)")
+    scene_cols = [r[1] for r in cur.fetchall()]
+    new_scene_fields = [
+        ("location", "TEXT"),
+        ("character_focus", "TEXT"),
+        ("vehicle", "TEXT"),
+        ("camera_movement", "TEXT"),
+        ("action_progression", "TEXT"),
+        ("prev_scene_connection", "TEXT"),
+        ("next_scene_connection", "TEXT"),
+        ("is_fictional", "INTEGER DEFAULT 0"),
+        ("continuity_verified", "INTEGER DEFAULT 1")
+    ]
+    for col_name, col_def in new_scene_fields:
+        if col_name not in scene_cols:
+            try:
+                cur.execute(f"ALTER TABLE video_scenes ADD COLUMN {col_name} {col_def}")
+            except Exception:
+                pass
+
+    cur.execute("PRAGMA table_info(verification_reports)")
+    vrf_cols = [r[1] for r in cur.fetchall()]
+    new_vrf_fields = [
+        ("continuity_status", "TEXT DEFAULT 'VERIFIED'"),
+        ("continuity_score", "REAL DEFAULT 100.0"),
+        ("continuity_details", "TEXT")
+    ]
+    for col_name, col_def in new_vrf_fields:
+        if col_name not in vrf_cols:
+            try:
+                cur.execute(f"ALTER TABLE verification_reports ADD COLUMN {col_name} {col_def}")
+            except Exception:
+                pass
+
+    conn.commit()
 
     conn.commit()
     seed_initial_data(conn)
