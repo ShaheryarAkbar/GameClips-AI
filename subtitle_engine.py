@@ -56,8 +56,8 @@ def generate_subtitles_for_scenes(scenes, output_srt_path, output_ass_path=None)
             "",
             "[V4+ Styles]",
             "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
-            # Style: Yellow font (&H0000FFFF), black thick outline (&H00000000), alignment 2 (bottom center), marginV 490 (placed between video viewport and bottom HUD)
-            "Style: Default,Segoe UI,38,&H0000FFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.5,1,2,60,60,490,1",
+            # Style: Viral TikTok/Shorts Yellow font (&H0000FFFF), bold black outline (&H00000000), alignment 2 (bottom center), marginV 160 (lower-third center)
+            "Style: Default,Segoe UI,46,&H0000FFFF,&H000000FF,&H00000000,&H90000000,-1,0,0,0,100,100,0,0,1,3.8,2,2,70,70,160,1",
             "",
             "[Events]",
             "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
@@ -66,9 +66,15 @@ def generate_subtitles_for_scenes(scenes, output_srt_path, output_ass_path=None)
         for sc in scenes:
             start_str = format_timestamp_ass(sc["start_time"])
             end_str = format_timestamp_ass(sc["end_time"])
-            text = sc.get("subtitle_text") or sc.get("narration_text") or ""
-            # Escape commas in ASS text if necessary
-            ass_lines.append(f"Dialogue: 0,{start_str},{end_str},Default,,0,0,0,,{text}")
+            raw_text = sc.get("subtitle_text") or sc.get("narration_text") or ""
+            # Wrap into 2 balanced lines if long
+            words = raw_text.split()
+            if len(words) > 7:
+                mid = len(words) // 2
+                wrapped_text = " ".join(words[:mid]) + "\\N" + " ".join(words[mid:])
+            else:
+                wrapped_text = raw_text
+            ass_lines.append(f"Dialogue: 0,{start_str},{end_str},Default,,0,0,0,,{wrapped_text}")
 
         with open(output_ass_path, "w", encoding="utf-8") as f:
             f.write("\n".join(ass_lines))

@@ -119,7 +119,10 @@ def run_hybrid_test():
         (22.0, "frame_scene3_wiretap_sim.jpg"),
         (31.0, "frame_scene4_storm_confrontation.jpg"),
         (40.0, "frame_scene5_bridge_standoff_sim.jpg"),
-        (49.0, "frame_scene6_harbor_resolution.jpg")
+        (49.0, "frame_scene6_harbor_resolution.jpg"),
+        (4.0, "frame_scene1_lucia_jason.jpg"),
+        (12.0, "frame_scene2_supercar_dash.jpg"),
+        (22.0, "frame_scene3_vice_city_street.jpg")
     ]
     for ts, fname in frame_ts:
         out_frame = os.path.join(preview_dir, fname)
