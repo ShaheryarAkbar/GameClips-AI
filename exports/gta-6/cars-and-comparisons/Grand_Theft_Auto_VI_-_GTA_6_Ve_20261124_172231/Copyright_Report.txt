@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795518215-395
+Project ID:              proj-1795522816-509
 Game Target:             Grand Theft Auto VI
 Video Title:             GTA 6 Vehicle Physics: Confirmed Cockpit Telemetry & Suspension Upgrades
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-24 16:05:19
+Export Date:             2026-11-24 17:22:31
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED

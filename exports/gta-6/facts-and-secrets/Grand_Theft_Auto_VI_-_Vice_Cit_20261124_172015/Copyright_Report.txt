@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795518118-331
+Project ID:              proj-1795522688-539
 Game Target:             Grand Theft Auto VI
 Video Title:             Vice City Secrets: The 2.5x Map Expansion of Leonida
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-24 16:03:35
+Export Date:             2026-11-24 17:20:15
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
