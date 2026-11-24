@@ -772,7 +772,11 @@ def render_viral_single_take_video(raw_gameplay_path: str, out_mp4_path: str,
     generate_viral_hook_banner(line1, line2, line3, banner_png)
 
     filter_str = (
-        "[0:v]scale=1080:1920:flags=lanczos:force_original_aspect_ratio=increase,crop=1080:1920,unsharp=5:5:0.8:5:5:0.0,fps=30[bg];"
+        "[0:v]scale=1080:1920:flags=lanczos+accurate_rnd:force_original_aspect_ratio=increase,"
+        "crop=1080:1920,"
+        "hqdn3d=1.0:1.0:3:3,"
+        "unsharp=3:3:0.6:3:3:0.0,"
+        "fps=30[bg];"
         "[bg][1:v]overlay=0:30[outv]"
     )
 
@@ -785,7 +789,11 @@ def render_viral_single_take_video(raw_gameplay_path: str, out_mp4_path: str,
         "-map", "[outv]",
         "-map", "0:a?",
         "-c:v", "libx264",
-        "-preset", "ultrafast",
+        "-preset", "fast",
+        "-crf", "18",
+        "-b:v", "10M",
+        "-maxrate", "14M",
+        "-bufsize", "20M",
         "-pix_fmt", "yuv420p",
         "-c:a", "aac",
         "-b:a", "192k",
