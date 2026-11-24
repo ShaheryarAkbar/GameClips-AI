@@ -765,13 +765,14 @@ def render_viral_single_take_video(raw_gameplay_path: str, out_mp4_path: str,
     """
     Renders a 1080x1920 (9:16 vertical) viral single-take gameplay Short with an
     unbroken continuous camera shot from 0.1s to the end and a top viral hook banner.
+    Passes authentic in-game audio directly without synthetic voiceover.
     """
     os.makedirs(os.path.dirname(os.path.abspath(out_mp4_path)), exist_ok=True)
-    banner_png = os.path.join(TEMP_DIR, "viral_banner_temp.png")
+    banner_png = out_mp4_path.replace(".mp4", "_banner.png")
     generate_viral_hook_banner(line1, line2, line3, banner_png)
 
     filter_str = (
-        "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30[bg];"
+        "[0:v]scale=1080:1920:flags=lanczos:force_original_aspect_ratio=increase,crop=1080:1920,unsharp=5:5:0.8:5:5:0.0,fps=30[bg];"
         "[bg][1:v]overlay=0:30[outv]"
     )
 
@@ -792,6 +793,21 @@ def render_viral_single_take_video(raw_gameplay_path: str, out_mp4_path: str,
         out_mp4_path
     ]
     subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    # Extract high-res thumbnail
+    thumb_path = os.path.join(os.path.dirname(out_mp4_path), "thumbnail.png")
+    try:
+        cmd_thumb = [
+            "ffmpeg", "-y", "-ss", "00:00:02.000",
+            "-i", out_mp4_path,
+            "-vframes", "1",
+            "-q:v", "2",
+            thumb_path
+        ]
+        subprocess.run(cmd_thumb, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
+
     return out_mp4_path
 
 if __name__ == "__main__":

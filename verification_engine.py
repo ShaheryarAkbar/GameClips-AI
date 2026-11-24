@@ -293,12 +293,12 @@ def verify_project_compliance(project_id):
             status = "NEEDS_REVIEW"
     else:
         dur = quality_result.get("duration", 0.0)
-        if dur < 44.0 or dur > 61.0:
-            warnings.append(f"Duration advisory: Video duration is {dur:.2f}s (Target standard is 45-60s).")
+        if dur < 18.0 or dur > 65.0:
+            warnings.append(f"Duration advisory: Video duration is {dur:.2f}s (Shorts standard is 18-60s).")
             if status != "REJECTED":
                 status = "NEEDS_REVIEW"
         else:
-            findings.append(f"Target Duration Enforced: {dur:.2f}s (strictly within 45-60s standard).")
+            findings.append(f"Target Duration Enforced: {dur:.2f}s (strictly within 18-60s Shorts standard).")
 
         findings.append(f"Video Quality: {quality_result['width']}x{quality_result['height']} (9:16 Vertical), {quality_result['video_codec']} / {quality_result['audio_codec']}, {quality_result['duration']}s.")
 
