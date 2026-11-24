@@ -551,8 +551,18 @@ def generate_visuals_for_project(project_id, hybrid_mode=True):
         os.makedirs(visual_dir, exist_ok=True)
 
         benchmark_dir = os.path.join(BASE_DIR, "assets", "benchmark")
+        master_build_dir = os.path.join(TEMP_DIR, "master_build")
         longplay_path = os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
         has_longplay = os.path.isfile(longplay_path)
+
+        # Retrieve project category to route visuals coherently
+        cur.execute("""
+            SELECT s.category FROM video_projects p
+            JOIN scripts s ON p.script_id = s.id
+            WHERE p.id = ?
+        """, (project_id,))
+        cat_row = cur.fetchone()
+        category = cat_row[0] if cat_row else "Facts & Secrets"
 
         # Benchmark reference images
         img_lucia_jason = os.path.join(benchmark_dir, "ref_lucia_jason.jpg")
@@ -566,42 +576,100 @@ def generate_visuals_for_project(project_id, hybrid_mode=True):
             duration = max(3.0, sc["end_time"] - sc["start_time"])
             vscene_out = os.path.join(visual_dir, f"vscene_{scene_num}.mp4")
 
-            # Route each scene to full-screen benchmark visual or full-screen moving gameplay
-            if scene_num == 1 and os.path.isfile(img_lucia_jason):
-                # Scene 1: Lucia & Jason in red convertible (Matching Benchmark Image 3)
-                render_cinematic_motion_scene(img_lucia_jason, duration, "zoom_in_lucia_jason", vscene_out)
-                sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
-                sc["is_fictional"] = 0
-            elif scene_num == 2 and os.path.isfile(img_supercar):
-                # Scene 2: Red Supercar high-speed avenue dash (Matching Benchmark Image 1)
-                render_cinematic_motion_scene(img_supercar, duration, "supercar_dash", vscene_out)
-                sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
-                sc["is_fictional"] = 0
-            elif scene_num == 3 and os.path.isfile(img_street):
-                # Scene 3: Vice City Leonida streets & culture (Matching Benchmark Image 2)
-                render_cinematic_motion_scene(img_street, duration, "pan_glide_street", vscene_out)
-                sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
-                sc["is_fictional"] = 0
-            elif scene_num == 4 and has_longplay:
-                # Scene 4: Full-Screen Highway Pursuit (Continuous motion)
-                render_full_screen_gameplay_scene(longplay_path, "00:03:30", duration, vscene_out)
-                sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
-                sc["is_fictional"] = 0
-            elif scene_num == 5 and has_longplay:
-                # Scene 5: Full-Screen Storm Highway Pursuit & Evasion
-                render_full_screen_gameplay_scene(longplay_path, "00:04:30", duration, vscene_out)
-                sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
-                sc["is_fictional"] = 0
-            elif scene_num == 6 and os.path.isfile(img_lucia_jason):
-                # Scene 6: Harbor Overlook Resolution & Outro (Matching Benchmark Image 3)
-                render_cinematic_motion_scene(img_lucia_jason, duration, "zoom_out_resolution", vscene_out)
-                sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
-                sc["is_fictional"] = 0
-            else:
-                # Fallback to authentic longplay slice
-                start_ts = f"00:0{min(5, scene_num)}:15"
-                if has_longplay:
+            # Master build scenes available
+            mb_scene = os.path.join(master_build_dir, f"vscene_{scene_num}.mp4")
+            has_mb = os.path.isfile(mb_scene)
+
+            # Category-specific visual routing for 100% thematic and narrative continuity
+            if category == "Cars & Comparisons":
+                if scene_num == 1 and os.path.isfile(img_supercar):
+                    render_cinematic_motion_scene(img_supercar, duration, "supercar_dash", vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num in [2, 3, 4, 5] and has_mb:
+                    # Use full-screen 1080x1920 high-speed driving master clip
+                    subprocess.run([
+                        "ffmpeg", "-y", "-ss", "00:00:00", "-t", str(duration),
+                        "-i", mb_scene, "-c", "copy", vscene_out
+                    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num == 6 and os.path.isfile(img_supercar):
+                    render_cinematic_motion_scene(img_supercar, duration, "zoom_out_resolution", vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif has_longplay:
+                    start_ts = f"00:0{min(8, 2 + scene_num)}:10"
                     render_full_screen_gameplay_scene(longplay_path, start_ts, duration, vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                else:
+                    render_procedural_simulation_clip(sc, duration, vscene_out)
+
+            elif category == "Facts & Secrets":
+                if scene_num == 1 and os.path.isfile(os.path.join(master_build_dir, "vscene_1.mp4")):
+                    # Vice City Penthouse Skyline Panorama
+                    subprocess.run([
+                        "ffmpeg", "-y", "-ss", "00:00:00", "-t", str(duration),
+                        "-i", os.path.join(master_build_dir, "vscene_1.mp4"), "-c", "copy", vscene_out
+                    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num == 2 and os.path.isfile(img_street):
+                    # Vice City Leonida streets & crowd detail
+                    render_cinematic_motion_scene(img_street, duration, "pan_glide_street", vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num in [3, 4, 5] and has_mb:
+                    # Use real 1080x1920 wetlands & night boulevard scenes
+                    subprocess.run([
+                        "ffmpeg", "-y", "-ss", "00:00:00", "-t", str(duration),
+                        "-i", mb_scene, "-c", "copy", vscene_out
+                    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num == 6 and os.path.isfile(os.path.join(master_build_dir, "vscene_7.mp4")):
+                    # Sunset coastal overlook
+                    subprocess.run([
+                        "ffmpeg", "-y", "-ss", "00:00:00", "-t", str(duration),
+                        "-i", os.path.join(master_build_dir, "vscene_7.mp4"), "-c", "copy", vscene_out
+                    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif has_longplay:
+                    start_ts = f"00:0{min(5, scene_num)}:15"
+                    render_full_screen_gameplay_scene(longplay_path, start_ts, duration, vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                else:
+                    render_procedural_simulation_clip(sc, duration, vscene_out)
+
+            else:
+                # Stories & Lore (Lucia & Jason Syndicate)
+                if scene_num == 1 and os.path.isfile(img_lucia_jason):
+                    render_cinematic_motion_scene(img_lucia_jason, duration, "zoom_in_lucia_jason", vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num == 2 and os.path.isfile(img_supercar):
+                    render_cinematic_motion_scene(img_supercar, duration, "supercar_dash", vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num in [3, 4, 5] and has_mb:
+                    subprocess.run([
+                        "ffmpeg", "-y", "-ss", "00:00:00", "-t", str(duration),
+                        "-i", mb_scene, "-c", "copy", vscene_out
+                    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif scene_num == 6 and os.path.isfile(img_lucia_jason):
+                    render_cinematic_motion_scene(img_lucia_jason, duration, "zoom_out_resolution", vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
+                elif has_longplay:
+                    start_ts = f"00:0{min(5, scene_num)}:15"
+                    render_full_screen_gameplay_scene(longplay_path, start_ts, duration, vscene_out)
+                    sc["visual_type"] = "3D_GAMEPLAY_FOOTAGE"
+                    sc["is_fictional"] = 0
                 else:
                     render_procedural_simulation_clip(sc, duration, vscene_out)
 

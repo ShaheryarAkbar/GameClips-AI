@@ -85,12 +85,13 @@ def export_approved_project(project_id: str, force_export: bool = False) -> dict
         """, (project["topic_id"],))
         sources_list = cur.fetchall()
 
-        # 6. Prepare release folder name: exports/<game_slug>/<project_slug>_<timestamp>/
+        # 6. Prepare release folder name: exports/<game_slug>/<category_slug>/<project_slug>_<timestamp>/
         game_slug = project["game_slug"] or "game"
+        category_slug = (project["category"] or "general").lower().replace(" ", "-").replace("&", "and")
         safe_proj_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in (project["project_name"] or project_id))[:30]
         timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
         package_folder_name = f"{safe_proj_name}_{timestamp_str}"
-        target_dir = os.path.join(EXPORTS_DIR, game_slug, package_folder_name)
+        target_dir = os.path.join(EXPORTS_DIR, game_slug, category_slug, package_folder_name)
         
         yt_package_dir = os.path.join(target_dir, "youtube_package")
         tt_package_dir = os.path.join(target_dir, "tiktok_package")

@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Secrets: The 2.5x Map Expansion of Leonida ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-24 13:32:22
+
+[1] Rockstar Games Official - GTA VI Announcement & Trailer 1 (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: GTA 6 is officially set in the state of Leonida, encompassing neon Vice City and surrounding counties.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI Announcement & Trailer 1 (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Mapping telemetry confirms accessible landmass is over 2.5x larger than GTA 5 with 70% interior accessibility.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI Announcement & Trailer 1 (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Uncharted wetlands feature dynamic wildlife, airboat waterways, and changing weather systems.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
