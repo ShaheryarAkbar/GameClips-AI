@@ -92,232 +92,275 @@ def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None):
     selected_closing = random.choice(closing_lines)
 
     # 4. Construct Narrative Storyboard & Scene Breakdown (Mandatory Continuity System)
-    # Target duration: 45-60s -> 6 connected scenes (~51-53s total speech)
-    story_title = f"{title}: The Lucia & Jason Trust Paradox"
-    main_characters = "Lucia Caminos & Jason Duval"
-    vehicle_model = "Bravado Banshee GT (Midnight Blue with Dual Titanium Stripes)"
-    env_location = "Vice City Coastal Expressway to Biscayne Bay Harbor Overlook"
-    time_of_day = "Neon Dusk into Rainy Twilight"
-    weather_cond = "Wet neon asphalt, rain reflections, and distant storm lightning"
-    central_event = "High-Stakes Harbor Heist Getaway & The Federal Immunity Wiretap Ultimatum"
-    narrative_arc = "Hook & The Vow -> Biscayne Expressway Pursuit -> Federal Wiretap Ping -> Torrential Rain Confrontation -> Port Bridge Standoff -> Emotional Resolution"
-    resolution_text = "In Leonida, trust isn't just an oath; it's the fatal difference between survival and betrayal."
-
+    # Target duration: 45-60s -> 6 connected scenes (~50-53s total speech)
     scenes = []
 
-    if target_duration in ["45-60s", "45-60", "hybrid"]:
-        # Scene 1: Hook & The Trust Vow (0.0 - 8.5s) - Authentic Gameplay
+    if category == "Cars & Comparisons":
+        story_title = f"{title}: Cockpit Telemetry & High-Speed Dynamics"
+        main_characters = "Jason Duval"
+        vehicle_model = "Bravado Banshee GT (Midnight Blue with Dual Titanium Stripes)"
+        env_location = "Vice City Coastal Expressway to Port Interchange"
+        time_of_day = "Neon Dusk into High-Speed Twilight"
+        weather_cond = "Wet neon asphalt with sunset reflections"
+        central_event = "Next-Gen Vehicle Physics & Real-Time Suspension Stress Test"
+        narrative_arc = "Engine Roar Hook -> Cockpit Telemetry -> Independent Suspension -> High-Speed Cornering -> Traffic Weave -> Enthusiast Outro"
+        resolution_text = "With dynamic body roll and active interior telemetry, GTA 6 turns every drive into a high-stakes simulation."
+
+        s1_text = f"Grand Theft Auto VI is completely overhauling vehicle mechanics with the most realistic driving physics in gaming history. From working digital dashboards to active suspension, every car feels alive."
+        scenes.append({
+            "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "Red supercar roaring through downtown Vice City avenue with asphalt reflections",
+            "narration_text": s1_text, "subtitle_text": s1_text, "transition_type": "fade",
+            "location": "Downtown Vice City Coastal Avenue", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Dynamic low chase camera tracking exhaust rumble",
+            "action_progression": "Jason revs the Banshee GT as digital gauges illuminate across the dashboard.",
+            "prev_scene_connection": "Opening visual hook establishing vehicle fidelity.",
+            "next_scene_connection": "Seamless acceleration into the elevated highway."
+        })
+
+        s2_text = "Trailer analysis reveals functional digital instrument clusters, adjustable mirrors, and real-time pedal movement responding directly to player acceleration."
+        scenes.append({
+            "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "High-speed highway acceleration and cornering weave",
+            "narration_text": s2_text, "subtitle_text": s2_text, "transition_type": "cut",
+            "location": "Biscayne Highway Elevated Expressway", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Interior cockpit tracking shot focusing on steering telemetry",
+            "action_progression": "Speedometer climbs past 140 as the vehicle weaves through evening highway traffic.",
+            "prev_scene_connection": "Direct continuation of high-speed acceleration from downtown avenue.",
+            "next_scene_connection": "Connected cut into exterior suspension tracking."
+        })
+
+        s3_text = "Even more impressive is the independent multi-link suspension. Each wheel dynamically travels over curb joints, dirt shoulders, and wet asphalt ripples."
+        scenes.append({
+            "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+            "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
+            "visual_prompt": "3D telemetry perspective tracking wheel travel and suspension reaction",
+            "narration_text": s3_text, "subtitle_text": s3_text, "transition_type": "cut",
+            "location": "Freeway 95 Interchange Overpass", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Low-angle wheel camera tracking suspension compression",
+            "action_progression": "Tires compress against roadway joints with realistic tire sidewall deformation.",
+            "prev_scene_connection": "Direct technical continuation of highway speed run.",
+            "next_scene_connection": "Connected cut framing high-speed cornering entry."
+        })
+
+        s4_text = "High-speed cornering introduces realistic body roll and weight transfer, forcing drivers to master brake timing instead of simple arcade drifting."
+        scenes.append({
+            "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "High-speed cornering weave under streetlights cutting water spray",
+            "narration_text": s4_text, "subtitle_text": s4_text, "transition_type": "cut",
+            "location": "Port Access Highway S-Curves", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Tracking crane sweep following high-speed apex turn",
+            "action_progression": "Rear tires break traction momentarily before grip catches on dry asphalt.",
+            "prev_scene_connection": "Continuation of suspension stress test through aggressive cornering.",
+            "next_scene_connection": "Camera tracking exit velocity toward coastal bridge."
+        })
+
+        s5_text = "Vehicle deformation and collision modeling have also taken a generational leap, with crumple zones absorbing impacts with authentic metal tear physics."
+        scenes.append({
+            "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+            "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
+            "visual_prompt": "Telephoto chase camera tracking top speed sprint into coastal straight",
+            "narration_text": s5_text, "subtitle_text": s5_text, "transition_type": "cut",
+            "location": "Biscayne Port Bridge Approach", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Telephoto chase tracking top speed velocity",
+            "action_progression": "Banshee GT reaches maximum velocity on the straightaway before smooth braking.",
+            "prev_scene_connection": "Exit from highway curves onto the open coastal bridge approach.",
+            "next_scene_connection": "Smooth deceleration into scenic harbor overlook."
+        })
+
+        s6_text = f"Which legendary car are you taking for a high-speed spin first in Vice City? Drop your dream ride in the comments below!"
+        scenes.append({
+            "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "Sunset coastal overlook orbiting the idling supercar overlooking the skyline",
+            "narration_text": s6_text, "subtitle_text": s6_text, "transition_type": "fade",
+            "location": "Vice City Harbor Overlook", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Cinematic sunset crane sweep orbiting the idling vehicle",
+            "action_progression": "Vehicle idles at scenic overlook with engine purring as dusk settles over the skyline.",
+            "prev_scene_connection": "Final technical and scenic resolution.",
+            "next_scene_connection": "Concluding fade."
+        })
+
+    elif category == "Facts & Secrets":
+        story_title = f"{title}: The 2.5x Living World Expansion"
+        main_characters = "Jason Duval & Field Intelligence"
+        vehicle_model = "Declasse Granger 3600LX Surveillance SUV"
+        env_location = "Downtown Vice City Skyline to Coastal Wetlands"
+        time_of_day = "Clear Daylight into Neon Twilight"
+        weather_cond = "Clear sunny skies shifting to volumetric storm clouds"
+        central_event = "Declassifying Vice City Map Scale & Environmental Secrets"
+        narrative_arc = "Scale Hook -> Downtown Living World -> Uncharted Wetlands -> Volumetric Weather -> Los Santos Comparison -> Viewer Verdict"
+        resolution_text = "With twice the landmass of Los Santos and full interior density, Vice City sets a new standard for open-world design."
+
+        s1_text = f"Grand Theft Auto VI officially takes place in the state of Leonida, and mapping community calculations reveal Vice City is over 2.5 times larger than Los Santos."
+        scenes.append({
+            "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "Vice City Penthouse Skyline & Ocean Panorama - Real 3D Moving Gameplay",
+            "narration_text": s1_text, "subtitle_text": s1_text, "transition_type": "fade",
+            "location": "Vice City Penthouse Skyline Overlook", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Wide panoramic crane sweep establishing city scale",
+            "action_progression": "Camera glides over skyscrapers revealing ocean beaches and distant wetland horizon.",
+            "prev_scene_connection": "Opening visual hook establishing monumental map scale.",
+            "next_scene_connection": "Connected cut tracking downward into street-level crowd density."
+        })
+
+        s2_text = "Beyond raw landmass, Rockstar has completely overhauled world density. Over 70 percent of commercial buildings feature fully rendered, accessible interior spaces."
+        scenes.append({
+            "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "Sunny Vice City street with pedestrian life and palm trees",
+            "narration_text": s2_text, "subtitle_text": s2_text, "transition_type": "cut",
+            "location": "Vice City Boulevard & Ammu-Nation District", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Ground-level tracking shot moving past storefronts and pedestrians",
+            "action_progression": "Pedestrians interact naturally as traffic flows past detailed commercial storefronts.",
+            "prev_scene_connection": "Transition from city skyline overview to street-level living world.",
+            "next_scene_connection": "Connected cut panning outward toward rural wetlands."
+        })
+
+        s3_text = "The rural regions feature alligator-infested wetlands, the sprawling Leonida Keys, and uncharted swamps with their own dynamic ecosystem mechanics."
+        scenes.append({
+            "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+            "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
+            "visual_prompt": "3D environmental simulation of wetland swamp and coastal highway ridge",
+            "narration_text": s3_text, "subtitle_text": s3_text, "transition_type": "cut",
+            "location": "Leonida Wetlands Ridge & Boat Waterway", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Low sweeping glide along wetland waterways",
+            "action_progression": "Wildlife moves through reeds as airboats navigate dynamic water currents.",
+            "prev_scene_connection": "Geographical expansion from urban core to untamed wilderness.",
+            "next_scene_connection": "Connected transition as volumetric weather system rolls in."
+        })
+
+        s4_text = "Volumetric weather brings localized tropical rainstorms that puddle dynamically on asphalt and alter vehicle traction in real-time."
+        scenes.append({
+            "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "Downtown night boulevard with ray-traced neon street reflections",
+            "narration_text": s4_text, "subtitle_text": s4_text, "transition_type": "cut",
+            "location": "Downtown Vice City Neon Boulevard", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Low tracking camera through wet street reflections",
+            "action_progression": "Neon reflections shimmer across wet asphalt as storm clouds clear overhead.",
+            "prev_scene_connection": "Continuation of atmospheric weather transition.",
+            "next_scene_connection": "Camera rising toward expressway scale comparison."
+        })
+
+        s5_text = "Comparing the highway networks side by side, traveling from Vice City to the northern counties takes over three times longer than crossing San Andreas."
+        scenes.append({
+            "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+            "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
+            "visual_prompt": "Highway interchange and expansive arterial road telemetry",
+            "narration_text": s5_text, "subtitle_text": s5_text, "transition_type": "cut",
+            "location": "Interchange 95 Highway Hub", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Elevated telephoto approach framing multi-tier expressway",
+            "action_progression": "Multi-lane traffic weaves through complex interchanges spanning multiple elevation tiers.",
+            "prev_scene_connection": "Transition from city boulevards to expansive arterial network.",
+            "next_scene_connection": "Cinematic glide toward coastal sunset overlook."
+        })
+
+        s6_text = f"Are you ready to explore the largest map Rockstar has ever built? What secret will you search for first? Drop your thoughts below!"
+        scenes.append({
+            "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "Sunset coastal overlook with skyline silhouette",
+            "narration_text": s6_text, "subtitle_text": s6_text, "transition_type": "fade",
+            "location": "Vice City Coastal Ridge", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Sunset crane sweep orbiting panoramic view of the state of Leonida",
+            "action_progression": "Scenic dusk panorama revealing the vast horizon stretching into the distance.",
+            "prev_scene_connection": "Concluding geographic synthesis.",
+            "next_scene_connection": "Final fade."
+        })
+
+    else:
+        # Stories & Lore (The Lucia & Jason Heist Syndicate)
+        story_title = f"{title}: The Lucia & Jason Trust Paradox"
+        main_characters = "Lucia Caminos & Jason Duval"
+        vehicle_model = "Bravado Banshee GT (Midnight Blue with Dual Titanium Stripes)"
+        env_location = "Vice City Coastal Expressway to Biscayne Bay Harbor Overlook"
+        time_of_day = "Neon Dusk into Rainy Twilight"
+        weather_cond = "Wet neon asphalt, rain reflections, and distant storm lightning"
+        central_event = "High-Stakes Harbor Heist Getaway & The Federal Immunity Wiretap Ultimatum"
+        narrative_arc = "Hook & The Vow -> Biscayne Expressway Pursuit -> Federal Wiretap Ping -> Torrential Rain Confrontation -> Port Bridge Standoff -> Emotional Resolution"
+        resolution_text = "In Leonida, trust isn't just an oath; it's the fatal difference between survival and betrayal."
+
         s1_text = f"Grand Theft Auto VI’s leading ending theory explores the most emotional storyline Rockstar has ever written. In Vice City, Lucia and Jason swore one rule: trust."
         scenes.append({
-            "scene_number": 1,
-            "start_time": 0.0,
-            "end_time": 8.5,
-            "visual_type": "3D_GAMEPLAY_FOOTAGE",
-            "is_fictional": 0,
-            "visual_prompt": "Cinematic low-angle tracking shot gliding alongside the Banshee at dusk on Ocean Drive",
-            "narration_text": s1_text,
-            "subtitle_text": s1_text,
-            "transition_type": "fade",
-            "location": "Vice City Ocean Drive Coastal Boulevard",
-            "character_focus": main_characters,
-            "vehicle": vehicle_model,
-            "camera_movement": "Wide cinematic tracking shot gliding alongside vehicle at 30-degree low angle",
+            "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+            "visual_prompt": "Lucia and Jason in red convertible sports car on coastal highway",
+            "narration_text": s1_text, "subtitle_text": s1_text, "transition_type": "fade",
+            "location": "Vice City Ocean Drive Coastal Boulevard", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Wide cinematic tracking shot gliding alongside vehicle at 30-degree low angle",
             "action_progression": "Lucia watches the rear-view mirror as Jason punches the accelerator onto the expressway.",
             "prev_scene_connection": "Opening cinematic hook establishing the central protagonists and their solemn pledge.",
             "next_scene_connection": "Continuous acceleration tracking forward as engine RPM peaks onto the Biscayne Highway."
         })
 
-        # Scene 2: The Getaway & Escalating Stakes (8.5 - 17.5s) - Authentic Gameplay
         s2_text = "Having cleared the biggest score in Leonida, police scanner chatter reveals they were betrayed before the tires even hit the pavement."
         scenes.append({
-            "scene_number": 2,
-            "start_time": 8.5,
-            "end_time": 17.5,
-            "visual_type": "3D_GAMEPLAY_FOOTAGE",
-            "is_fictional": 0,
+            "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
             "visual_prompt": "Dynamic low chase camera following inches behind the roaring exhaust pipes through evening traffic",
-            "narration_text": s2_text,
-            "subtitle_text": s2_text,
-            "transition_type": "cut",
-            "location": "Biscayne Highway Elevated Expressway",
-            "character_focus": main_characters,
-            "vehicle": vehicle_model,
-            "camera_movement": "Dynamic low chase camera following inches behind roaring twin exhaust pipes",
+            "narration_text": s2_text, "subtitle_text": s2_text, "transition_type": "cut",
+            "location": "Biscayne Highway Elevated Expressway", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Dynamic low chase camera following inches behind roaring twin exhaust pipes",
             "action_progression": "The Banshee weaves through evening traffic as distant sirens echo across the skyline.",
             "prev_scene_connection": "Direct continuation of high-speed acceleration from Ocean Drive.",
             "next_scene_connection": "Connected cut into cockpit telemetry as emergency radio dispatch cuts in."
         })
 
-        # Scene 3: The Federal Wiretap & Tension (17.5 - 26.5s) - Original Simulation
         s3_text = "As radar alarms scream, Jason spots an encrypted ping on Lucia's burner—a federal immunity deal offering freedom if she surrenders him."
         scenes.append({
-            "scene_number": 3,
-            "start_time": 17.5,
-            "end_time": 26.5,
-            "visual_type": "ORIGINAL_SIMULATION",
-            "is_fictional": 1,
+            "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+            "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
             "visual_prompt": "3D perspective cockpit & telemetry tracking camera focusing on dynamic speed and navigation",
-            "narration_text": s3_text,
-            "subtitle_text": s3_text,
-            "transition_type": "cut",
-            "location": "Freeway 95 Interchange Overpass",
-            "character_focus": main_characters,
-            "vehicle": vehicle_model,
-            "camera_movement": "3D perspective cockpit telemetry camera panning between speedometer and GPS radar",
+            "narration_text": s3_text, "subtitle_text": s3_text, "transition_type": "cut",
+            "location": "Freeway 95 Interchange Overpass", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "3D perspective cockpit telemetry camera panning between speedometer and GPS radar",
             "action_progression": "Lucia checks an encrypted burner phone showing a federal immunity offer if she surrenders Jason.",
             "prev_scene_connection": "Direct continuation of the highway pursuit into the freeway interchange.",
             "next_scene_connection": "Connected exterior tracking cut as torrential rain begins lashing the asphalt."
         })
 
-        # Scene 4: Confrontation in the Storm (26.5 - 35.5s) - Authentic Gameplay
         s4_text = "With storm rain flooding the asphalt, Jason asks if the plan changed. Lucia grips her weapon, torn between survival and the only partner she has left."
         scenes.append({
-            "scene_number": 4,
-            "start_time": 26.5,
-            "end_time": 35.5,
-            "visual_type": "3D_GAMEPLAY_FOOTAGE",
-            "is_fictional": 0,
+            "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
             "visual_prompt": "Low tracking camera through torrential rain cutting through water spray under streetlights",
-            "narration_text": s4_text,
-            "subtitle_text": s4_text,
-            "transition_type": "cut",
-            "location": "Rain-swept Port Access Highway",
-            "character_focus": main_characters,
-            "vehicle": vehicle_model,
-            "camera_movement": "Low tracking camera through torrential rain cutting through water spray",
+            "narration_text": s4_text, "subtitle_text": s4_text, "transition_type": "cut",
+            "location": "Rain-swept Port Access Highway", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Low tracking camera through torrential rain cutting through water spray",
             "action_progression": "Tires hydroplane across wet neon reflections; Jason glances at Lucia as she grips her weapon.",
             "prev_scene_connection": "Direct continuation of tension following the wiretap revelation.",
             "next_scene_connection": "Camera cranes upward framing the impending roadblock at the port bridge."
         })
 
-        # Scene 5: The Bridge Roadblock Climax (35.5 - 44.5s) - Original Simulation
         s5_text = "Approaching the harbor bridge roadblock at top speed, they face a split second: break through together, or make the fatal turn that tears them apart."
         scenes.append({
-            "scene_number": 5,
-            "start_time": 35.5,
-            "end_time": 44.5,
-            "visual_type": "ORIGINAL_SIMULATION",
-            "is_fictional": 1,
+            "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+            "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
             "visual_prompt": "Forward telephoto chase shot framing the Banshee charging towards flashing roadblock lights",
-            "narration_text": s5_text,
-            "subtitle_text": s5_text,
-            "transition_type": "cut",
-            "location": "Biscayne Port Bridge Approach",
-            "character_focus": main_characters,
-            "vehicle": vehicle_model,
-            "camera_movement": "Forward telephoto chase shot framing the Banshee charging towards flashing roadblock lights",
+            "narration_text": s5_text, "subtitle_text": s5_text, "transition_type": "cut",
+            "location": "Biscayne Port Bridge Approach", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Forward telephoto chase shot framing the Banshee charging towards flashing roadblock lights",
             "action_progression": "Spike strips and tactical cruisers line the horizon as the Banshee redlines into the final bottleneck.",
             "prev_scene_connection": "Direct continuation as the vehicle charges through the final highway exit toward the port bridge.",
             "next_scene_connection": "Smooth cinematic deceleration into the harbor overlook at break of dawn."
         })
 
-        # Scene 6: The Emotional Resolution & Outro (44.5 - 53.0s) - Authentic Gameplay
         s6_text = f"Because in Leonida, trust isn't just an oath—it's the only currency left. Which ending choice will you make? Drop your verdict below."
         scenes.append({
-            "scene_number": 6,
-            "start_time": 44.5,
-            "end_time": 53.0,
-            "visual_type": "3D_GAMEPLAY_FOOTAGE",
-            "is_fictional": 0,
+            "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+            "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
             "visual_prompt": "Cinematic sunset crane sweep orbiting the idling Banshee overlooking the Vice City skyline",
-            "narration_text": s6_text,
-            "subtitle_text": s6_text,
-            "transition_type": "fade",
-            "location": "Vice City Harbor Overlook",
-            "character_focus": main_characters,
-            "vehicle": vehicle_model,
-            "camera_movement": "Cinematic sunset crane sweep orbiting the idling Banshee overlooking the skyline",
+            "narration_text": s6_text, "subtitle_text": s6_text, "transition_type": "fade",
+            "location": "Vice City Harbor Overlook", "character_focus": main_characters,
+            "vehicle": vehicle_model, "camera_movement": "Cinematic sunset crane sweep orbiting the idling Banshee overlooking the skyline",
             "action_progression": "The Banshee comes to a halt at the edge of the harbor mist; taillights reflecting off the wet pavement.",
             "prev_scene_connection": "Direct narrative resolution concluding the bridge pursuit.",
             "next_scene_connection": "Final narrative fade concluding the storyline sequence."
-        })
-    elif not is_long:
-        # 30-50s -> 3 Scenes (Total ~40s)
-        # Scene 1: Hook (0 - 8s)
-        scenes.append({
-            "scene_number": 1,
-            "start_time": 0.0,
-            "end_time": 8.0,
-            "visual_type": "SVG_TYPOGRAPHY",
-            "visual_prompt": f"Neon glowing bold title: '{selected_hook}'",
-            "narration_text": selected_hook,
-            "subtitle_text": selected_hook,
-            "transition_type": "fade"
-        })
-        # Scene 2: Core Facts / Comparison (8 - 30s)
-        body_speech = " ".join(body_points)
-        scenes.append({
-            "scene_number": 2,
-            "start_time": 8.0,
-            "end_time": 30.0,
-            "visual_type": "SVG_MAP" if "Map" in title or "City" in title else "SVG_COMPARISON",
-            "visual_prompt": f"Interactive graphic breakdown for: {title}",
-            "narration_text": body_speech,
-            "subtitle_text": body_speech,
-            "transition_type": "slide_left"
-        })
-        # Scene 3: Conclusion / Call to Action (30 - 40s)
-        scenes.append({
-            "scene_number": 3,
-            "start_time": 30.0,
-            "end_time": 40.0,
-            "visual_type": "SVG_COUNTDOWN",
-            "visual_prompt": "Neon outro card with animated comment prompt",
-            "narration_text": selected_closing,
-            "subtitle_text": selected_closing,
-            "transition_type": "fade"
-        })
-    else:
-        # 60-90s -> 5 Scenes (Total ~70s)
-        scenes.append({
-            "scene_number": 1,
-            "start_time": 0.0,
-            "end_time": 10.0,
-            "visual_type": "SVG_TYPOGRAPHY",
-            "visual_prompt": f"Bold kinetic intro hook: '{selected_hook}'",
-            "narration_text": selected_hook,
-            "subtitle_text": selected_hook,
-            "transition_type": "fade"
-        })
-        scenes.append({
-            "scene_number": 2,
-            "start_time": 10.0,
-            "end_time": 25.0,
-            "visual_type": "SVG_MAP",
-            "visual_prompt": f"Setting & geographical breakdown: {desc[:80]}",
-            "narration_text": body_points[0] if len(body_points) > 0 else desc,
-            "subtitle_text": body_points[0] if len(body_points) > 0 else desc,
-            "transition_type": "wipe"
-        })
-        scenes.append({
-            "scene_number": 3,
-            "start_time": 25.0,
-            "end_time": 45.0,
-            "visual_type": "SVG_COMPARISON",
-            "visual_prompt": "Comparative analysis chart & verified visual details",
-            "narration_text": body_points[1] if len(body_points) > 1 else "Analysis of official trailer frames reveals massive physics improvements.",
-            "subtitle_text": body_points[1] if len(body_points) > 1 else "Analysis of official trailer frames reveals massive physics improvements.",
-            "transition_type": "slide_left"
-        })
-        scenes.append({
-            "scene_number": 4,
-            "start_time": 45.0,
-            "end_time": 60.0,
-            "visual_type": "SVG_STORY",
-            "visual_prompt": "Character & lore narrative breakdown",
-            "narration_text": body_points[2] if len(body_points) > 2 else "Every small environmental choice points to the most ambitious open world ever crafted.",
-            "subtitle_text": body_points[2] if len(body_points) > 2 else "Every small environmental choice points to the most ambitious open world ever crafted.",
-            "transition_type": "fade"
-        })
-        scenes.append({
-            "scene_number": 5,
-            "start_time": 60.0,
-            "end_time": 72.0,
-            "visual_type": "SVG_COUNTDOWN",
-            "visual_prompt": "Outro prompt with verified fact seal",
-            "narration_text": selected_closing,
-            "subtitle_text": selected_closing,
-            "transition_type": "fade"
         })
 
     # 5. Full Voiceover Text
