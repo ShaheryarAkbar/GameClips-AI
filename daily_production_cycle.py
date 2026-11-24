@@ -209,20 +209,20 @@ def run_daily_production():
         # with viral hook banner and authentic in-game audio directly (no synthetic voiceover)
         category_configs = {
             "Facts & Secrets": {
-                "start_ts": "00:13:00",
-                "duration": 24.0,
+                "start_ts": "00:12:30",
+                "duration": 55.0,
                 "banner": ("SECRET VIEW", "IN GTA 6 IS", "UNREAL??"),
                 "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
             },
             "Cars & Comparisons": {
                 "start_ts": "00:08:00",
-                "duration": 24.0,
+                "duration": 55.0,
                 "banner": ("CAR SPEED", "IN GTA 6 IS", "INSANE??"),
                 "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
             },
             "Stories & Lore": {
-                "start_ts": "00:20:45",
-                "duration": 24.0,
+                "start_ts": "00:20:15",
+                "duration": 55.0,
                 "banner": ("NIGHT GETAWAY", "IN GTA 6 IS", "CRAZY??"),
                 "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
             }

@@ -1,6 +1,6 @@
 === FACTUAL SOURCES & CITATIONS FOR: GTA 6 Vehicle Physics: Confirmed Cockpit Telemetry & Suspension Upgrades ===
 Game: Grand Theft Auto VI
-Export Date: 2026-11-24 13:58:23
+Export Date: 2026-11-24 14:25:36
 
 [1] IGN Technical Breakdown - GTA VI Vehicle Mechanics & Physics (IGN Technical Breakdown)
     URL: https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed
