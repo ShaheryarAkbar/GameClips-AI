@@ -207,24 +207,29 @@ def run_daily_production():
         # STEP 4, 5, 6: Visual Production, Cinematic Continuity & Authentic Audio
         # Renders single-take continuous authentic uncut gameplay (1080x1920 9:16)
         # with viral hook banner and authentic in-game audio directly (no synthetic voiceover)
+        # Select best available high-res 60fps master footage (Reference PS5 Pro Benchmark)
+        ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
+        ref_sample = os.path.join(BASE_DIR, "assets", "video", "gta_reference_sample.mp4")
+        default_source = ref_master if os.path.isfile(ref_master) else (ref_sample if os.path.isfile(ref_sample) else os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4"))
+
         category_configs = {
             "Facts & Secrets": {
-                "start_ts": "00:12:30",
+                "start_ts": "00:00:05",
                 "duration": 55.0,
                 "banner": ("SECRET VIEW", "IN GTA 6 IS", "UNREAL??"),
-                "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+                "source": default_source
             },
             "Cars & Comparisons": {
-                "start_ts": "00:08:00",
+                "start_ts": "00:00:35" if default_source == ref_sample else "00:01:45",
                 "duration": 55.0,
                 "banner": ("CAR SPEED", "IN GTA 6 IS", "INSANE??"),
-                "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+                "source": default_source
             },
             "Stories & Lore": {
-                "start_ts": "00:20:15",
+                "start_ts": "00:01:05" if default_source == ref_sample else "00:03:30",
                 "duration": 55.0,
                 "banner": ("NIGHT GETAWAY", "IN GTA 6 IS", "CRAZY??"),
-                "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+                "source": default_source
             }
         }
         cfg = category_configs.get(cat, category_configs["Facts & Secrets"])
