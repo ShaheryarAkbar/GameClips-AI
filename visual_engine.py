@@ -771,13 +771,23 @@ def render_viral_single_take_video(raw_gameplay_path: str, out_mp4_path: str,
     banner_png = out_mp4_path.replace(".mp4", "_banner.png")
     generate_viral_hook_banner(line1, line2, line3, banner_png)
 
+    # 720p/1080p Ambient Centered Layout:
+    # 1. Background: Fast ambient motion blur filling 1080x1920 canvas
+    # 2. Foreground: Center 1080x1080 crisp gameplay with lanczos scaling, unsharp edge polish, and vibrant color grade
+    # 3. Composite: Centered at y=420 with signature viral hook banner at y=20
     filter_str = (
-        "[0:v]scale=1080:1920:flags=lanczos+accurate_rnd:force_original_aspect_ratio=increase,"
-        "crop=1080:1920,"
-        "hqdn3d=1.0:1.0:3:3,"
-        "unsharp=3:3:0.6:3:3:0.0,"
+        "[0:v]scale=270:480:force_original_aspect_ratio=increase,"
+        "crop=270:480,"
+        "boxblur=6:3,"
+        "scale=1080:1920:flags=bilinear,"
         "fps=30[bg];"
-        "[bg][1:v]overlay=0:30[outv]"
+        "[0:v]scale=1920:1080:flags=lanczos+accurate_rnd:force_original_aspect_ratio=increase,"
+        "crop=1080:1080,"
+        "unsharp=5:5:0.8:5:5:0.0,"
+        "eq=contrast=1.06:saturation=1.12:brightness=0.01,"
+        "fps=30[fg];"
+        "[bg][fg]overlay=0:420[comp];"
+        "[comp][1:v]overlay=0:20[outv]"
     )
 
     cmd = [
@@ -789,11 +799,11 @@ def render_viral_single_take_video(raw_gameplay_path: str, out_mp4_path: str,
         "-map", "[outv]",
         "-map", "0:a?",
         "-c:v", "libx264",
-        "-preset", "fast",
-        "-crf", "18",
-        "-b:v", "10M",
-        "-maxrate", "14M",
-        "-bufsize", "20M",
+        "-preset", "veryfast",
+        "-crf", "19",
+        "-b:v", "8M",
+        "-maxrate", "12M",
+        "-bufsize", "16M",
         "-pix_fmt", "yuv420p",
         "-c:a", "aac",
         "-b:a", "192k",

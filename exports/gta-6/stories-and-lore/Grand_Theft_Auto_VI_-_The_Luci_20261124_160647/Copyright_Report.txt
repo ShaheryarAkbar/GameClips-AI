@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795511972-775
+Project ID:              proj-1795518319-881
 Game Target:             Grand Theft Auto VI
-Video Title:             Vice City Secrets: The 2.5x Map Expansion of Leonida
+Video Title:             The Lucia & Jason Syndicate: Trust, Betrayal & The Leonida Ending
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-24 14:22:35
+Export Date:             2026-11-24 16:06:47
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Vice City Penthouse Skyline & Ocean Panorama - Real 3D Moving Gameplay
-  - Scene 2: [AUTHENTIC GAMEPLAY] Sunny Vice City street with pedestrian life and palm trees
-  - Scene 3: [ORIGINAL SIMULATION] 3D environmental simulation of wetland swamp and coastal highway ridge
-  - Scene 4: [AUTHENTIC GAMEPLAY] Downtown night boulevard with ray-traced neon street reflections
-  - Scene 5: [ORIGINAL SIMULATION] Highway interchange and expansive arterial road telemetry
-  - Scene 6: [AUTHENTIC GAMEPLAY] Sunset coastal overlook with skyline silhouette
+  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia and Jason in red convertible sports car on coastal highway
+  - Scene 2: [AUTHENTIC GAMEPLAY] Dynamic low chase camera following inches behind the roaring exhaust pipes through evening traffic
+  - Scene 3: [ORIGINAL SIMULATION] 3D perspective cockpit & telemetry tracking camera focusing on dynamic speed and navigation
+  - Scene 4: [AUTHENTIC GAMEPLAY] Low tracking camera through torrential rain cutting through water spray under streetlights
+  - Scene 5: [ORIGINAL SIMULATION] Forward telephoto chase shot framing the Banshee charging towards flashing roadblock lights
+  - Scene 6: [AUTHENTIC GAMEPLAY] Cinematic sunset crane sweep orbiting the idling Banshee overlooking the Vice City skyline
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity
