@@ -24,7 +24,7 @@ from datetime import datetime
 from database import get_connection, init_database
 from storage_manager import get_disk_status
 from script_generator import generate_script_for_topic
-from visual_engine import generate_visuals_for_project
+from visual_engine import generate_visuals_for_project, render_viral_single_take_video
 from video_engine import render_video_project
 from verification_engine import verify_project_compliance, record_approval_decision
 from export_manager import export_approved_project, list_all_exports
@@ -204,23 +204,61 @@ def run_daily_production():
         print(f"        Setting:           {storyboard.get('environment_location')}")
         print(f"        Scenes Configured: {script_res.get('scene_count')} scenes (~50-53s total)")
 
-        # STEP 4 & 5: Visual Production in Hybrid Mode & Continuity
-        print(f"  [4/8] Rendering Moving Video Scenes (1080x1920 9:16 Vertical Continuous Motion)...")
-        t_vis = time.time()
-        vis_res = generate_visuals_for_project(proj_id, hybrid_mode=True)
-        if not vis_res.get("success"):
-            print(f"  [ERROR] Visual generation failed: {vis_res.get('error')}")
-            continue
-        print(f"        Generated {vis_res.get('scenes_generated')} continuous-motion scenes in {time.time() - t_vis:.1f}s.")
+        # STEP 4, 5, 6: Visual Production, Cinematic Continuity & Authentic Audio
+        # Renders single-take continuous authentic uncut gameplay (1080x1920 9:16)
+        # with viral hook banner and authentic in-game audio directly (no synthetic voiceover)
+        category_configs = {
+            "Facts & Secrets": {
+                "start_ts": "00:13:00",
+                "duration": 24.0,
+                "banner": ("SECRET VIEW", "IN GTA 6 IS", "UNREAL??"),
+                "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+            },
+            "Cars & Comparisons": {
+                "start_ts": "00:08:00",
+                "duration": 24.0,
+                "banner": ("CAR SPEED", "IN GTA 6 IS", "INSANE??"),
+                "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+            },
+            "Stories & Lore": {
+                "start_ts": "00:20:45",
+                "duration": 24.0,
+                "banner": ("NIGHT GETAWAY", "IN GTA 6 IS", "CRAZY??"),
+                "source": os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+            }
+        }
+        cfg = category_configs.get(cat, category_configs["Facts & Secrets"])
 
-        # STEP 6: Professional Editing (Dual-track audio + synchronized subtitles)
-        print(f"  [5/8] Assembling Final 1080x1920 Video (Edge Neural TTS + V8 Audio + Subtitles)...")
+        proj_dir = os.path.join(TEMP_DIR, "projects", proj_id)
+        os.makedirs(proj_dir, exist_ok=True)
+        final_mp4 = os.path.join(proj_dir, "final.mp4")
+        thumb_png = os.path.join(proj_dir, "thumbnail.png")
+
+        print(f"  [4-6/8] Rendering Viral Single-Take Real Gameplay Short (1080x1920 9:16 + In-Game Audio)...")
         t_render = time.time()
-        render_res = render_video_project(proj_id, is_preview=False, quality_preset="ultrafast")
-        if not render_res.get("success"):
-            print(f"  [ERROR] Video assembly failed: {render_res.get('error')}")
-            continue
-        print(f"        Rendered final MP4 in {time.time() - t_render:.1f}s. Duration: {render_res.get('duration'):.2f}s.")
+        render_viral_single_take_video(
+            raw_gameplay_path=cfg["source"],
+            out_mp4_path=final_mp4,
+            line1=cfg["banner"][0],
+            line2=cfg["banner"][1],
+            line3=cfg["banner"][2],
+            start_ts=cfg["start_ts"],
+            duration=cfg["duration"]
+        )
+        print(f"        Rendered single-take gameplay MP4 in {time.time() - t_render:.1f}s. Duration: {cfg['duration']:.2f}s.")
+
+        # Update project record in SQLite
+        cur.execute("""
+            UPDATE video_projects SET
+                final_video_path = ?,
+                preview_path = ?,
+                thumbnail_path = ?,
+                duration_seconds = ?,
+                status = 'NEEDS_REVIEW',
+                updated_at = ?
+            WHERE id = ?
+        """, (final_mp4, final_mp4, thumb_png, cfg["duration"], datetime.now().strftime("%Y-%m-%d %H:%M:%S"), proj_id))
+        conn.commit()
 
         # STEP 7: Quality and Rights Check
         print(f"  [6/8] Executing 8-Point Pre-Approval Compliance & Verification Gate...")
@@ -258,9 +296,9 @@ def run_daily_production():
             "category": cat,
             "topic_title": t_title,
             "story_title": storyboard.get("story_title"),
-            "duration": render_res.get("duration", 0),
-            "video_path": render_res.get("video_path"),
-            "thumbnail_path": render_res.get("thumbnail_path"),
+            "duration": cfg["duration"],
+            "video_path": final_mp4,
+            "thumbnail_path": thumb_png,
             "export_dir": package_path,
             "compliance_status": compliance_status,
             "risk_level": risk_level,
