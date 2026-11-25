@@ -68,8 +68,34 @@ if not runner.run(suite).wasSuccessful(): sys.exit(1)
 | Phase 4 | Audio, Subtitles & FFmpeg   | Windows SAPI offline TTS (David/Zira), SRT/ASS subs, MP4 concat   |
 | Phase 5 | Rights Audit & Approval     | 8-point copyright compliance check, human sign-off, metadata edit |
 | Phase 6 | Export Center & Automation  | Self-contained release packages, analytics, scheduled generation  |
+| Phase 7 | Scene Variety & Storytelling| GTA 6 Activity Library (Walking, Vehicles, Lifestyle, Action)     |
 +---------------------------------------------------------------------------------------------------+
 ```
+
+---
+
+## 🎬 GTA 6 Activity & Scene Library (Diverse Storytelling)
+
+To ensure daily productions never become repetitive or overly focused on car driving, the system features an intelligent Activity Library:
+
+- **Group A: Walking & Exploration:**
+  - Escobar International Airport terminal exploration (luggage carousels, security gates, tarmac access).
+  - Vice Beach oceanfront walks (granular sand displacement, wave foam, sunbathers, wildlife).
+  - Luxury hotels & penthouses (grand marble lobbies, glass elevators, private infinity terraces).
+  - Neighborhoods & shopping districts (commercial storefronts, crowd density AI, living sidewalks).
+- **Group B: Vehicles & Transportation:**
+  - High-performance superbikes (Pegassi Bati 801, counter-steering lean physics, 200+ MPH weaving).
+  - Heavy 4x4 off-road trucks (Vapid Sandking, mud bog displacement, long-travel suspension, sand dunes).
+  - Aviation & aircraft flight (runway takeoff roll, volumetric 3D cloud decks, high-altitude city views).
+- **Group C: Lifestyle & Entertainment:**
+  - Neon nightclubs & music venues (Club Babylon, synchronized lasers, reactive dancing crowd AI).
+  - Resort luxury & beach culture (oceanfront recreation, sunset overlooks, cabana relaxation).
+- **Group D: Action & Adventure:**
+  - Tactical bank robbery stories (vault thermal drilling, hostage control, duffel bag cash grab).
+  - High-speed police pursuits (cruiser boxing formations, spike strips, helicopter searchlights, PIT evasion).
+
+### 📐 Mandatory Storytelling Law: One Video = One Main Topic = One Complete Story
+Every video is strictly dedicated to **one central activity and connected narrative arc**. Scene variety exists *between* different daily videos across categories—never by chaotically mixing unrelated activities into a single video.
 
 ---
 

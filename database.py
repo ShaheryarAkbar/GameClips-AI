@@ -349,6 +349,25 @@ def init_database():
             except Exception:
                 pass
 
+    # 16. Automated Schema Migration for Activity & Scene Variety
+    cur.execute("PRAGMA table_info(storyboards)")
+    sb_cols = [r[1] for r in cur.fetchall()]
+    for col_name, col_def in [("activity_type", "TEXT"), ("activity_group", "TEXT")]:
+        if col_name not in sb_cols:
+            try:
+                cur.execute(f"ALTER TABLE storyboards ADD COLUMN {col_name} {col_def}")
+            except Exception:
+                pass
+
+    cur.execute("PRAGMA table_info(topics)")
+    top_cols = [r[1] for r in cur.fetchall()]
+    for col_name, col_def in [("activity_type", "TEXT"), ("activity_group", "TEXT")]:
+        if col_name not in top_cols:
+            try:
+                cur.execute(f"ALTER TABLE topics ADD COLUMN {col_name} {col_def}")
+            except Exception:
+                pass
+
     conn.commit()
 
     conn.commit()
