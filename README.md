@@ -75,12 +75,12 @@ if not runner.run(suite).wasSuccessful(): sys.exit(1)
 
 ## 📁 Export Package Structure
 
-Approved videos are exported into self-contained release packages under `exports/<game_slug>/<project_slug>_<timestamp>/`:
+Approved videos are exported into self-contained release packages organized by release date and category under `exports/<game_slug>/<YYYY-MM-DD>/<category_slug>/<project_slug>_<timestamp>/`:
 
 ```
-exports/gta-6/Grand_Theft_Auto_VI_20261122_115105/
+exports/gta-6/2026-11-25/cars-and-comparisons/Grand_Theft_Auto_VI_-_Vice_Cit_20261125_122212/
 │
-├── final_video.mp4               # Full 1080x1920 9:16 vertical video (H.264 + AAC, 30fps)
+├── final_video.mp4               # Full 1080x1920 9:16 vertical video (H.264 + AAC, 60fps)
 ├── thumbnail.png                 # High-resolution video thumbnail
 ├── Title.txt                     # Clean video title
 ├── Description.txt               # Full video description with citations

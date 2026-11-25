@@ -24,11 +24,12 @@ def ensure_export_dirs():
     """Ensure root export directory exists."""
     os.makedirs(EXPORTS_DIR, exist_ok=True)
 
-def export_approved_project(project_id: str, force_export: bool = False) -> dict:
+def export_approved_project(project_id: str, force_export: bool = False, export_date: str = None) -> dict:
     """
     Exports a project that has received human approval (status == 'APPROVED').
     Creates an organized package with all metadata, separated platform packages,
     thumbnail, and copyright audit report.
+    Packages are organized by date: exports/<game_slug>/<YYYY-MM-DD>/<category_slug>/<package_name>/
     """
     ensure_export_dirs()
     conn = get_connection()
@@ -85,13 +86,14 @@ def export_approved_project(project_id: str, force_export: bool = False) -> dict
         """, (project["topic_id"],))
         sources_list = cur.fetchall()
 
-        # 6. Prepare release folder name: exports/<game_slug>/<category_slug>/<project_slug>_<timestamp>/
+        # 6. Prepare date-partitioned release folder name: exports/<game_slug>/<date_str>/<category_slug>/<project_slug>_<timestamp>/
         game_slug = project["game_slug"] or "game"
         category_slug = (project["category"] or "general").lower().replace(" ", "-").replace("&", "and")
         safe_proj_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in (project["project_name"] or project_id))[:30]
         timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
         package_folder_name = f"{safe_proj_name}_{timestamp_str}"
-        target_dir = os.path.join(EXPORTS_DIR, game_slug, category_slug, package_folder_name)
+        date_folder = export_date or datetime.now().strftime("%Y-%m-%d")
+        target_dir = os.path.join(EXPORTS_DIR, game_slug, date_folder, category_slug, package_folder_name)
         
         yt_package_dir = os.path.join(target_dir, "youtube_package")
         tt_package_dir = os.path.join(target_dir, "tiktok_package")
@@ -319,9 +321,9 @@ def list_all_exports() -> list:
             SELECT e.*, p.project_name, p.duration_seconds, s.title as script_title,
                    s.category, s.youtube_title, s.tiktok_caption, g.name as game_name
             FROM exported_videos e
-            JOIN video_projects p ON e.project_id = p.id
-            JOIN scripts s ON p.script_id = s.id
-            JOIN games g ON e.game_id = g.id
+            LEFT JOIN video_projects p ON e.project_id = p.id
+            LEFT JOIN scripts s ON p.script_id = s.id
+            LEFT JOIN games g ON e.game_id = g.id
             ORDER BY e.export_timestamp DESC
         """)
         rows = cur.fetchall()
@@ -348,9 +350,9 @@ def get_export_by_id(export_id: str) -> dict:
                    s.category, s.youtube_title, s.youtube_description, s.tiktok_caption,
                    s.hashtags, g.name as game_name
             FROM exported_videos e
-            JOIN video_projects p ON e.project_id = p.id
-            JOIN scripts s ON p.script_id = s.id
-            JOIN games g ON e.game_id = g.id
+            LEFT JOIN video_projects p ON e.project_id = p.id
+            LEFT JOIN scripts s ON p.script_id = s.id
+            LEFT JOIN games g ON e.game_id = g.id
             WHERE e.id = ?
         """, (export_id,))
         row = cur.fetchone()
