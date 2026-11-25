@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795587967-960
+Project ID:              proj-1795591332-479
 Game Target:             Grand Theft Auto VI
 Video Title:             Vice City Street Life: Dynamic Pedestrian AI, Living Neighborhoods & Lucia's Foot Patrols
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-25 11:28:04
+Export Date:             2026-11-25 12:24:09
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
