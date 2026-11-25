@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Leonida Wetlands & Wildlife: Airboats, Alligators & Dynamic Weather Systems ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-25 10:48:01
+
+[1] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Leonida features living ecosystems including wild alligators roaming coastal suburban waterways and beaches.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Specialized airboats and off-road swamp vehicles are confirmed for navigating uncharted wetlands.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Procedural weather systems simulate localized rainstorms, high-tide surges, and dynamic cloud volumetric lighting.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
