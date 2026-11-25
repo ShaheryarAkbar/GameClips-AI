@@ -119,10 +119,13 @@ def run_daily_production():
     print("\n[STEP 1] Running Daily Research for GTA 6 (3 Categories Independently)...")
     researched_topics = []
 
-    # Clean old projects and test scenes to maintain strict daily target (exactly 3 projects)
-    cur.execute("DELETE FROM video_projects")
-    cur.execute("DELETE FROM video_scenes")
-    cur.execute("DELETE FROM storyboards")
+    # Clean only unexported / draft projects for today to maintain strict daily target while preserving past days
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    cur.execute("""
+        DELETE FROM video_projects 
+        WHERE id NOT IN (SELECT project_id FROM exported_videos)
+          AND (created_at LIKE ? OR updated_at LIKE ?)
+    """, (f"{today_str}%", f"{today_str}%"))
     conn.commit()
 
     for item in DAILY_CATEGORIES:
