@@ -28,67 +28,67 @@ from visual_engine import generate_visuals_for_project, render_viral_single_take
 from video_engine import render_video_project
 from verification_engine import verify_project_compliance, record_approval_decision
 from export_manager import export_approved_project, list_all_exports
+from scene_library import select_intelligent_daily_activities, get_activity_by_id, ACTIVITY_REGISTRY
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMP_DIR = os.path.join(BASE_DIR, "temp_render")
 
-# Mandatory Daily Video Distribution: exactly 3 distinct categories & gameplay dynamics (2026-11-25)
-DAILY_CATEGORIES = [
-    {
-        "category": "Cars & Comparisons",
-        "title": "Vice City Superbikes: High-Speed Weaving, Lean Physics & Engine RPM Dynamics",
-        "description": "Technical breakdown of GTA 6 motorcycle mechanics highlighting 200+ MPH street traffic weaving, realistic counter-steering lean physics, night visor reflections, and high-RPM inline-4 engine acoustics.",
-        "relevance_score": 9.9,
-        "source": {
-            "title": "IGN Technical Breakdown - GTA VI Superbike Physics & Two-Wheel Dynamics",
-            "url": "https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed",
-            "source_name": "IGN Technical Breakdown",
-            "reliability_score": 0.95,
-            "published_at": "2023-12-06"
-        },
-        "claims": [
-            ("High-performance superbikes feature realistic counter-steering lean angles and dynamic rider tucking at high speeds.", 1, 0, "VERIFIED_VISUAL"),
-            ("Inline-4 motorcycle engines backfire with volumetric exhaust flames during high-RPM downshifts.", 1, 0, "VERIFIED_VISUAL"),
-            ("Wet-asphalt tire traction simulates hydroplaning and realistic puddle displacement under heavy acceleration.", 1, 0, "VERIFIED_VISUAL")
-        ]
-    },
-    {
-        "category": "Stories & Lore",
-        "title": "Vice City Street Life: Dynamic Pedestrian AI, Living Neighborhoods & Lucia's Foot Patrols",
-        "description": "Exploring the living world of Vice City on foot: next-generation crowd density AI, contextual civilian interactions, dynamic weather reactions, and ambient sidewalk atmospheric details.",
-        "relevance_score": 9.8,
-        "source": {
-            "title": "GameSpot Narrative Analysis - GTA VI Living World & Pedestrian AI",
-            "url": "https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/",
-            "source_name": "GameSpot Narrative Analysis",
-            "reliability_score": 0.9,
-            "published_at": "2023-12-08"
-        },
-        "claims": [
-            ("Vice City sidewalks feature unprecedented pedestrian AI density with contextual conversations and reactions.", 1, 0, "OFFICIAL"),
-            ("NPCs react dynamically to approaching characters, weather shifts, and passing emergency vehicles.", 1, 0, "VERIFIED_VISUAL"),
-            ("Pavement textures feature ray-traced puddle reflections and procedural wetness accumulation.", 1, 0, "OFFICIAL")
-        ]
-    },
-    {
-        "category": "Facts & Secrets",
-        "title": "Leonida Wilderness Safari: 4x4 Off-Road Trucks, Coastal Dunes & Trail Physics",
-        "description": "Rockstar Games showcases Leonida's wild frontiers: heavy off-road 4x4 trucks navigating rugged coastal beaches, mud displacement physics, jungle trails, and wild alligator habitats.",
-        "relevance_score": 9.9,
-        "source": {
-            "title": "Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems",
-            "url": "https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now",
-            "source_name": "Rockstar Newswire",
-            "reliability_score": 1.0,
-            "published_at": "2023-12-05"
-        },
-        "claims": [
-            ("Heavy 4x4 off-road trucks feature realistic independent suspension travel over rugged wilderness trails.", 1, 0, "VERIFIED_VISUAL"),
-            ("Tire treads dynamically displace beach sand and swamp mud with procedural terrain deformation.", 1, 0, "VERIFIED_VISUAL"),
-            ("Coastal shorelines and jungle wetlands support living wildlife populations including roaming alligators.", 1, 0, "OFFICIAL")
-        ]
-    }
-]
+def get_visual_config_for_activity(act: dict) -> dict:
+    """
+    Selects the optimal authentic gameplay asset or simulation configuration
+    tailored specifically to the activity to guarantee continuous visual motion
+    and thematic coherence.
+    """
+    act_id = act["id"]
+    banner = act.get("banner", ("GTA 6 INTEL", "IN GTA 6 IS", "INSANE??"))
+    duration = 55.0
+
+    bike_source = os.path.join(BASE_DIR, "assets", "video", "gta_bike_superbike.mp4")
+    walking_source = os.path.join(BASE_DIR, "assets", "video", "gta_walking_vicecity.mp4")
+    offroad_source = os.path.join(BASE_DIR, "assets", "video", "gta_offroad_truck.mp4")
+    ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
+
+    if act_id == "superbike_ride":
+        return {
+            "source": bike_source if os.path.isfile(bike_source) else ref_master,
+            "start_ts": "00:00:05",
+            "duration": duration,
+            "banner": banner
+        }
+    elif act_id == "offroad_truck":
+        return {
+            "source": offroad_source if os.path.isfile(offroad_source) else ref_master,
+            "start_ts": "00:00:05",
+            "duration": duration,
+            "banner": banner
+        }
+    elif act_id in ["airport_walk", "beach_coastal", "hotel_luxury", "nightclub_party"]:
+        ts_map = {
+            "airport_walk": "00:00:10",
+            "beach_coastal": "00:00:02",
+            "hotel_luxury": "00:00:45",
+            "nightclub_party": "00:00:30"
+        }
+        return {
+            "source": walking_source if os.path.isfile(walking_source) else ref_master,
+            "start_ts": ts_map.get(act_id, "00:00:05"),
+            "duration": duration,
+            "banner": banner
+        }
+    else:
+        # Action, Police Chase, Bank Robbery, Aircraft Flight, Supercar
+        ts_map = {
+            "bank_robbery": "00:02:10",
+            "police_chase": "00:01:45",
+            "aircraft_flight": "00:01:20",
+            "car_cruising": "00:00:05"
+        }
+        return {
+            "source": ref_master,
+            "start_ts": ts_map.get(act_id, "00:00:15"),
+            "duration": duration,
+            "banner": banner
+        }
 
 def run_daily_production():
     print("=" * 70)
@@ -114,9 +114,10 @@ def run_daily_production():
         return False
 
     # ---------------------------------------------------------
-    # STEP 1: Daily Research
+    # STEP 1: Daily Research with Variety Enforcement
     # ---------------------------------------------------------
-    print("\n[STEP 1] Running Daily Research for GTA 6 (3 Categories Independently)...")
+    print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Categories (Variety-Enforced)...")
+    daily_plan = select_intelligent_daily_activities()
     researched_topics = []
 
     # Clean only unexported / draft projects for today to maintain strict daily target while preserving past days
@@ -128,22 +129,24 @@ def run_daily_production():
     """, (f"{today_str}%", f"{today_str}%"))
     conn.commit()
 
-    for item in DAILY_CATEGORIES:
+    for item in daily_plan:
         cat = item["category"]
-        title = item["title"]
-        desc = item["description"]
-        score = item["relevance_score"]
-        t_id = f"top-daily-{cat.lower().replace(' ', '-').replace('&', 'and')}"
+        act = item["activity"]
+        title = act["title"]
+        desc = act["description"]
+        score = 9.9
+        act_id = act["id"]
+        t_id = f"top-daily-{cat.lower().replace(' ', '-').replace('&', 'and')}-{act_id}"
         now_str = datetime.now().isoformat()
 
-        # Insert or update verified topic
+        # Insert or update verified topic with activity metadata
         cur.execute("""
-            INSERT OR REPLACE INTO topics (id, game_id, category, title, description, relevance_score, status, is_duplicate, created_at, updated_at)
-            VALUES (?, 'game-gta6', ?, ?, ?, ?, 'DISCOVERED', 0, ?, ?)
-        """, (t_id, cat, title, desc, score, now_str, now_str))
+            INSERT OR REPLACE INTO topics (id, game_id, category, title, description, relevance_score, status, is_duplicate, activity_type, activity_group, created_at, updated_at)
+            VALUES (?, 'game-gta6', ?, ?, ?, ?, 'DISCOVERED', 0, ?, ?, ?, ?)
+        """, (t_id, cat, title, desc, score, act_id, act["group"], now_str, now_str))
 
         # Insert verified official source
-        src_info = item["source"]
+        src_info = act["source"]
         s_id = f"src-{t_id}"
         cur.execute("""
             INSERT OR REPLACE INTO research_sources (id, topic_id, game_id, title, url, source_name, author, published_at, reliability_score, created_at)
@@ -151,7 +154,7 @@ def run_daily_production():
         """, (s_id, t_id, src_info["title"], src_info["url"], src_info["source_name"], src_info["published_at"], src_info["reliability_score"], now_str))
 
         # Insert verified claims
-        for idx, (claim_text, is_ver, is_spec, c_type) in enumerate(item["claims"]):
+        for idx, (claim_text, is_ver, is_spec, c_type) in enumerate(act["claims"]):
             clm_id = f"clm-{t_id}-{idx}"
             cur.execute("""
             INSERT OR REPLACE INTO factual_claims (id, topic_id, claim_text, is_verified, evidence_source_id, is_speculation, claim_type, created_at)
@@ -161,11 +164,13 @@ def run_daily_production():
         researched_topics.append({
             "topic_id": t_id,
             "category": cat,
+            "activity_id": act_id,
+            "activity": act,
             "title": title,
             "score": score,
             "source": src_info["source_name"]
         })
-        print(f"  - [{cat}] Researched & Verified: '{title}' (Score: {score})")
+        print(f"  - [{cat}] ({act['group']}) Selected: '{act['name']}' -> '{title}'")
 
     conn.commit()
 
@@ -175,7 +180,7 @@ def run_daily_production():
     print("\n[STEP 2] Selecting Strictly 1 Best Topic per Category (Max 3 Total)...")
     selected_topics = researched_topics  # Exactly 1 per category by design
     for idx, st in enumerate(selected_topics, 1):
-        print(f"  {idx}. Category: {st['category']:<22} | Topic: '{st['title']}'")
+        print(f"  {idx}. Category: {st['category']:<22} | Activity: {st['activity']['name']:<25} | Topic: '{st['title'][:32]}...'")
 
     # ---------------------------------------------------------
     # STEP 3 - 6: Scripting, Visual Production & Professional Editing
@@ -186,14 +191,17 @@ def run_daily_production():
         cat = st["category"]
         t_id = st["topic_id"]
         t_title = st["title"]
+        act = st["activity"]
+        act_id = st["activity_id"]
         print(f"\n" + "-" * 70)
-        print(f"  PRODUCING CANDIDATE {idx}/3: [{cat}]")
+        print(f"  PRODUCING CANDIDATE {idx}/3: [{cat}] ({act['group']})")
+        print(f"  Activity: '{act['name']}' | Location: '{act['location']}'")
         print(f"  Topic: '{t_title}'")
         print("-" * 70)
 
         # STEP 3: Complete Script & Scene Breakdown
         print(f"  [3/8] Generating Original Script & Narrative Continuity Storyboard...")
-        script_res = generate_script_for_topic(t_id, target_duration="45-60s")
+        script_res = generate_script_for_topic(t_id, target_duration="45-60s", activity_id=act_id)
         if not script_res.get("success"):
             print(f"  [ERROR] Script generation failed: {script_res.get('error')}")
             continue
@@ -208,35 +216,7 @@ def run_daily_production():
         print(f"        Scenes Configured: {script_res.get('scene_count')} scenes (~50-53s total)")
 
         # STEP 4, 5, 6: Visual Production, Cinematic Continuity & Authentic Audio
-        # Renders single-take continuous authentic uncut gameplay (1080x1920 9:16)
-        # with viral hook banner and authentic in-game audio directly (no synthetic voiceover)
-        # Select dedicated high-resolution 60fps distinct footage for each category
-        bike_source = os.path.join(BASE_DIR, "assets", "video", "gta_bike_superbike.mp4")
-        walking_source = os.path.join(BASE_DIR, "assets", "video", "gta_walking_vicecity.mp4")
-        offroad_source = os.path.join(BASE_DIR, "assets", "video", "gta_offroad_truck.mp4")
-        ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
-
-        category_configs = {
-            "Cars & Comparisons": {
-                "start_ts": "00:00:05",
-                "duration": 55.0,
-                "banner": ("SUPERBIKE SPEED", "IN GTA 6 IS", "INSANE??"),
-                "source": bike_source if os.path.isfile(bike_source) else ref_master
-            },
-            "Stories & Lore": {
-                "start_ts": "00:00:05",
-                "duration": 55.0,
-                "banner": ("WALKING VICE CITY", "IN GTA 6 IS", "UNREAL??"),
-                "source": walking_source if os.path.isfile(walking_source) else ref_master
-            },
-            "Facts & Secrets": {
-                "start_ts": "00:00:05",
-                "duration": 55.0,
-                "banner": ("OFF-ROAD TRUCK", "IN GTA 6 IS", "CRAZY??"),
-                "source": offroad_source if os.path.isfile(offroad_source) else ref_master
-            }
-        }
-        cfg = category_configs.get(cat, category_configs["Facts & Secrets"])
+        cfg = get_visual_config_for_activity(act)
 
         proj_dir = os.path.join(TEMP_DIR, "projects", proj_id)
         os.makedirs(proj_dir, exist_ok=True)
@@ -303,6 +283,10 @@ def run_daily_production():
             "candidate_num": idx,
             "project_id": proj_id,
             "category": cat,
+            "activity_id": act_id,
+            "activity_name": act["name"],
+            "activity_group": act["group"],
+            "location": act["location"],
             "topic_title": t_title,
             "story_title": storyboard.get("story_title"),
             "duration": cfg["duration"],
@@ -333,7 +317,9 @@ def run_daily_production():
     print("=" * 70)
 
     for c in production_candidates:
-        print(f"\n[Candidate #{c['candidate_num']}] {c['category']}")
+        print(f"\n[Candidate #{c['candidate_num']}] {c['category']} ({c['activity_group']})")
+        print(f"  Activity:    {c['activity_name']}")
+        print(f"  Location:    {c['location']}")
         print(f"  Title:       {c['topic_title']}")
         print(f"  Project ID:  {c['project_id']}")
         print(f"  Duration:    {c['duration']:.2f}s (1080x1920 9:16)")

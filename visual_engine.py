@@ -707,7 +707,9 @@ def generate_visuals_for_project(project_id, hybrid_mode=True):
             "success": True,
             "project_id": project_id,
             "scenes_generated": len(generated_scenes),
+            "frames_generated": len(generated_scenes),
             "scene_paths": generated_scenes,
+            "frame_paths": generated_scenes,
             "full_screen": True
         }
     finally:

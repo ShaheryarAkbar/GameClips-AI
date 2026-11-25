@@ -9,11 +9,13 @@ import json
 import random
 from datetime import datetime
 from database import get_connection
+from scene_library import get_activity_by_id, ACTIVITY_REGISTRY
 
-def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None):
+def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None, activity_id=None):
     """
     Generates an original video script, scene plan, subtitles, and metadata
-    for a chosen topic.
+    for a chosen topic using the GTA 6 Activity & Scene Library.
+    Enforces ONE VIDEO = ONE MAIN TOPIC = ONE COMPLETE STORY.
     """
     conn = get_connection()
     cur = conn.cursor()
@@ -93,9 +95,60 @@ def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None):
 
     # 4. Construct Narrative Storyboard & Scene Breakdown (Mandatory Continuity System)
     # Target duration: 45-60s -> 6 connected scenes (~50-53s total speech)
-    scenes = []
+    blueprint = None
+    if activity_id and activity_id in ACTIVITY_REGISTRY:
+        blueprint = ACTIVITY_REGISTRY[activity_id]
+    elif topic.get("activity_type") and topic.get("activity_type") in ACTIVITY_REGISTRY:
+        blueprint = ACTIVITY_REGISTRY[topic["activity_type"]]
+    else:
+        # Intelligent keyword matching against ACTIVITY_REGISTRY
+        combined_text = (title + " " + desc).lower()
+        if any(w in combined_text for w in ["airport", "terminal", "hangar", "escobar", "baggage"]):
+            blueprint = ACTIVITY_REGISTRY["airport_walk"]
+        elif any(w in combined_text for w in ["beach", "sand", "dune", "oceanfront", "shoreline"]):
+            blueprint = ACTIVITY_REGISTRY["beach_coastal"]
+        elif any(w in combined_text for w in ["hotel", "penthouse", "suite", "resort", "continental"]):
+            blueprint = ACTIVITY_REGISTRY["hotel_luxury"]
+        elif any(w in combined_text for w in ["superbike", "motorcycle", "bati", "two-wheel"]):
+            blueprint = ACTIVITY_REGISTRY["superbike_ride"]
+        elif any(w in combined_text for w in ["aircraft", "airplane", "flight", "flying", "plane"]):
+            blueprint = ACTIVITY_REGISTRY["aircraft_flight"]
+        elif any(w in combined_text for w in ["off-road", "truck", "4x4", "safari", "mud", "wetlands", "alligator"]):
+            blueprint = ACTIVITY_REGISTRY["offroad_truck"]
+        elif any(w in combined_text for w in ["club", "nightclub", "babylon", "nightlife", "party", "laser"]):
+            blueprint = ACTIVITY_REGISTRY["nightclub_party"]
+        elif any(w in combined_text for w in ["bank", "vault", "robbery", "heist", "drill"]):
+            blueprint = ACTIVITY_REGISTRY["bank_robbery"]
+        elif any(w in combined_text for w in ["police", "pursuit", "chase", "cruiser", "spike strip", "pit maneuver"]):
+            blueprint = ACTIVITY_REGISTRY["police_chase"]
 
-    if category == "Cars & Comparisons":
+    scenes = []
+    act_type = None
+    act_group = None
+
+    if blueprint:
+        story_title = blueprint["title"]
+        main_characters = blueprint["characters"]
+        vehicle_model = blueprint["vehicle"]
+        env_location = blueprint["location"]
+        time_of_day = blueprint["time_of_day"]
+        weather_cond = blueprint["weather"]
+        central_event = blueprint["central_event"]
+        narrative_arc = blueprint["narrative_arc"]
+        resolution_text = blueprint["resolution"]
+        act_type = blueprint["id"]
+        act_group = blueprint["group"]
+        scenes = []
+        for sc in blueprint["scenes"]:
+            sc_copy = dict(sc)
+            sc_copy.setdefault("location", env_location)
+            sc_copy.setdefault("character_focus", main_characters)
+            sc_copy.setdefault("vehicle", vehicle_model)
+            scenes.append(sc_copy)
+
+    elif category == "Cars & Comparisons":
+        act_type = "car_cruising"
+        act_group = "Vehicles & Transportation"
         story_title = f"{title}: Cockpit Telemetry & High-Speed Dynamics"
         main_characters = "Jason Duval"
         vehicle_model = "Bravado Banshee GT (Midnight Blue with Dual Titanium Stripes)"
@@ -185,6 +238,8 @@ def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None):
         })
 
     elif category == "Facts & Secrets":
+        act_type = "hidden_secrets"
+        act_group = "Walking & Exploration"
         story_title = f"{title}: The 2.5x Living World Expansion"
         main_characters = "Jason Duval & Field Intelligence"
         vehicle_model = "Declasse Granger 3600LX Surveillance SUV"
@@ -275,6 +330,8 @@ def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None):
 
     else:
         # Stories & Lore (The Lucia & Jason Heist Syndicate)
+        act_type = "robbery_escape"
+        act_group = "Action & Adventure"
         story_title = f"{title}: The Lucia & Jason Trust Paradox"
         main_characters = "Lucia Caminos & Jason Duval"
         vehicle_model = "Bravado Banshee GT (Midnight Blue with Dual Titanium Stripes)"
@@ -421,12 +478,12 @@ def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None):
         INSERT INTO storyboards (
             id, project_id, script_id, story_title, main_characters, vehicle,
             environment_location, time_of_day, weather, central_event, narrative_arc,
-            resolution, continuity_score, continuity_status, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 100.0, 'VALIDATED', ?)
+            resolution, continuity_score, continuity_status, activity_type, activity_group, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 100.0, 'VALIDATED', ?, ?, ?)
         """, (
             storyboard_id, project_id, script_id, story_title, main_characters, vehicle_model,
             env_location, time_of_day, weather_cond, central_event, narrative_arc,
-            resolution_text, now
+            resolution_text, act_type, act_group, now
         ))
 
         # Record individual scenes with full continuity linkages
@@ -456,6 +513,8 @@ def generate_script_for_topic(topic_id, target_duration="45-60s", game_id=None):
     storyboard_manifest = {
         "storyboard_id": storyboard_id,
         "story_title": story_title,
+        "activity_type": act_type,
+        "activity_group": act_group,
         "main_characters": main_characters,
         "vehicle": vehicle_model,
         "environment_location": env_location,

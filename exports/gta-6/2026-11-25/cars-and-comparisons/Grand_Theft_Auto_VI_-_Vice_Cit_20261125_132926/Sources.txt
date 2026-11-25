@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Skies: Aircraft Flight Physics, Volumetric Clouds & Aerial Vistas ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-25 13:29:26
+
+[1] Rockstar Games Official - GTA VI Leonida Geography & Scale (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: GTA 6 incorporates volumetric 3D cloud physics with localized turbulence and dynamic moisture accumulation.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI Leonida Geography & Scale (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Aircraft flight models calculate aerodynamic lift, rudder deflection, and stall warnings based on real airspeed.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI Leonida Geography & Scale (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: The map features multiple regional airfields across Leonida connected by unrestricted airspace.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
