@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795522816-509
+Project ID:              proj-1795585468-144
 Game Target:             Grand Theft Auto VI
-Video Title:             GTA 6 Vehicle Physics: Confirmed Cockpit Telemetry & Suspension Upgrades
+Video Title:             Leonida Wetlands & Wildlife: Airboats, Alligators & Dynamic Weather Systems
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-24 17:22:31
+Export Date:             2026-11-25 10:48:01
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Red supercar roaring through downtown Vice City avenue with asphalt reflections
-  - Scene 2: [AUTHENTIC GAMEPLAY] High-speed highway acceleration and cornering weave
-  - Scene 3: [ORIGINAL SIMULATION] 3D telemetry perspective tracking wheel travel and suspension reaction
-  - Scene 4: [AUTHENTIC GAMEPLAY] High-speed cornering weave under streetlights cutting water spray
-  - Scene 5: [ORIGINAL SIMULATION] Telephoto chase camera tracking top speed sprint into coastal straight
-  - Scene 6: [AUTHENTIC GAMEPLAY] Sunset coastal overlook orbiting the idling supercar overlooking the skyline
+  - Scene 1: [AUTHENTIC GAMEPLAY] Vice City Penthouse Skyline & Ocean Panorama - Real 3D Moving Gameplay
+  - Scene 2: [AUTHENTIC GAMEPLAY] Sunny Vice City street with pedestrian life and palm trees
+  - Scene 3: [ORIGINAL SIMULATION] 3D environmental simulation of wetland swamp and coastal highway ridge
+  - Scene 4: [AUTHENTIC GAMEPLAY] Downtown night boulevard with ray-traced neon street reflections
+  - Scene 5: [ORIGINAL SIMULATION] Highway interchange and expansive arterial road telemetry
+  - Scene 6: [AUTHENTIC GAMEPLAY] Sunset coastal overlook with skyline silhouette
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity
