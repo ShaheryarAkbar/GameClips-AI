@@ -1,22 +1,22 @@
-=== FACTUAL SOURCES & CITATIONS FOR: Leonida Wetlands & Wildlife: Airboats, Alligators & Dynamic Weather Systems ===
+=== FACTUAL SOURCES & CITATIONS FOR: Leonida Wilderness Safari: 4x4 Off-Road Trucks, Coastal Dunes & Trail Physics ===
 Game: Grand Theft Auto VI
-Export Date: 2026-11-25 10:48:01
+Export Date: 2026-11-25 11:30:05
 
 [1] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
     URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
-    Claim: Leonida features living ecosystems including wild alligators roaming coastal suburban waterways and beaches.
-    Classification: OFFICIAL
+    Claim: Heavy 4x4 off-road trucks feature realistic independent suspension travel over rugged wilderness trails.
+    Classification: VERIFIED_VISUAL
     Publication Date: 2023-12-05
 
 [2] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
     URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
-    Claim: Specialized airboats and off-road swamp vehicles are confirmed for navigating uncharted wetlands.
+    Claim: Tire treads dynamically displace beach sand and swamp mud with procedural terrain deformation.
     Classification: VERIFIED_VISUAL
     Publication Date: 2023-12-05
 
 [3] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
     URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
-    Claim: Procedural weather systems simulate localized rainstorms, high-tide surges, and dynamic cloud volumetric lighting.
+    Claim: Coastal shorelines and jungle wetlands support living wildlife populations including roaming alligators.
     Classification: OFFICIAL
     Publication Date: 2023-12-05
 

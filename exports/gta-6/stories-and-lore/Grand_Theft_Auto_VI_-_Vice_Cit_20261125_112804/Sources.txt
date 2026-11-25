@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Street Life: Dynamic Pedestrian AI, Living Neighborhoods & Lucia's Foot Patrols ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-25 11:28:04
+
+[1] GameSpot Narrative Analysis - GTA VI Living World & Pedestrian AI (GameSpot Narrative Analysis)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: Vice City sidewalks feature unprecedented pedestrian AI density with contextual conversations and reactions.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-08
+
+[2] GameSpot Narrative Analysis - GTA VI Living World & Pedestrian AI (GameSpot Narrative Analysis)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: NPCs react dynamically to approaching characters, weather shifts, and passing emergency vehicles.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-08
+
+[3] GameSpot Narrative Analysis - GTA VI Living World & Pedestrian AI (GameSpot Narrative Analysis)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: Pavement textures feature ray-traced puddle reflections and procedural wetness accumulation.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-08
+

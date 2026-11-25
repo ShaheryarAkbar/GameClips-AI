@@ -44,3 +44,5 @@ assets/video/*.webm
 # Intermediate temporary files
 initial_prompt.txt
 *.log
+temp_inspect/
+
