@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795681235-635
+Project ID:              proj-1795682461-405
 Game Target:             Grand Theft Auto VI
-Video Title:             Vice Beach Oceanfront: Dynamic Sand Physics, Water Foaming & Civilian AI
+Video Title:             Vice City Luxury Hotels: Dynamic Lobbies, Room Service & Penthouse Suites
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-26 13:22:51
+Export Date:             2026-11-26 13:43:16
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia stepping off the Ocean Drive boardwalk onto powdery white beach sand with palm trees swaying
-  - Scene 2: [AUTHENTIC GAMEPLAY] Walking past colorful beach umbrellas, sunbathers, and volleyball games with realistic cloth physics
-  - Scene 3: [ORIGINAL SIMULATION] Detailed close-up tracking shot of ocean waves lapping against the shore leaving glistening wet sand
-  - Scene 4: [AUTHENTIC GAMEPLAY] Flocks of pelicans gliding inches above the turquoise water with speedboats idling in the distance
-  - Scene 5: [ORIGINAL SIMULATION] Iconic pastel pink and cyan Art Deco lifeguard tower standing over the beach
-  - Scene 6: [AUTHENTIC GAMEPLAY] Panoramic ocean sunset with the Vice City skyline silhouetted in the background
+  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia and Jason stepping into a luxurious Grand Continental hotel lobby with chandelier lighting and marble floors
+  - Scene 2: [AUTHENTIC GAMEPLAY] Walking past high-end concierge desks and polished marble pillars with guests relaxing in lounge chairs
+  - Scene 3: [ORIGINAL SIMULATION] Glass elevator ascending hotel exterior revealing nighttime Vice City neon cityscape below
+  - Scene 4: [AUTHENTIC GAMEPLAY] Double doors opening into a lavish modern penthouse suite with sunken living room and ambient lighting
+  - Scene 5: [ORIGINAL SIMULATION] Stepping onto wide private balcony terrace with infinity pool overlooking ocean and coastal towers
+  - Scene 6: [AUTHENTIC GAMEPLAY] Stunning nighttime skyline overlook with neon hotel signs glowing across the dark ocean waters
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity

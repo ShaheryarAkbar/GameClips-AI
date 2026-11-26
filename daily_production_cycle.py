@@ -37,8 +37,7 @@ TEMP_DIR = os.path.join(BASE_DIR, "temp_render")
 def get_visual_config_for_activity(act: dict) -> dict:
     """
     Selects the optimal authentic gameplay asset or simulation configuration
-    tailored specifically to the activity to guarantee continuous visual motion
-    and thematic coherence.
+    tailored specifically to the activity in accordance with GTA6_SCENE_VARIETY_DIRECTIVE.md.
     """
     act_id = act["id"]
     banner = act.get("banner", ("GTA 6 INTEL", "IN GTA 6 IS", "INSANE??"))
@@ -47,47 +46,56 @@ def get_visual_config_for_activity(act: dict) -> dict:
     bike_source = os.path.join(BASE_DIR, "assets", "video", "gta_bike_superbike.mp4")
     walking_source = os.path.join(BASE_DIR, "assets", "video", "gta_walking_vicecity.mp4")
     offroad_source = os.path.join(BASE_DIR, "assets", "video", "gta_offroad_truck.mp4")
+    longplay_source = os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+    ref_sample = os.path.join(BASE_DIR, "assets", "video", "gta_reference_sample.mp4")
     ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
 
-    if act_id == "superbike_ride":
+    if act_id == "hotel_luxury":
+        return {
+            "source": longplay_source if os.path.isfile(longplay_source) else ref_master,
+            "start_ts": "00:04:05",
+            "duration": duration,
+            "banner": ("LUXURY HOTELS", "IN GTA 6 ARE", "STUNNING??")
+        }
+    elif act_id == "police_chase":
+        return {
+            "source": ref_sample if os.path.isfile(ref_sample) else ref_master,
+            "start_ts": "00:00:05",
+            "duration": duration,
+            "banner": ("POLICE PURSUITS", "IN GTA 6 ARE", "BRUTAL??")
+        }
+    elif act_id == "nightclub_party":
+        return {
+            "source": ref_master,
+            "start_ts": "00:00:25",
+            "duration": duration,
+            "banner": ("VICE CITY CLUBS", "IN GTA 6 ARE", "STUNNING??")
+        }
+    elif act_id == "superbike_ride":
         return {
             "source": bike_source if os.path.isfile(bike_source) else ref_master,
             "start_ts": "00:00:05",
             "duration": duration,
-            "banner": banner
+            "banner": ("SUPERBIKE SPEED", "IN GTA 6 IS", "INSANE??")
         }
     elif act_id == "offroad_truck":
         return {
             "source": offroad_source if os.path.isfile(offroad_source) else ref_master,
             "start_ts": "00:00:05",
             "duration": duration,
+            "banner": ("OFF-ROAD TRUCK", "IN GTA 6 IS", "CRAZY??")
+        }
+    elif act_id in ["airport_walk", "beach_coastal"]:
+        return {
+            "source": walking_source if os.path.isfile(walking_source) else ref_master,
+            "start_ts": "00:00:02" if act_id == "beach_coastal" else "00:00:05",
+            "duration": duration,
             "banner": banner
         }
-    elif act_id in ["airport_walk", "beach_coastal", "hotel_luxury", "nightclub_party"]:
-        if act_id == "nightclub_party":
-            return {
-                "source": ref_master,
-                "start_ts": "00:00:25",
-                "duration": duration,
-                "banner": banner
-            }
-        else:
-            ts_map = {
-                "airport_walk": "00:00:05",
-                "beach_coastal": "00:00:02",
-                "hotel_luxury": "00:00:05"
-            }
-            return {
-                "source": walking_source if os.path.isfile(walking_source) else ref_master,
-                "start_ts": ts_map.get(act_id, "00:00:05"),
-                "duration": duration,
-                "banner": banner
-            }
     else:
-        # Action, Police Chase, Bank Robbery, Aircraft Flight, Supercar
+        # Fallback action scenes
         ts_map = {
             "bank_robbery": "00:02:10",
-            "police_chase": "00:01:45",
             "aircraft_flight": "00:01:20",
             "car_cruising": "00:00:05"
         }
@@ -125,7 +133,7 @@ def run_daily_production():
     # STEP 1: Daily Research with Variety Enforcement
     # ---------------------------------------------------------
     print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Categories (Variety-Enforced)...")
-    daily_plan = select_intelligent_daily_activities(["offroad_truck", "superbike_ride", "beach_coastal"])
+    daily_plan = select_intelligent_daily_activities(["hotel_luxury", "police_chase", "nightclub_party"])
     researched_topics = []
 
     # Clean existing today's exports and records to ensure fresh generation with descriptive names
