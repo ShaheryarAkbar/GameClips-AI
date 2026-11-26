@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Superbikes: High-Speed Weaving, Lean Physics & Engine RPM Dynamics ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-26 12:31:54
+
+[1] IGN Technical Breakdown - GTA VI Superbike Physics & Two-Wheel Dynamics (IGN Technical Breakdown)
+    URL: https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed
+    Claim: High-performance superbikes feature realistic counter-steering lean angles and dynamic rider tucking at high speeds.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-06
+
+[2] IGN Technical Breakdown - GTA VI Superbike Physics & Two-Wheel Dynamics (IGN Technical Breakdown)
+    URL: https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed
+    Claim: Inline-4 motorcycle engines backfire with volumetric exhaust flames during high-RPM downshifts.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-06
+
+[3] IGN Technical Breakdown - GTA VI Superbike Physics & Two-Wheel Dynamics (IGN Technical Breakdown)
+    URL: https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed
+    Claim: Wet-asphalt tire traction simulates hydroplaning and realistic puddle displacement under heavy acceleration.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-06
+

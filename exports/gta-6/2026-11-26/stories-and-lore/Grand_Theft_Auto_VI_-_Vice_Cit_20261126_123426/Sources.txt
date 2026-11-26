@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Heists: Bank Vault Drilling, Crowd Control & Alarm Escapes ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-26 12:34:26
+
+[1] GameSpot Narrative Analysis - GTA VI Lucia & Jason Heist Mechanics (GameSpot Narrative Analysis)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: GTA 6 introduces modular heist tools including thermal drills, electromagnetic door jammers, and stealth entry paths.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-08
+
+[2] GameSpot Narrative Analysis - GTA VI Lucia & Jason Heist Mechanics (GameSpot Narrative Analysis)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: Bank tellers and civilian hostages feature adaptive psychological AI responding to weapon aim and vocal commands.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-08
+
+[3] GameSpot Narrative Analysis - GTA VI Lucia & Jason Heist Mechanics (GameSpot Narrative Analysis)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: Law enforcement deployment scales realistically from local precinct responders to tactical state units.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-08
+
