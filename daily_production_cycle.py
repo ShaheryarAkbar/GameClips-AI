@@ -63,18 +63,25 @@ def get_visual_config_for_activity(act: dict) -> dict:
             "banner": banner
         }
     elif act_id in ["airport_walk", "beach_coastal", "hotel_luxury", "nightclub_party"]:
-        ts_map = {
-            "airport_walk": "00:00:10",
-            "beach_coastal": "00:00:02",
-            "hotel_luxury": "00:00:45",
-            "nightclub_party": "00:00:30"
-        }
-        return {
-            "source": walking_source if os.path.isfile(walking_source) else ref_master,
-            "start_ts": ts_map.get(act_id, "00:00:05"),
-            "duration": duration,
-            "banner": banner
-        }
+        if act_id == "nightclub_party":
+            return {
+                "source": ref_master,
+                "start_ts": "00:00:25",
+                "duration": duration,
+                "banner": banner
+            }
+        else:
+            ts_map = {
+                "airport_walk": "00:00:05",
+                "beach_coastal": "00:00:02",
+                "hotel_luxury": "00:00:05"
+            }
+            return {
+                "source": walking_source if os.path.isfile(walking_source) else ref_master,
+                "start_ts": ts_map.get(act_id, "00:00:05"),
+                "duration": duration,
+                "banner": banner
+            }
     else:
         # Action, Police Chase, Bank Robbery, Aircraft Flight, Supercar
         ts_map = {
