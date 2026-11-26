@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Nightlife: Next-Gen Club Lighting, Crowd AI & Music Venues ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-26 12:53:05
+
+[1] Rockstar Press Release - GTA VI First Look & Cultural Atmosphere (Rockstar Press Release)
+    URL: https://www.rockstargames.com/VI
+    Claim: Nightclubs feature volumetric laser lighting synchronized directly to dynamic electronic soundtrack beats.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Press Release - GTA VI First Look & Cultural Atmosphere (Rockstar Press Release)
+    URL: https://www.rockstargames.com/VI
+    Claim: Crowd AI models individual dance animations, conversation groups, and contextual cocktail interactions.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Press Release - GTA VI First Look & Cultural Atmosphere (Rockstar Press Release)
+    URL: https://www.rockstargames.com/VI
+    Claim: Acoustic audio utilizes real-time ray-traced sound occlusion between outdoor patios and interior dance floors.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+

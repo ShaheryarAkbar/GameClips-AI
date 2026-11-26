@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795678042-460
+Project ID:              proj-1795679290-774
 Game Target:             Grand Theft Auto VI
-Video Title:             Vice City Airport: Fully Modeled Terminals, Security Gates & Tarmac Access
+Video Title:             Vice City Pursuit: Police AI Tactics, Spike Strip Roadblocks & PIT Evasion
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-26 12:29:40
+Export Date:             2026-11-26 12:50:39
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Jason walking through modern glass airport terminal entrance with flight departure displays overhead
-  - Scene 2: [AUTHENTIC GAMEPLAY] Walking past ticketing counters with interactive flight monitors showing live departure schedules
-  - Scene 3: [ORIGINAL SIMULATION] Security checkpoint with conveyor luggage scanners and uniformed airport personnel
-  - Scene 4: [AUTHENTIC GAMEPLAY] Expansive gate concourse with passengers seated beside massive floor-to-ceiling glass windows showing airplanes outside
-  - Scene 5: [ORIGINAL SIMULATION] Ground-level service corridor opening onto airport tarmac with luggage carts and fuel trucks
-  - Scene 6: [AUTHENTIC GAMEPLAY] Outdoor tarmac apron overlooking runway with airplane taking off against coastal skyline
+  - Scene 1: [AUTHENTIC GAMEPLAY] Bravado Banshee roaring through neon streets with multiple police cruisers in close pursuit, red and blue lights reflecting off wet asphalt
+  - Scene 2: [AUTHENTIC GAMEPLAY] Police cruisers attempting to box in the Banshee from left and right lanes at 120 MPH
+  - Scene 3: [ORIGINAL SIMULATION] Bridge roadblock with cruisers parked in V-formation and spike strips laid across the asphalt
+  - Scene 4: [AUTHENTIC GAMEPLAY] Police helicopter searchlight beaming directly down onto the speeding car cutting through heavy rain
+  - Scene 5: [ORIGINAL SIMULATION] Speeding into underground highway tunnel, breaking helicopter searchlight as sirens fade
+  - Scene 6: [AUTHENTIC GAMEPLAY] Car idling in dark industrial warehouse alley as distant police sirens fade away into the rainy night
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity

@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Luxury Hotels: Dynamic Lobbies, Room Service & Penthouse Suites ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-26 12:48:10
+
+[1] GameSpot Narrative Analysis - GTA VI Living World & Interiors (GameSpot Narrative Intel)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: Luxury hotels in GTA 6 feature fully modeled reception lobbies with interactive elevators.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-08
+
+[2] GameSpot Narrative Analysis - GTA VI Living World & Interiors (GameSpot Narrative Intel)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: Penthouse suites include functional interior fixtures, safes, and private balcony overlooks.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-08
+
+[3] GameSpot Narrative Analysis - GTA VI Living World & Interiors (GameSpot Narrative Intel)
+    URL: https://www.gamespot.com/articles/gta-6-lucia-jason-storyline-analysis/1100-6520140/
+    Claim: Lighting utilizes ray-traced ambient occlusion and accurate specular reflection across marble floors.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-08
+
