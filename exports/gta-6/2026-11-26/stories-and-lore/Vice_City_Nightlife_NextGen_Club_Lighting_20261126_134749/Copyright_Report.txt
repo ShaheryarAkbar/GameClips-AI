@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795680993-804
+Project ID:              proj-1795682726-797
 Game Target:             Grand Theft Auto VI
-Video Title:             Leonida Wilderness Safari: 4x4 Off-Road Trucks, Coastal Dunes & Trail Physics
+Video Title:             Vice City Nightlife: Next-Gen Club Lighting, Crowd AI & Music Venues
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-26 13:18:37
+Export Date:             2026-11-26 13:47:49
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Heavy 4x4 off-road truck with oversized knobby tires idling on wilderness trail surrounded by tall swamp grass
-  - Scene 2: [AUTHENTIC GAMEPLAY] Truck climbing over rugged rocks with massive independent suspension travel flexing over boulders
-  - Scene 3: [ORIGINAL SIMULATION] Truck fording deep swamp mud bog, tires slinging thick procedural mud that splatters realistically onto body panels
-  - Scene 4: [AUTHENTIC GAMEPLAY] Truck cresting a massive coastal sand dune with ocean waves crashing in the background
-  - Scene 5: [ORIGINAL SIMULATION] Truck cruising along tidal shore with wild alligator sunning on sandbank nearby
-  - Scene 6: [AUTHENTIC GAMEPLAY] Mud-coated 4x4 truck parked on coastal bluff overlooking expansive Leonida wilderness at sunset
+  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia and Jason passing the velvet ropes outside a glowing neon nightclub with heavy bass thumping from inside
+  - Scene 2: [AUTHENTIC GAMEPLAY] Packed nightclub dance floor with volumetric green and pink laser beams cutting through ambient haze
+  - Scene 3: [ORIGINAL SIMULATION] DJ booth with professional turntables, illuminated mixer controls, and massive LED background wall
+  - Scene 4: [AUTHENTIC GAMEPLAY] Exclusive VIP lounge with plush velvet seating, champagne service, and frosted glass partitions
+  - Scene 5: [ORIGINAL SIMULATION] Outdoor nightclub rooftop patio overlooking glowing neon Ocean Drive avenue below
+  - Scene 6: [AUTHENTIC GAMEPLAY] Cinematic night view of neon Ocean Drive lined with supercars and illuminated palms
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity
