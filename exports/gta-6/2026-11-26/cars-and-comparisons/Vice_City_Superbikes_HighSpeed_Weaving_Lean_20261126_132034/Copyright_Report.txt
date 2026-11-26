@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795679439-913
+Project ID:              proj-1795681117-368
 Game Target:             Grand Theft Auto VI
-Video Title:             Vice City Nightlife: Next-Gen Club Lighting, Crowd AI & Music Venues
+Video Title:             Vice City Superbikes: High-Speed Weaving, Lean Physics & Engine RPM Dynamics
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-26 12:53:05
+Export Date:             2026-11-26 13:20:34
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia and Jason passing the velvet ropes outside a glowing neon nightclub with heavy bass thumping from inside
-  - Scene 2: [AUTHENTIC GAMEPLAY] Packed nightclub dance floor with volumetric green and pink laser beams cutting through ambient haze
-  - Scene 3: [ORIGINAL SIMULATION] DJ booth with professional turntables, illuminated mixer controls, and massive LED background wall
-  - Scene 4: [AUTHENTIC GAMEPLAY] Exclusive VIP lounge with plush velvet seating, champagne service, and frosted glass partitions
-  - Scene 5: [ORIGINAL SIMULATION] Outdoor nightclub rooftop patio overlooking glowing neon Ocean Drive avenue below
-  - Scene 6: [AUTHENTIC GAMEPLAY] Cinematic night view of neon Ocean Drive lined with supercars and illuminated palms
+  - Scene 1: [AUTHENTIC GAMEPLAY] Full third-person view of rider on black Pegassi Bati 801 superbike revving on night Vice City avenue
+  - Scene 2: [AUTHENTIC GAMEPLAY] Weaving inches between cars at high speed with realistic motion blur and neon streetlights
+  - Scene 3: [ORIGINAL SIMULATION] Extreme lean angle perspective showing knee puck skimming inches off the asphalt on corner apex
+  - Scene 4: [AUTHENTIC GAMEPLAY] Full throttle sprint across illuminated elevated bridge with blue exhaust flames popping on downshifts
+  - Scene 5: [ORIGINAL SIMULATION] Braking into smooth stop at scenic viewpoint overlooking Biscayne Port with engine idling
+  - Scene 6: [AUTHENTIC GAMEPLAY] Parked superbike idling at scenic overlook with neon Vice City skyline glowing across the water
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity

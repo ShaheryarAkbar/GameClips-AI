@@ -973,7 +973,7 @@ def get_recent_activity_history(limit: int = 50) -> list:
         conn.close()
     return history
 
-def select_intelligent_daily_activities() -> list:
+def select_intelligent_daily_activities(preferred_activity_ids: list = None) -> list:
     """
     Intelligently selects exactly 3 distinct, fresh activities for the daily production run:
     - Exactly 1 for Facts & Secrets
@@ -986,6 +986,23 @@ def select_intelligent_daily_activities() -> list:
     - Completely distinct groups and locations across all 3 daily categories.
     - Enforces ONE VIDEO = ONE MAIN TOPIC = ONE COMPLETE STORY.
     """
+    if preferred_activity_ids and len(preferred_activity_ids) == 3:
+        mapped = {}
+        for act_id in preferred_activity_ids:
+            act = ACTIVITY_REGISTRY.get(act_id)
+            if not act:
+                continue
+            for cat in ["Facts & Secrets", "Cars & Comparisons", "Stories & Lore"]:
+                if cat in act["allowed_categories"] and cat not in mapped:
+                    mapped[cat] = act
+                    break
+        if len(mapped) == 3:
+            return [
+                {"category": "Facts & Secrets", "activity": mapped["Facts & Secrets"]},
+                {"category": "Cars & Comparisons", "activity": mapped["Cars & Comparisons"]},
+                {"category": "Stories & Lore", "activity": mapped["Stories & Lore"]}
+            ]
+
     history = get_recent_activity_history(50)
     
     # Identify all activities that have been used
