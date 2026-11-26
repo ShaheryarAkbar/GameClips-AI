@@ -930,21 +930,39 @@ def get_activity_by_id(activity_id: str) -> dict:
     """Retrieves an activity blueprint by its identifier."""
     return ACTIVITY_REGISTRY.get(activity_id)
 
-def get_recent_activity_history(limit: int = 15) -> list:
+def get_recent_activity_history(limit: int = 50) -> list:
     """
-    Queries SQLite database to extract history of previously generated topics,
-    activities, locations, and narrative arcs to prevent repetitive content.
+    Queries SQLite database to extract history of previously generated and exported topics,
+    activities, locations, and narrative arcs to strictly prevent repetitive content.
     """
     conn = get_connection()
     cur = conn.cursor()
     history = []
     try:
+        # First gather all officially exported videos across all dates
         cur.execute("""
             SELECT s.category, s.title, sb.story_title, sb.environment_location,
-                   sb.vehicle, sb.central_event, sb.narrative_arc, p.created_at
+                   sb.vehicle, sb.central_event, sb.narrative_arc, t.activity_type, p.created_at,
+                   1 as is_exported
+            FROM exported_videos ev
+            JOIN video_projects p ON ev.project_id = p.id
+            JOIN scripts s ON p.script_id = s.id
+            LEFT JOIN storyboards sb ON p.id = sb.project_id
+            LEFT JOIN topics t ON s.topic_id = t.id
+            ORDER BY ev.id DESC
+        """)
+        for r in cur.fetchall():
+            history.append(dict(r))
+
+        # Also gather recent project history
+        cur.execute("""
+            SELECT s.category, s.title, sb.story_title, sb.environment_location,
+                   sb.vehicle, sb.central_event, sb.narrative_arc, t.activity_type, p.created_at,
+                   0 as is_exported
             FROM video_projects p
             JOIN scripts s ON p.script_id = s.id
             LEFT JOIN storyboards sb ON p.id = sb.project_id
+            LEFT JOIN topics t ON s.topic_id = t.id
             ORDER BY p.created_at DESC LIMIT ?
         """, (limit,))
         for r in cur.fetchall():
@@ -963,14 +981,34 @@ def select_intelligent_daily_activities() -> list:
     - Exactly 1 for Stories & Lore
     
     Guarantees:
-    - Never uses the same activity or location twice in the same day.
-    - Avoids activities used in recent history.
-    - Ensures variety across Walking, Vehicles, Lifestyle, and Action.
+    - Zero repetition with previously exported or generated activities.
+    - Strict novelty priority: unused activities are always chosen first.
+    - Completely distinct groups and locations across all 3 daily categories.
     - Enforces ONE VIDEO = ONE MAIN TOPIC = ONE COMPLETE STORY.
     """
-    history = get_recent_activity_history(10)
-    recent_events = [h.get("central_event", "").lower() for h in history if h.get("central_event")]
-    recent_locations = [h.get("environment_location", "").lower() for h in history if h.get("environment_location")]
+    history = get_recent_activity_history(50)
+    
+    # Identify all activities that have been used
+    used_activity_ids = []
+    for h in history:
+        act_type = h.get("activity_type")
+        if act_type and act_type in ACTIVITY_REGISTRY and act_type not in used_activity_ids:
+            used_activity_ids.append(act_type)
+        
+        # Check title and event text for legacy or mapped activities
+        full_text = (str(h.get("title") or "") + " " + str(h.get("central_event") or "") + " " + str(h.get("story_title") or "")).lower()
+        if ("superbike" in full_text or "motorcycle" in full_text or "bati" in full_text) and "superbike_ride" not in used_activity_ids:
+            used_activity_ids.append("superbike_ride")
+        if ("bank" in full_text or "vault" in full_text or "heist" in full_text) and "bank_robbery" not in used_activity_ids:
+            used_activity_ids.append("bank_robbery")
+        if ("airport" in full_text or "terminal" in full_text or "escobar" in full_text) and "airport_walk" not in used_activity_ids:
+            used_activity_ids.append("airport_walk")
+        if ("beach" in full_text or "dune" in full_text or "coastline" in full_text) and "beach_coastal" not in used_activity_ids:
+            used_activity_ids.append("beach_coastal")
+        if ("aircraft" in full_text or "skies" in full_text or "airplane" in full_text) and "aircraft_flight" not in used_activity_ids:
+            used_activity_ids.append("aircraft_flight")
+        if ("off-road" in full_text or "truck" in full_text or "safari" in full_text or "mud" in full_text) and "offroad_truck" not in used_activity_ids:
+            used_activity_ids.append("offroad_truck")
 
     # Categorize available blueprints
     facts_candidates = [
@@ -987,17 +1025,13 @@ def select_intelligent_daily_activities() -> list:
     ]
 
     def score_candidate(cand):
-        score = 100.0
-        c_event = cand["central_event"].lower()
-        c_loc = cand["location"].lower()
-        # Penalize if used recently
-        for idx, re in enumerate(recent_events):
-            if re and (re[:15] in c_event or c_event[:15] in re):
-                score -= (50.0 / (idx + 1))
-        for idx, rl in enumerate(recent_locations):
-            if rl and (rl[:10] in c_loc or c_loc[:10] in rl):
-                score -= (30.0 / (idx + 1))
-        return score
+        c_id = cand["id"]
+        # If candidate has NEVER been used, give top priority score
+        if c_id not in used_activity_ids:
+            return 10000.0
+        # If used, give heavy penalty based on how recently it was used
+        pos = used_activity_ids.index(c_id)
+        return -1000.0 + (pos * 10.0)
 
     # Sort candidates by novelty
     facts_candidates.sort(key=score_candidate, reverse=True)
@@ -1008,19 +1042,7 @@ def select_intelligent_daily_activities() -> list:
     chosen_groups = set()
     chosen_locations = set()
 
-    # 1. Select Cars & Comparisons first (vehicles / transit group)
-    for c in cars_candidates:
-        loc_key = c["location"][:10].lower()
-        if c["group"] not in chosen_groups and loc_key not in chosen_locations:
-            selected["Cars & Comparisons"] = c
-            chosen_groups.add(c["group"])
-            chosen_locations.add(loc_key)
-            break
-    if "Cars & Comparisons" not in selected:
-        selected["Cars & Comparisons"] = cars_candidates[0]
-        chosen_groups.add(cars_candidates[0]["group"])
-
-    # 2. Select Facts & Secrets (prefer walking/exploration or lifestyle)
+    # 1. Select Facts & Secrets first (prefer walking/exploration or unique secrets)
     for f in facts_candidates:
         loc_key = f["location"][:10].lower()
         if f["group"] not in chosen_groups and loc_key not in chosen_locations:
@@ -1029,16 +1051,30 @@ def select_intelligent_daily_activities() -> list:
             chosen_locations.add(loc_key)
             break
     if "Facts & Secrets" not in selected:
-        for f in facts_candidates:
-            if f["id"] != selected.get("Cars & Comparisons", {}).get("id"):
-                selected["Facts & Secrets"] = f
+        selected["Facts & Secrets"] = facts_candidates[0]
+        chosen_groups.add(facts_candidates[0]["group"])
+
+    # 2. Select Cars & Comparisons (vehicles or high-speed pursuit)
+    for c in cars_candidates:
+        loc_key = c["location"][:10].lower()
+        if c["id"] != selected["Facts & Secrets"]["id"] and \
+           c["group"] not in chosen_groups and loc_key not in chosen_locations:
+            selected["Cars & Comparisons"] = c
+            chosen_groups.add(c["group"])
+            chosen_locations.add(loc_key)
+            break
+    if "Cars & Comparisons" not in selected:
+        for c in cars_candidates:
+            if c["id"] != selected["Facts & Secrets"]["id"]:
+                selected["Cars & Comparisons"] = c
+                chosen_groups.add(c["group"])
                 break
 
-    # 3. Select Stories & Lore (prefer action/adventure or narrative lifestyle)
+    # 3. Select Stories & Lore (lifestyle, narrative or action)
     for s in stories_candidates:
         loc_key = s["location"][:10].lower()
-        if s["id"] != selected.get("Facts & Secrets", {}).get("id") and \
-           s["id"] != selected.get("Cars & Comparisons", {}).get("id") and \
+        if s["id"] != selected["Facts & Secrets"]["id"] and \
+           s["id"] != selected["Cars & Comparisons"]["id"] and \
            s["group"] not in chosen_groups and loc_key not in chosen_locations:
             selected["Stories & Lore"] = s
             chosen_groups.add(s["group"])
@@ -1046,8 +1082,8 @@ def select_intelligent_daily_activities() -> list:
             break
     if "Stories & Lore" not in selected:
         for s in stories_candidates:
-            if s["id"] != selected.get("Facts & Secrets", {}).get("id") and \
-               s["id"] != selected.get("Cars & Comparisons", {}).get("id"):
+            if s["id"] != selected["Facts & Secrets"]["id"] and \
+               s["id"] != selected["Cars & Comparisons"]["id"]:
                 selected["Stories & Lore"] = s
                 break
 

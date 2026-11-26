@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Pursuit: Police AI Tactics, Spike Strip Roadblocks & PIT Evasion ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-26 12:50:39
+
+[1] IGN Factual Breakdown - GTA VI Police AI & Wanted System (IGN Factual Breakdown)
+    URL: https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed
+    Claim: Police AI coordinates multi-car boxing maneuvers and predictive roadblocks based on player heading.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-06
+
+[2] IGN Factual Breakdown - GTA VI Police AI & Wanted System (IGN Factual Breakdown)
+    URL: https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed
+    Claim: Cruisers deploy spike strips dynamically across bottlenecks with tactical officer cover.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-06
+
+[3] IGN Factual Breakdown - GTA VI Police AI & Wanted System (IGN Factual Breakdown)
+    URL: https://www.ign.com/articles/gta-6-trailer-breakdown-details-you-missed
+    Claim: Police helicopters utilize thermal searchlights that track vehicle engine heat through foliage.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-06
+
