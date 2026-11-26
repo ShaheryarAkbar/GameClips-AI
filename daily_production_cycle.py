@@ -19,6 +19,7 @@ import time
 import json
 import sqlite3
 import subprocess
+import shutil
 from datetime import datetime
 
 from database import get_connection, init_database
@@ -124,16 +125,16 @@ def run_daily_production():
     # STEP 1: Daily Research with Variety Enforcement
     # ---------------------------------------------------------
     print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Categories (Variety-Enforced)...")
-    daily_plan = select_intelligent_daily_activities()
+    daily_plan = select_intelligent_daily_activities(["offroad_truck", "superbike_ride", "beach_coastal"])
     researched_topics = []
 
-    # Clean only unexported / draft projects for today to maintain strict daily target while preserving past days
+    # Clean existing today's exports and records to ensure fresh generation with descriptive names
     today_str = datetime.now().strftime("%Y-%m-%d")
-    cur.execute("""
-        DELETE FROM video_projects 
-        WHERE id NOT IN (SELECT project_id FROM exported_videos)
-          AND (created_at LIKE ? OR updated_at LIKE ?)
-    """, (f"{today_str}%", f"{today_str}%"))
+    today_export_dir = os.path.join(BASE_DIR, "exports", "gta-6", today_str)
+    if os.path.exists(today_export_dir):
+        shutil.rmtree(today_export_dir, ignore_errors=True)
+    cur.execute("DELETE FROM exported_videos WHERE export_folder LIKE ?", (f"%{today_str}%",))
+    cur.execute("DELETE FROM video_projects WHERE created_at LIKE ? OR updated_at LIKE ?", (f"{today_str}%", f"{today_str}%"))
     conn.commit()
 
     for item in daily_plan:

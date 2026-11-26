@@ -11,6 +11,7 @@ Handles packaging of human-approved video projects into organized release direct
 """
 
 import os
+import re
 import shutil
 import subprocess
 from datetime import datetime
@@ -89,7 +90,18 @@ def export_approved_project(project_id: str, force_export: bool = False, export_
         # 6. Prepare date-partitioned release folder name: exports/<game_slug>/<date_str>/<category_slug>/<project_slug>_<timestamp>/
         game_slug = project["game_slug"] or "game"
         category_slug = (project["category"] or "general").lower().replace(" ", "-").replace("&", "and")
-        safe_proj_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in (project["project_name"] or project_id))[:30]
+
+        # Build descriptive topic name by stripping common game title prefixes
+        raw_title = project["script_title"] or project["project_name"] or project_id
+        for prefix in ["Grand Theft Auto VI - ", "Grand Theft Auto VI – ", "GTA 6 - ", "GTA 6 – ", "GTA VI - "]:
+            if raw_title.startswith(prefix):
+                raw_title = raw_title[len(prefix):]
+        clean_words = [w for w in re.sub(r'[^a-zA-Z0-9\s]', '', raw_title).split() if w]
+        clean_slug = "_".join(clean_words[:6])[:45]
+        if not clean_slug:
+            clean_slug = "".join(c if c.isalnum() or c in "-_" else "_" for c in (project["project_name"] or project_id))[:30]
+        safe_proj_name = clean_slug
+
         timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
         package_folder_name = f"{safe_proj_name}_{timestamp_str}"
         date_folder = export_date or datetime.now().strftime("%Y-%m-%d")
