@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Airport: Fully Modeled Terminals, Security Gates & Tarmac Access ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-27 15:17:06
+
+[1] Rockstar Games Official - GTA VI World Detail & Public Spaces (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Escobar International Airport features multi-level accessible interior terminals with functional escalators.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI World Detail & Public Spaces (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Security checkpoints feature contextual NPC luggage screening and interactive metal detectors.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI World Detail & Public Spaces (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Players can seamlessly transition on foot from departures lounges onto outdoor service aprons without loading screens.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+

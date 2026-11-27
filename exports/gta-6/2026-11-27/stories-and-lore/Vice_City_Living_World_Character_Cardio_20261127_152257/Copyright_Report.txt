@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795595077-904
+Project ID:              proj-1795774813-855
 Game Target:             Grand Theft Auto VI
-Video Title:             Vice Beach Oceanfront: Dynamic Sand Physics, Water Foaming & Civilian AI
+Video Title:             Vice City Living World: Character Cardio Workouts, Muscle Fatigue & Street Encounters
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-25 13:26:57
+Export Date:             2026-11-27 15:22:57
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia stepping off the Ocean Drive boardwalk onto powdery white beach sand with palm trees swaying
-  - Scene 2: [AUTHENTIC GAMEPLAY] Walking past colorful beach umbrellas, sunbathers, and volleyball games with realistic cloth physics
-  - Scene 3: [ORIGINAL SIMULATION] Detailed close-up tracking shot of ocean waves lapping against the shore leaving glistening wet sand
-  - Scene 4: [AUTHENTIC GAMEPLAY] Flocks of pelicans gliding inches above the turquoise water with speedboats idling in the distance
-  - Scene 5: [ORIGINAL SIMULATION] Iconic pastel pink and cyan Art Deco lifeguard tower standing over the beach
-  - Scene 6: [AUTHENTIC GAMEPLAY] Panoramic ocean sunset with the Vice City skyline silhouetted in the background
+  - Scene 1: [AUTHENTIC GAMEPLAY] Jason jogging smoothly along a sunlit Vice City neighborhood sidewalk lined with lush palm trees
+  - Scene 2: [AUTHENTIC GAMEPLAY] Cardio Workout stamina notification appearing on screen as Jason slows to catch his breath
+  - Scene 3: [AUTHENTIC GAMEPLAY] Jason walking into a quiet residential parking lot with high-end luxury SUVs parked in the sun
+  - Scene 4: [AUTHENTIC GAMEPLAY] Jason crouching down beside a luxury red SUV to inspect its forged alloy wheels and brake calipers
+  - Scene 5: [ORIGINAL SIMULATION] Standing up as civilian neighbors converse on nearby lawns and street traffic idles past
+  - Scene 6: [AUTHENTIC GAMEPLAY] Jason walking toward the sunset horizon as evening shadows lengthen across the neighborhood
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity

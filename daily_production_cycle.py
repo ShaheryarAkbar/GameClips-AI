@@ -50,7 +50,28 @@ def get_visual_config_for_activity(act: dict) -> dict:
     ref_sample = os.path.join(BASE_DIR, "assets", "video", "gta_reference_sample.mp4")
     ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
 
-    if act_id == "hotel_luxury":
+    if act_id == "airport_walk":
+        return {
+            "source": bike_source if os.path.isfile(bike_source) else ref_master,
+            "start_ts": "00:00:25",
+            "duration": duration,
+            "banner": ("AIRPORT ADVENTURE", "IN GTA 6 IS", "MASSIVE??")
+        }
+    elif act_id == "crash_physics":
+        return {
+            "source": ref_master,
+            "start_ts": "00:02:15",
+            "duration": duration,
+            "banner": ("CRASH PHYSICS", "IN GTA 6 ARE", "MIND-BLOWING??")
+        }
+    elif act_id == "street_fitness":
+        return {
+            "source": longplay_source if os.path.isfile(longplay_source) else ref_master,
+            "start_ts": "00:04:10",
+            "duration": duration,
+            "banner": ("STREET LIVING WORLD", "IN GTA 6 IS", "UNMATCHED??")
+        }
+    elif act_id == "hotel_luxury":
         return {
             "source": longplay_source if os.path.isfile(longplay_source) else ref_master,
             "start_ts": "00:04:05",
@@ -133,7 +154,7 @@ def run_daily_production():
     # STEP 1: Daily Research with Variety Enforcement
     # ---------------------------------------------------------
     print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Categories (Variety-Enforced)...")
-    daily_plan = select_intelligent_daily_activities(["hotel_luxury", "police_chase", "nightclub_party"])
+    daily_plan = select_intelligent_daily_activities(["airport_walk", "crash_physics", "street_fitness"])
     researched_topics = []
 
     # Clean existing today's exports and records to ensure fresh generation with descriptive names

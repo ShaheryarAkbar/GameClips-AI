@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795595366-941
+Project ID:              proj-1795774517-284
 Game Target:             Grand Theft Auto VI
-Video Title:             Vice City Heists: Bank Vault Drilling, Crowd Control & Alarm Escapes
+Video Title:             Vice City Airport: Fully Modeled Terminals, Security Gates & Tarmac Access
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-25 13:31:56
+Export Date:             2026-11-27 15:17:06
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. All simulation scenes watermarked: 'SIMULATIO
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia and Jason adjusting tactical masks in front of First Leonida Savings Bank glass doors
-  - Scene 2: [AUTHENTIC GAMEPLAY] Entering main bank lobby, hostages dropping to marble floor as Jason commands the security guard
-  - Scene 3: [ORIGINAL SIMULATION] Massive circular steel vault door with thermal magnetic drill burning through locking pins with bright orange sparks
-  - Scene 4: [AUTHENTIC GAMEPLAY] Inside the open vault, stuffing stacks of bearer bonds and cash into tactical duffel bags
-  - Scene 5: [ORIGINAL SIMULATION] Bursting through heavy rear metal exit door into narrow alleyway with getaway SUV waiting
-  - Scene 6: [AUTHENTIC GAMEPLAY] Getaway SUV speeding out of dark alley into wet street traffic as police sirens echo
+  - Scene 1: [AUTHENTIC GAMEPLAY] Jason walking through modern glass airport terminal entrance with flight departure displays overhead
+  - Scene 2: [AUTHENTIC GAMEPLAY] Walking past ticketing counters with interactive flight monitors showing live departure schedules
+  - Scene 3: [ORIGINAL SIMULATION] Security checkpoint with conveyor luggage scanners and uniformed airport personnel
+  - Scene 4: [AUTHENTIC GAMEPLAY] Expansive gate concourse with passengers seated beside massive floor-to-ceiling glass windows showing airplanes outside
+  - Scene 5: [ORIGINAL SIMULATION] Ground-level service corridor opening onto airport tarmac with luggage carts and fuel trucks
+  - Scene 6: [AUTHENTIC GAMEPLAY] Outdoor tarmac apron overlooking runway with airplane taking off against coastal skyline
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity

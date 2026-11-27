@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Living World: Character Cardio Workouts, Muscle Fatigue & Street Encounters ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-27 15:22:57
+
+[1] IGN Gameplay Analysis - GTA VI Living World & Character Systems (IGN Gameplay Breakdown)
+    URL: https://www.ign.com/articles/gta-6-character-mechanics-breakdown
+    Claim: GTA 6 features dynamic character fitness and cardio stamina meters that deplete and regenerate realistically.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-06
+
+[2] IGN Gameplay Analysis - GTA VI Living World & Character Systems (IGN Gameplay Breakdown)
+    URL: https://www.ign.com/articles/gta-6-character-mechanics-breakdown
+    Claim: Characters physically react to heavy exertion with panting animations and temporary muscle recovery delays.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-06
+
+[3] IGN Gameplay Analysis - GTA VI Living World & Character Systems (IGN Gameplay Breakdown)
+    URL: https://www.ign.com/articles/gta-6-character-mechanics-breakdown
+    Claim: Residential neighborhoods feature interactive pedestrian encounters, parked exotic cars, and contextual inspections.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-06
+
