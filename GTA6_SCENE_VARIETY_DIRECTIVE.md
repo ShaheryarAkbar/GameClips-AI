@@ -112,18 +112,16 @@ Every video must have one central idea and a complete narrative.
 
 ---
 
-## 5. Maintain Existing Three-Category Production
-Continue generating a maximum of three videos per day:
-1. One Facts & Secrets video.
-2. One Cars & Comparisons video.
-3. One Stories & Lore video.
+## 5. Daily Production: 3 Diverse Random Videos (Decoupled from Fixed Categories)
+As per the production update on 2026-11-27, the rigid 3 fixed categories (`Facts & Secrets`, `Cars & Comparisons`, `Stories & Lore`) have been completely removed to avoid forcing repetitive topics or car-driving overuse.
 
-### Category Application:
-- **Facts & Secrets:** Show the actual location, activity, feature, or gameplay situation being discussed.
-- **Cars & Comparisons:** Focus on vehicles, but also show relevant environments, driving situations, vehicle interactions, and comparisons.
-- **Stories & Lore:** Use different GTA-style activities and locations to create complete cinematic stories.
+Instead, every daily run autonomously generates **exactly 3 distinct, high-variety videos** selected randomly across the broad GTA 6 scene library:
+1. **Walking & Exploration** (e.g., City streets, neighborhoods, shopping districts, luxury plazas, terminal exploration, beaches on foot)
+2. **Vehicles & Transportation / Aviation** (e.g., Aircraft boarding & runway takeoff, helicopter flight, off-road expeditions, superbikes, boats/yachts)
+3. **Lifestyle & Entertainment** (e.g., Nightclubs, beach crowds, rooftop pools, festivals, restaurants, social interactions)
+4. **Action & Crime Scenarios** (e.g., Bank heists, convenience store robberies, tactical shootouts, high-stakes police evasion)
 
-*Do not force unrelated activities into a video simply for variety.*
+Each video must be 100% focused on its own central activity and story, with zero repetitive car driving and zero asset duplication across daily runs.
 
 ---
 

@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Luxury District: On-Foot Plaza Walking, ERIS Boutique & Dynamic Pedestrians ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-27 16:27:10
+
+[1] Rockstar Games Official - Vice City Living Architecture (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: High-end commercial districts feature multi-level accessible promenades with authentic storefronts.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - Vice City Living Architecture (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: On-foot civilian pedestrians carry shopping bags and exhibit unique wandering AI behaviors.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - Vice City Living Architecture (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Ray-traced reflections on boutique glass accurately render surrounding palm trees and sunlight.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+

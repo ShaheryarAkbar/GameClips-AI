@@ -18,6 +18,204 @@ from database import get_connection
 
 # Full Registry of GTA 6 Activity Blueprints
 ACTIVITY_REGISTRY = {
+    "airport_flight": {
+        "id": "airport_flight",
+        "group": "Vehicles & Transportation",
+        "name": "Escobar Airport Jet Boarding & Runway Takeoff",
+        "default_category": "Vehicles & Transportation",
+        "allowed_categories": ["Vehicles & Transportation", "Walking & Exploration"],
+        "title": "Escobar Airport: Private Jet Boarding, Taxiway Operations & Runway Takeoff",
+        "description": "Showcasing Escobar International aviation operations: character walking on the active tarmac, inspecting parked private jets, boarding the aircraft, taxiing along lit runway 24-Left, and high-speed takeoff into the evening clouds.",
+        "banner": ("AIRPORT TAKEOFF", "IN GTA 6 IS", "MASSIVE??"),
+        "location": "Escobar International Airport (Runway 24-Left & Apron)",
+        "time_of_day": "Dusk Sunset with Violet Runway Lighting",
+        "weather": "Clear evening with volumetric sunset horizon",
+        "characters": "Jason Duval (Pilot)",
+        "vehicle": "Buckingham Luxor Private Jet",
+        "central_event": "Character Boarding Parked Aircraft on Tarmac and Taking Off from Runway",
+        "narrative_arc": "Tarmac Arrival -> Parked Jet Walk -> Aircraft Boarding -> Engine Spool & Taxi -> Runway Acceleration -> High-Altitude Climb",
+        "resolution": "With dynamic air traffic and complete seamless boarding, aviation in GTA 6 delivers an unprecedented level of open-world immersion.",
+        "source": {
+            "title": "Rockstar Games Official - GTA VI Aviation & Open World",
+            "url": "https://www.rockstargames.com/VI",
+            "source_name": "Rockstar Official Intel",
+            "reliability_score": 1.0,
+            "published_at": "2023-12-05"
+        },
+        "claims": [
+            ("Escobar International Airport features accessible active aprons with modeled private jets parked on the tarmac.", 1, 0, "OFFICIAL"),
+            ("Players can seamlessly board parked aircraft on foot without interior loading screens or cinematic transitions.", 1, 0, "VERIFIED_VISUAL"),
+            ("Runways feature realistic edge lighting, dynamic taxi markings, and responsive air traffic control.", 1, 0, "OFFICIAL")
+        ],
+        "scenes": [
+            {
+                "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Approaching the private aviation apron at Escobar International under dusk skies with parked private jets",
+                "narration_text": "Grand Theft Auto VI officially delivers fully accessible airports with seamless tarmac access. Welcome to Escobar International.",
+                "subtitle_text": "Grand Theft Auto VI officially delivers fully accessible airports with seamless tarmac access. Welcome to Escobar International.",
+                "transition_type": "fade", "camera_movement": "Smooth tracking shot across the tarmac framing parked private jets",
+                "action_progression": "Jason arrives at the private hangar apron as service vehicles idle nearby.",
+                "prev_scene_connection": "Opening visual hook establishing airport tarmac scale.",
+                "next_scene_connection": "Walking forward toward the parked executive jet."
+            },
+            {
+                "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Jason walking across tarmac directly toward parked luxury private jet ready for flight",
+                "narration_text": "Walking across the flight line, players can approach parked private jets idling on the apron ready for takeoff with full physical presence.",
+                "subtitle_text": "Walking across the flight line, players can approach parked private jets idling on the apron ready for takeoff with full physical presence.",
+                "transition_type": "cut", "camera_movement": "Mid-level steadycam following the character walking toward the plane",
+                "action_progression": "Jason approaches the boarding door as navigation strobe lights flash.",
+                "prev_scene_connection": "Continuation of on-foot approach across the tarmac.",
+                "next_scene_connection": "Climbing boarding stairs into the luxury cabin."
+            },
+            {
+                "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Seamless boarding into the aircraft cockpit with illuminated avionics displays",
+                "narration_text": "With zero loading screens, you seamlessly board straight into the glass cockpit, where real-time flight telemetry illuminates the instruments.",
+                "subtitle_text": "With zero loading screens, you seamlessly board straight into the glass cockpit, where real-time flight telemetry illuminates the instruments.",
+                "transition_type": "cut", "camera_movement": "First-person push into cockpit as multifunctional displays boot up",
+                "action_progression": "The cabin door seals shut and cockpit flight computers calibrate altitude sensors.",
+                "prev_scene_connection": "Direct progression from tarmac into the cockpit.",
+                "next_scene_connection": "Taxiing from the apron onto the main runway."
+            },
+            {
+                "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Private jet taxiing past runway perimeter lights toward active runway 24-Left",
+                "narration_text": "Twin jet engines spool up as ground control clears taxiway alpha, guiding the jet onto the brightly illuminated runway.",
+                "subtitle_text": "Twin jet engines spool up as ground control clears taxiway alpha, guiding the jet onto the brightly illuminated runway.",
+                "transition_type": "cut", "camera_movement": "Low chase view framing the jet aligning with the runway centerline",
+                "action_progression": "The aircraft turns 90 degrees onto the runway centerline, brakes holding as turbines build thrust.",
+                "prev_scene_connection": "Transition from hangar taxiway onto active runway.",
+                "next_scene_connection": "Throttle advance and takeoff roll."
+            },
+            {
+                "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Full-throttle runway acceleration and wheels lifting off toward the coastal sunset",
+                "narration_text": "Full throttle down the tarmac. The nose lifts into the sunset as landing gear smoothly retracts over the sparkling Vice City skyline.",
+                "subtitle_text": "Full throttle down the tarmac. The nose lifts into the sunset as landing gear smoothly retracts over the sparkling Vice City skyline.",
+                "transition_type": "cut", "camera_movement": "Dynamic crane tracking shot as the jet lifts off the ground",
+                "action_progression": "Wheels leave the runway pavement and the jet climbs steeply toward the evening clouds.",
+                "prev_scene_connection": "Direct continuation of high-speed takeoff roll.",
+                "next_scene_connection": "Climb-out over the ocean horizon."
+            },
+            {
+                "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Jet soaring over the illuminated Vice City coast into the sunset horizon",
+                "narration_text": "Are you planning a high-stakes aerial escape in GTA 6? What aircraft are you flying first? Let us know in the comments below!",
+                "subtitle_text": "Are you planning a high-stakes aerial escape in GTA 6? What aircraft are you flying first? Let us know in the comments below!",
+                "transition_type": "fade", "camera_movement": "Ascending wide cinematic shot framing the ascending aircraft against twilight",
+                "action_progression": "Jet banks gracefully toward the Atlantic horizon as city lights sparkle below.",
+                "prev_scene_connection": "Final flight panorama concluding the aviation experience.",
+                "next_scene_connection": "Fade to outro."
+            }
+        ]
+    },
+
+    "luxury_plaza_walk": {
+        "id": "luxury_plaza_walk",
+        "group": "Walking & Exploration",
+        "name": "Designer District & Luxury Plaza On-Foot Exploration",
+        "default_category": "Walking & Exploration",
+        "allowed_categories": ["Walking & Exploration", "Stories & Lore"],
+        "title": "Vice City Luxury District: On-Foot Plaza Walking, ERIS Boutique & Dynamic Pedestrians",
+        "description": "Seamless on-foot walking tour through the multi-level modern architecture of Vice City's high-end shopping district: stone staircases, glass storefronts, responsive civilian pedestrians, and outdoor promenades.",
+        "banner": ("LUXURY DISTRICT", "IN GTA 6 IS", "NEXT-GEN??"),
+        "location": "Vice City Designer District & Luxury Promenade",
+        "time_of_day": "Clear Daytime Sunlight with Glass Reflections",
+        "weather": "Warm tropical afternoon with coastal breeze",
+        "characters": "Female Protagonist (On-Foot Walking)",
+        "vehicle": "None (100% On-Foot Walking)",
+        "central_event": "On-Foot Walk Through Modern Multi-Level Shopping Plaza",
+        "narrative_arc": "Plaza Promenade Arrival -> Stone Staircase Descent -> ERIS Boutique Storefront -> Pedestrian Interaction -> Multi-Level Atrium -> Sunset Horizon",
+        "resolution": "The dense architectural fidelity and pedestrian AI of Vice City's luxury district establish a new standard for open-world on-foot exploration.",
+        "source": {
+            "title": "Rockstar Games Official - Vice City Living Architecture",
+            "url": "https://www.rockstargames.com/VI",
+            "source_name": "Rockstar Official Intel",
+            "reliability_score": 1.0,
+            "published_at": "2023-12-05"
+        },
+        "claims": [
+            ("High-end commercial districts feature multi-level accessible promenades with authentic storefronts.", 1, 0, "OFFICIAL"),
+            ("On-foot civilian pedestrians carry shopping bags and exhibit unique wandering AI behaviors.", 1, 0, "VERIFIED_VISUAL"),
+            ("Ray-traced reflections on boutique glass accurately render surrounding palm trees and sunlight.", 1, 0, "OFFICIAL")
+        ],
+        "scenes": [
+            {
+                "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Female protagonist walking along modern stone promenade approaching luxury designer boutique",
+                "narration_text": "On-foot exploration in Grand Theft Auto VI is more immersive than ever. Welcome to the high-fashion Vice City Designer District.",
+                "subtitle_text": "On-foot exploration in Grand Theft Auto VI is more immersive than ever. Welcome to the high-fashion Vice City Designer District.",
+                "transition_type": "fade", "camera_movement": "Smooth third-person tracking shot following character walking past manicured hedges",
+                "action_progression": "Character walks down the walkway as civilian shoppers converse nearby.",
+                "prev_scene_connection": "Opening visual hook establishing luxury district scale.",
+                "next_scene_connection": "Walking forward toward the central staircase."
+            },
+            {
+                "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Descending curved stone staircase overlooking multi-tiered shopping atrium",
+                "narration_text": "Walking down multi-level stone staircases, players can explore open-air plazas featuring high-end designer boutiques like ERIS.",
+                "subtitle_text": "Walking down multi-level stone staircases, players can explore open-air plazas featuring high-end designer boutiques like ERIS.",
+                "transition_type": "cut", "camera_movement": "Steadycam tracking step-by-step descent with dynamic depth of field",
+                "action_progression": "Character descends stairs revealing the illuminated ERIS storefront.",
+                "prev_scene_connection": "Continuation of on-foot promenade walk.",
+                "next_scene_connection": "Passing the boutique display window."
+            },
+            {
+                "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Walking past glass boutique windows with ray-traced reflections of palm trees and passersby",
+                "narration_text": "Every glass storefront features real-time ray-traced reflections and fully modeled interior clothing displays with zero loading screens.",
+                "subtitle_text": "Every glass storefront features real-time ray-traced reflections and fully modeled interior clothing displays with zero loading screens.",
+                "transition_type": "cut", "camera_movement": "Lateral tracking shot panning across display mannequins and logo signs",
+                "action_progression": "Sunlight reflects off storefront glass as character walks along the cobblestone path.",
+                "prev_scene_connection": "Direct progression past the boutique facade.",
+                "next_scene_connection": "Approaching open-air seating plaza."
+            },
+            {
+                "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Passing open-air cafe tables with dynamic NPCs drinking espresso and reading tablets",
+                "narration_text": "Pedestrians in these luxury hubs behave with unprecedented nuance, carrying designer bags and reacting organically to nearby characters.",
+                "subtitle_text": "Pedestrians in these luxury hubs behave with unprecedented nuance, carrying designer bags and reacting organically to nearby characters.",
+                "transition_type": "cut", "camera_movement": "Mid-shot tracking between outdoor tables and decorative planters",
+                "action_progression": "NPCs glance up naturally as character walks past toward the upper terrace.",
+                "prev_scene_connection": "Continuation of walk through the plaza.",
+                "next_scene_connection": "Ascending toward the skyline terrace."
+            },
+            {
+                "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Walking toward upper terrace overlooking palm trees and modern high-rise towers",
+                "narration_text": "Realistic ambient acoustics bring the district to life, from echoing footsteps on pavers to gentle fountain water and distant coastal breezes.",
+                "subtitle_text": "Realistic ambient acoustics bring the district to life, from echoing footsteps on pavers to gentle fountain water and distant coastal breezes.",
+                "transition_type": "cut", "camera_movement": "Ascending crane shot tracking forward above the plaza canopy",
+                "action_progression": "Character reaches the terrace overlook as afternoon sunlight bathes the city.",
+                "prev_scene_connection": "Reaching the scenic terrace overlook.",
+                "next_scene_connection": "Final panoramic perspective."
+            },
+            {
+                "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Wide scenic view of the Designer District and coastal towers as sunset approaches",
+                "narration_text": "What part of Vice City are you exploring on foot first? Are you hitting the high-end shops? Tell us in the comments below!",
+                "subtitle_text": "What part of Vice City are you exploring on foot first? Are you hitting the high-end shops? Tell us in the comments below!",
+                "transition_type": "fade", "camera_movement": "Slow panoramic sweep framing the architecture against coastal sky",
+                "action_progression": "Camera rises smoothly into the warm afternoon air as the walk concludes.",
+                "prev_scene_connection": "Final environmental overview concluding the on-foot exploration.",
+                "next_scene_connection": "Fade to outro."
+            }
+        ]
+    },
+
     # -------------------------------------------------------------
     # GROUP A: WALKING & EXPLORATION
     # -------------------------------------------------------------
@@ -629,7 +827,7 @@ ACTIVITY_REGISTRY = {
         "allowed_categories": ["Stories & Lore", "Facts & Secrets"],
         "title": "Vice City Nightlife: Next-Gen Club Lighting, Crowd AI & Music Venues",
         "description": "Immersing in Vice City's vibrant after-hours culture: neon laser lighting, reactive crowd dancing AI, bass audio acoustics, VIP mezzanine lounges, and clandestine backroom criminal deals.",
-        "banner": ("VICE CITY CLUBS", "IN GTA 6 ARE", "INSANE??"),
+        "banner": ("VICE CITY CLUBS", "IN GTA 6 ARE", "STUNNING??"),
         "location": "Club Babylon & Ocean Drive Neon Strip",
         "time_of_day": "Midnight Neon Night",
         "weather": "Warm tropical night with neon lights cutting through humid mist",
@@ -1173,137 +1371,69 @@ def get_recent_activity_history(limit: int = 50) -> list:
 
 def select_intelligent_daily_activities(preferred_activity_ids: list = None) -> list:
     """
-    Intelligently selects exactly 3 distinct, fresh activities for the daily production run:
-    - Exactly 1 for Facts & Secrets
-    - Exactly 1 for Cars & Comparisons
-    - Exactly 1 for Stories & Lore
-    
-    Guarantees:
-    - Zero repetition with previously exported or generated activities.
-    - Strict novelty priority: unused activities are always chosen first.
-    - Completely distinct groups and locations across all 3 daily categories.
-    - Enforces ONE VIDEO = ONE MAIN TOPIC = ONE COMPLETE STORY.
+    Autonomously selects exactly 3 diverse, unrepeated activities across the 4 activity groups:
+    - Walking & Exploration
+    - Vehicles & Transportation
+    - Lifestyle & Entertainment
+    - Action & Adventure
+    Completely decoupled from the rigid 3-category taxonomy in compliance with
+    GTA6_SCENE_VARIETY_DIRECTIVE.md.
     """
-    if preferred_activity_ids and len(preferred_activity_ids) == 3:
-        mapped = {}
-        for act_id in preferred_activity_ids:
-            act = ACTIVITY_REGISTRY.get(act_id)
-            if not act:
-                continue
-            for cat in ["Facts & Secrets", "Cars & Comparisons", "Stories & Lore"]:
-                if cat in act["allowed_categories"] and cat not in mapped:
-                    mapped[cat] = act
-                    break
-        if len(mapped) == 3:
-            return [
-                {"category": "Facts & Secrets", "activity": mapped["Facts & Secrets"]},
-                {"category": "Cars & Comparisons", "activity": mapped["Cars & Comparisons"]},
-                {"category": "Stories & Lore", "activity": mapped["Stories & Lore"]}
-            ]
+    if preferred_activity_ids:
+        mapped_items = []
+        for f_id in preferred_activity_ids:
+            act = get_activity_by_id(f_id)
+            if act:
+                mapped_items.append({
+                    "category": act["group"],
+                    "activity": act
+                })
+        if len(mapped_items) == 3:
+            return mapped_items
 
     history = get_recent_activity_history(50)
-    
-    # Identify all activities that have been used
     used_activity_ids = []
     for h in history:
         act_type = h.get("activity_type")
         if act_type and act_type in ACTIVITY_REGISTRY and act_type not in used_activity_ids:
             used_activity_ids.append(act_type)
-        
-        # Check title and event text for legacy or mapped activities
-        full_text = (str(h.get("title") or "") + " " + str(h.get("central_event") or "") + " " + str(h.get("story_title") or "")).lower()
-        if ("superbike" in full_text or "motorcycle" in full_text or "bati" in full_text) and "superbike_ride" not in used_activity_ids:
-            used_activity_ids.append("superbike_ride")
-        if ("bank" in full_text or "vault" in full_text or "heist" in full_text) and "bank_robbery" not in used_activity_ids:
-            used_activity_ids.append("bank_robbery")
-        if ("airport" in full_text or "terminal" in full_text or "escobar" in full_text) and "airport_walk" not in used_activity_ids:
-            used_activity_ids.append("airport_walk")
-        if ("beach" in full_text or "dune" in full_text or "coastline" in full_text) and "beach_coastal" not in used_activity_ids:
-            used_activity_ids.append("beach_coastal")
-        if ("aircraft" in full_text or "skies" in full_text or "airplane" in full_text) and "aircraft_flight" not in used_activity_ids:
-            used_activity_ids.append("aircraft_flight")
-        if ("off-road" in full_text or "truck" in full_text or "safari" in full_text or "mud" in full_text) and "offroad_truck" not in used_activity_ids:
-            used_activity_ids.append("offroad_truck")
 
-    # Categorize available blueprints
-    facts_candidates = [
-        act for act in ACTIVITY_REGISTRY.values()
-        if "Facts & Secrets" in act["allowed_categories"]
-    ]
-    cars_candidates = [
-        act for act in ACTIVITY_REGISTRY.values()
-        if "Cars & Comparisons" in act["allowed_categories"]
-    ]
-    stories_candidates = [
-        act for act in ACTIVITY_REGISTRY.values()
-        if "Stories & Lore" in act["allowed_categories"]
-    ]
+    # Group all blueprints by their activity group
+    groups = {
+        "Walking & Exploration": [],
+        "Vehicles & Transportation": [],
+        "Lifestyle & Entertainment": [],
+        "Action & Adventure": []
+    }
+    for act in ACTIVITY_REGISTRY.values():
+        grp = act.get("group", "Walking & Exploration")
+        if grp in groups:
+            groups[grp].append(act)
 
     def score_candidate(cand):
         c_id = cand["id"]
-        # If candidate has NEVER been used, give top priority score
         if c_id not in used_activity_ids:
             return 10000.0
-        # If used, give heavy penalty based on how recently it was used
         pos = used_activity_ids.index(c_id)
         return -1000.0 + (pos * 10.0)
 
-    # Sort candidates by novelty
-    facts_candidates.sort(key=score_candidate, reverse=True)
-    cars_candidates.sort(key=score_candidate, reverse=True)
-    stories_candidates.sort(key=score_candidate, reverse=True)
+    for g in groups:
+        groups[g].sort(key=score_candidate, reverse=True)
 
-    selected = {}
-    chosen_groups = set()
-    chosen_locations = set()
+    # Sort groups by the novelty score of their best candidate
+    group_scores = []
+    for gname, cand_list in groups.items():
+        if cand_list:
+            top_cand = cand_list[0]
+            group_scores.append((score_candidate(top_cand), gname, top_cand))
 
-    # 1. Select Facts & Secrets first (prefer walking/exploration or unique secrets)
-    for f in facts_candidates:
-        loc_key = f["location"][:10].lower()
-        if f["group"] not in chosen_groups and loc_key not in chosen_locations:
-            selected["Facts & Secrets"] = f
-            chosen_groups.add(f["group"])
-            chosen_locations.add(loc_key)
-            break
-    if "Facts & Secrets" not in selected:
-        selected["Facts & Secrets"] = facts_candidates[0]
-        chosen_groups.add(facts_candidates[0]["group"])
+    group_scores.sort(key=lambda x: x[0], reverse=True)
 
-    # 2. Select Cars & Comparisons (vehicles or high-speed pursuit)
-    for c in cars_candidates:
-        loc_key = c["location"][:10].lower()
-        if c["id"] != selected["Facts & Secrets"]["id"] and \
-           c["group"] not in chosen_groups and loc_key not in chosen_locations:
-            selected["Cars & Comparisons"] = c
-            chosen_groups.add(c["group"])
-            chosen_locations.add(loc_key)
-            break
-    if "Cars & Comparisons" not in selected:
-        for c in cars_candidates:
-            if c["id"] != selected["Facts & Secrets"]["id"]:
-                selected["Cars & Comparisons"] = c
-                chosen_groups.add(c["group"])
-                break
+    selected = []
+    for _, gname, top_cand in group_scores[:3]:
+        selected.append({
+            "category": gname,
+            "activity": top_cand
+        })
 
-    # 3. Select Stories & Lore (lifestyle, narrative or action)
-    for s in stories_candidates:
-        loc_key = s["location"][:10].lower()
-        if s["id"] != selected["Facts & Secrets"]["id"] and \
-           s["id"] != selected["Cars & Comparisons"]["id"] and \
-           s["group"] not in chosen_groups and loc_key not in chosen_locations:
-            selected["Stories & Lore"] = s
-            chosen_groups.add(s["group"])
-            chosen_locations.add(loc_key)
-            break
-    if "Stories & Lore" not in selected:
-        for s in stories_candidates:
-            if s["id"] != selected["Facts & Secrets"]["id"] and \
-               s["id"] != selected["Cars & Comparisons"]["id"]:
-                selected["Stories & Lore"] = s
-                break
-
-    return [
-        {"category": "Facts & Secrets", "activity": selected["Facts & Secrets"]},
-        {"category": "Cars & Comparisons", "activity": selected["Cars & Comparisons"]},
-        {"category": "Stories & Lore", "activity": selected["Stories & Lore"]}
-    ]
+    return selected

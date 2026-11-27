@@ -51,12 +51,9 @@ class TestSceneVariety(unittest.TestCase):
                 self.assertTrue(sc.get("next_scene_connection") or sc["scene_number"] == 6)
 
     def test_03_intelligent_daily_activity_selection(self):
-        """Verify daily selection picks exactly 3 distinct categories with zero group overlap."""
+        """Verify daily selection picks exactly 3 distinct activities across 3 distinct groups with zero overlap."""
         plan = select_intelligent_daily_activities()
         self.assertEqual(len(plan), 3)
-
-        categories = [p["category"] for p in plan]
-        self.assertEqual(sorted(categories), ["Cars & Comparisons", "Facts & Secrets", "Stories & Lore"])
 
         # Check that activities and groups are completely distinct
         activity_ids = [p["activity"]["id"] for p in plan]
