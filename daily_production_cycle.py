@@ -185,7 +185,7 @@ def run_daily_production():
     # STEP 1: Daily Research with Variety Enforcement
     # ---------------------------------------------------------
     print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Varied Activities (Decoupled from Fixed Categories)...")
-    daily_plan = select_intelligent_daily_activities(["convenience_store_heist", "luxury_plaza_walk", "airport_flight"])
+    daily_plan = select_intelligent_daily_activities(["airport_flight", "nightclub_party", "luxury_plaza_walk"])
     researched_topics = []
 
     # Clean existing today's exports and records to ensure fresh generation with descriptive names
