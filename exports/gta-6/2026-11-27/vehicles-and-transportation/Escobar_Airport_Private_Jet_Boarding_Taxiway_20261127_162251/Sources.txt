@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Escobar Airport: Private Jet Boarding, Taxiway Operations & Runway Takeoff ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-27 16:22:51
+
+[1] Rockstar Games Official - GTA VI Aviation & Open World (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Escobar International Airport features accessible active aprons with modeled private jets parked on the tarmac.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI Aviation & Open World (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Players can seamlessly board parked aircraft on foot without interior loading screens or cinematic transitions.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI Aviation & Open World (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Runways feature realistic edge lighting, dynamic taxi markings, and responsive air traffic control.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+

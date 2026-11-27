@@ -49,8 +49,31 @@ def get_visual_config_for_activity(act: dict) -> dict:
     longplay_source = os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
     ref_sample = os.path.join(BASE_DIR, "assets", "video", "gta_reference_sample.mp4")
     ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
+    airport_plane_source = os.path.join(BASE_DIR, "assets", "video", "gta_airport_planes.mp4")
+    trailer_source = os.path.join(BASE_DIR, "assets", "video", "gta6_trailer_4k.mp4")
 
-    if act_id == "airport_walk":
+    if act_id == "airport_flight":
+        return {
+            "source": airport_plane_source if os.path.isfile(airport_plane_source) else ref_master,
+            "start_ts": "00:00:48",
+            "duration": duration,
+            "banner": ("AIRPORT TAKEOFF", "IN GTA 6 IS", "MASSIVE??")
+        }
+    elif act_id == "luxury_plaza_walk":
+        return {
+            "source": walking_source if os.path.isfile(walking_source) else ref_master,
+            "start_ts": "00:00:02",
+            "duration": duration,
+            "banner": ("LUXURY DISTRICT", "IN GTA 6 IS", "NEXT-GEN??")
+        }
+    elif act_id == "nightclub_party":
+        return {
+            "source": trailer_source if os.path.isfile(trailer_source) else ref_master,
+            "start_ts": "00:00:30",
+            "duration": 40.0,
+            "banner": ("VICE CITY CLUBS", "IN GTA 6 ARE", "STUNNING??")
+        }
+    elif act_id == "airport_walk":
         return {
             "source": bike_source if os.path.isfile(bike_source) else ref_master,
             "start_ts": "00:00:25",
@@ -131,7 +154,7 @@ def run_daily_production():
     print("=" * 70)
     print("  GAMECLIPS AI – DAILY AUTOMATED VIDEO PRODUCTION")
     print("  Target Game: Grand Theft Auto VI (game-gta6)")
-    print("  Production Distribution: Exactly 3 Videos (1 per category)")
+    print("  Production Distribution: Exactly 3 Videos (Decoupled from Fixed Categories)")
     print("=" * 70)
 
     start_time = time.time()
@@ -153,8 +176,8 @@ def run_daily_production():
     # ---------------------------------------------------------
     # STEP 1: Daily Research with Variety Enforcement
     # ---------------------------------------------------------
-    print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Categories (Variety-Enforced)...")
-    daily_plan = select_intelligent_daily_activities(["airport_walk", "crash_physics", "street_fitness"])
+    print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Varied Activities (Decoupled from Fixed Categories)...")
+    daily_plan = select_intelligent_daily_activities(["airport_flight", "nightclub_party", "luxury_plaza_walk"])
     researched_topics = []
 
     # Clean existing today's exports and records to ensure fresh generation with descriptive names
