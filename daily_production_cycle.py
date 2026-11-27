@@ -51,8 +51,16 @@ def get_visual_config_for_activity(act: dict) -> dict:
     ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
     airport_plane_source = os.path.join(BASE_DIR, "assets", "video", "gta_airport_planes.mp4")
     trailer_source = os.path.join(BASE_DIR, "assets", "video", "gta6_trailer_4k.mp4")
+    heist_source = os.path.join(BASE_DIR, "assets", "video", "gta_trailer_heist_45s.mp4")
 
-    if act_id == "airport_flight":
+    if act_id == "convenience_store_heist":
+        return {
+            "source": heist_source if os.path.isfile(heist_source) else (trailer_source if os.path.isfile(trailer_source) else ref_master),
+            "start_ts": "00:00:00",
+            "duration": 45.0,
+            "banner": ("ARMED STORE HEIST", "IN GTA 6 IS", "INSANE??")
+        }
+    elif act_id == "airport_flight":
         return {
             "source": airport_plane_source if os.path.isfile(airport_plane_source) else ref_master,
             "start_ts": "00:00:48",
@@ -177,7 +185,7 @@ def run_daily_production():
     # STEP 1: Daily Research with Variety Enforcement
     # ---------------------------------------------------------
     print("\n[STEP 1] Running Intelligent GTA 6 Research across 3 Varied Activities (Decoupled from Fixed Categories)...")
-    daily_plan = select_intelligent_daily_activities(["airport_flight", "nightclub_party", "luxury_plaza_walk"])
+    daily_plan = select_intelligent_daily_activities(["convenience_store_heist", "luxury_plaza_walk", "airport_flight"])
     researched_topics = []
 
     # Clean existing today's exports and records to ensure fresh generation with descriptive names

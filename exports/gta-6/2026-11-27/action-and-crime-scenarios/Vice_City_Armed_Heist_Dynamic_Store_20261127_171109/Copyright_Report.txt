@@ -2,12 +2,12 @@
              GAMECLIPS AI - RIGHTS & COPYRIGHT AUDIT REPORT        
 ====================================================================
 
-Project ID:              proj-1795778488-569
+Project ID:              proj-1795781346-889
 Game Target:             Grand Theft Auto VI
-Video Title:             Escobar Airport: Private Jet Boarding, Taxiway Operations & Runway Takeoff
+Video Title:             Vice City Armed Heist: Dynamic Store Robbery & Tactical Getaway Mechanics
 Target Platform:         YouTube Shorts & TikTok (9:16 Vertical)
 Human Approval Status:   APPROVED (Mandatory Human Sign-off Recorded)
-Export Date:             2026-11-27 16:22:51
+Export Date:             2026-11-27 17:11:09
 
 --- RIGHTS & LICENSING VERIFICATION SUMMARY ---
 Compliance Status:       VERIFIED
@@ -28,12 +28,12 @@ Anti-Misrepresentation:  Enforced. Disclosed as community analysis and gameplay 
 Presentation Standard:   9:16 Vertical Gaming Streamer Layout with Cyberpunk HUD Telemetry
 
 Scene-by-Scene Visual Registry:
-  - Scene 1: [AUTHENTIC GAMEPLAY] Approaching the private aviation apron at Escobar International under dusk skies with parked private jets
-  - Scene 2: [AUTHENTIC GAMEPLAY] Jason walking across tarmac directly toward parked luxury private jet ready for flight
-  - Scene 3: [AUTHENTIC GAMEPLAY] Seamless boarding into the aircraft cockpit with illuminated avionics displays
-  - Scene 4: [AUTHENTIC GAMEPLAY] Private jet taxiing past runway perimeter lights toward active runway 24-Left
-  - Scene 5: [AUTHENTIC GAMEPLAY] Full-throttle runway acceleration and wheels lifting off toward the coastal sunset
-  - Scene 6: [AUTHENTIC GAMEPLAY] Jet soaring over the illuminated Vice City coast into the sunset horizon
+  - Scene 1: [AUTHENTIC GAMEPLAY] Lucia and Jason donning bandanas and kicking open the glass doors of a neon-lit convenience store
+  - Scene 2: [AUTHENTIC GAMEPLAY] Lucia raising semi-automatic pistol aiming down the counter while Jason covers the entrance
+  - Scene 3: [AUTHENTIC GAMEPLAY] Grabbing stacks of currency bills from the cash register and stuffing them into a duffel bag
+  - Scene 4: [AUTHENTIC GAMEPLAY] Jason looking out the storefront glass as red and blue cruiser emergency lights flash across the highway
+  - Scene 5: [AUTHENTIC GAMEPLAY] Lucia and Jason bursting through the exit doors sprinting toward their waiting muscle car
+  - Scene 6: [AUTHENTIC GAMEPLAY] Getaway muscle car peeling out onto the highway into the Vice City night with sirens trailing
 
 --- MANDATORY LEGAL DISCLAIMER ---
 Automated detection and verification checks do NOT guarantee 100% legal immunity

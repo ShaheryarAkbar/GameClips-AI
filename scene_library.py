@@ -18,6 +18,104 @@ from database import get_connection
 
 # Full Registry of GTA 6 Activity Blueprints
 ACTIVITY_REGISTRY = {
+    "convenience_store_heist": {
+        "id": "convenience_store_heist",
+        "group": "Action & Crime Scenarios",
+        "name": "Armed Store Robbery & Tactical Getaway",
+        "default_category": "Action & Crime Scenarios",
+        "allowed_categories": ["Action & Crime Scenarios", "Action & Adventure", "Stories & Lore"],
+        "title": "Vice City Armed Heist: Dynamic Store Robbery & Tactical Getaway Mechanics",
+        "description": "Fictional armed convenience store robbery in Vice City: Lucia and Jason kicking open doors with bandanas and drawn pistols, cash register hold-up, grabbing currency, sirens echoing outside, and high-speed getaway escape.",
+        "banner": ("ARMED STORE HEIST", "IN GTA 6 IS", "INSANE??"),
+        "location": "Port Gellhorn Convenience Store & Coastal Highway",
+        "time_of_day": "Neon Twilight Night with Flashing Strobes",
+        "weather": "Humid Florida night with distant sirens echoing",
+        "characters": "Lucia Caminos & Jason Duval (Bandanas & Handguns)",
+        "vehicle": "Declasse Tulip Muscle Car Getaway",
+        "central_event": "Armed Store Breach, Cash Seizure & Tactical Getaway",
+        "narrative_arc": "Mask Up & Door Kick -> Drawn Pistols & Cashier Hold-Up -> Cash Register Scoop -> Distant Siren Alert -> Door Breach Escape -> Getaway Acceleration",
+        "resolution": "With responsive AI witnesses and seamless interior transitions, GTA 6 transforms street-level crimes into cinematic adrenaline rushes.",
+        "source": {
+            "title": "Rockstar Games Official - GTA VI Lucia & Jason Criminal Partnership",
+            "url": "https://www.rockstargames.com/VI",
+            "source_name": "Rockstar Official Intel",
+            "reliability_score": 1.0,
+            "published_at": "2023-12-05"
+        },
+        "claims": [
+            ("Grand Theft Auto VI features dynamic store hold-ups with responsive civilian AI and interactive cash registers.", 1, 0, "OFFICIAL"),
+            ("Protagonists coordinate holdups cooperatively, covering entryways while scooping money duffels.", 1, 0, "VERIFIED_VISUAL"),
+            ("Police response times dynamically scale based on silent alarm triggers and regional patrol density.", 1, 0, "OFFICIAL")
+        ],
+        "scenes": [
+            {
+                "scene_number": 1, "start_time": 0.0, "end_time": 7.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Lucia and Jason donning bandanas and kicking open the glass doors of a neon-lit convenience store",
+                "narration_text": "Robberies in Grand Theft Auto VI are more intense than ever. Lucia and Jason kick open the doors with bandanas up.",
+                "subtitle_text": "Robberies in Grand Theft Auto VI are more intense than ever. Lucia and Jason kick open the doors with bandanas up.",
+                "transition_type": "fade", "camera_movement": "Low-angle dynamic push through the swinging double doors",
+                "action_progression": "Lucia and Jason breach the entrance as the door chime rings frantically.",
+                "prev_scene_connection": "Opening visual hook establishing the armed breach.",
+                "next_scene_connection": "Moving forward into the cashier counter."
+            },
+            {
+                "scene_number": 2, "start_time": 7.5, "end_time": 15.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Lucia raising semi-automatic pistol aiming down the counter while Jason covers the entrance",
+                "narration_text": "Weapons drawn and laser-focused, the duo takes complete control of the room with responsive civilian AI.",
+                "subtitle_text": "Weapons drawn and laser-focused, the duo takes complete control of the room with responsive civilian AI.",
+                "transition_type": "cut", "camera_movement": "Steadycam tracking shot framing Lucia holding up the terrified clerk",
+                "action_progression": "The store clerk raises their hands and unlocks the electronic register.",
+                "prev_scene_connection": "Continuation of armed holdup at the counter.",
+                "next_scene_connection": "Scooping cash from the register tray."
+            },
+            {
+                "scene_number": 3, "start_time": 15.0, "end_time": 22.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Grabbing stacks of currency bills from the cash register and stuffing them into a duffel bag",
+                "narration_text": "Every stack of cash is grabbed with seamless physical interaction while silent alarm sensors trigger outside.",
+                "subtitle_text": "Every stack of cash is grabbed with seamless physical interaction while silent alarm sensors trigger outside.",
+                "transition_type": "cut", "camera_movement": "Close-up tracking over the register drawer as bills are swept into the bag",
+                "action_progression": "Cash is bagged in seconds as blue police lights reflect through the front windows.",
+                "prev_scene_connection": "Direct progression from demand to cash seizure.",
+                "next_scene_connection": "Jason signals the arrival of police patrol units."
+            },
+            {
+                "scene_number": 4, "start_time": 22.5, "end_time": 30.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Jason looking out the storefront glass as red and blue cruiser emergency lights flash across the highway",
+                "narration_text": "Distant sirens echo down Ocean Boulevard. Jason signals that patrol cruisers are converging fast.",
+                "subtitle_text": "Distant sirens echo down Ocean Boulevard. Jason signals that patrol cruisers are converging fast.",
+                "transition_type": "cut", "camera_movement": "Whip pan from counter to Jason covering the glass front window",
+                "action_progression": "Patrol cruisers speed past in the distance, sirens wailing through the night.",
+                "prev_scene_connection": "Alerting partner to incoming police presence.",
+                "next_scene_connection": "Dashing through the exit toward the idling getaway car."
+            },
+            {
+                "scene_number": 5, "start_time": 30.0, "end_time": 37.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Lucia and Jason bursting through the exit doors sprinting toward their waiting muscle car",
+                "narration_text": "Bursting through the exit into the cool night air, they sprint to the getaway car before a perimeter forms.",
+                "subtitle_text": "Bursting through the exit into the cool night air, they sprint to the getaway car before a perimeter forms.",
+                "transition_type": "cut", "camera_movement": "Tracking crane following their sprint across the asphalt parking lot",
+                "action_progression": "They jump into the driver and passenger seats, slamming doors shut.",
+                "prev_scene_connection": "Breaching exit and reaching getaway vehicle.",
+                "next_scene_connection": "Tires burning rubber as the getaway accelerates."
+            },
+            {
+                "scene_number": 6, "start_time": 37.5, "end_time": 45.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Getaway muscle car peeling out onto the highway into the Vice City night with sirens trailing",
+                "narration_text": "V8 engine roaring into the dark, the escape is on. How are you pulling off your first heist in GTA 6? Let us know below!",
+                "subtitle_text": "V8 engine roaring into the dark, the escape is on. How are you pulling off your first heist in GTA 6? Let us know below!",
+                "transition_type": "fade", "camera_movement": "Low-angle chase view following tail lights disappearing into highway traffic",
+                "action_progression": "The vehicle merges onto the freeway leaving pursuing sirens behind.",
+                "prev_scene_connection": "Final getaway acceleration concluding the robbery.",
+                "next_scene_connection": "Fade to outro."
+            }
+        ]
+    },
     "airport_flight": {
         "id": "airport_flight",
         "group": "Vehicles & Transportation",
@@ -1375,7 +1473,7 @@ def select_intelligent_daily_activities(preferred_activity_ids: list = None) -> 
     - Walking & Exploration
     - Vehicles & Transportation
     - Lifestyle & Entertainment
-    - Action & Adventure
+    - Action & Crime Scenarios
     Completely decoupled from the rigid 3-category taxonomy in compliance with
     GTA6_SCENE_VARIETY_DIRECTIVE.md.
     """
@@ -1398,17 +1496,35 @@ def select_intelligent_daily_activities(preferred_activity_ids: list = None) -> 
         if act_type and act_type in ACTIVITY_REGISTRY and act_type not in used_activity_ids:
             used_activity_ids.append(act_type)
 
-    # Group all blueprints by their activity group
+    # Group all blueprints by the 4 scene groups
+    group_mapping = {
+        "Walking & Exploration": "Walking & Exploration",
+        "Vehicles & Transportation": "Vehicles & Transportation",
+        "Vehicles & Transportation / Aviation": "Vehicles & Transportation",
+        "Lifestyle & Entertainment": "Lifestyle & Entertainment",
+        "Action & Crime Scenarios": "Action & Crime Scenarios",
+        "Action & Adventure": "Action & Crime Scenarios"
+    }
     groups = {
         "Walking & Exploration": [],
         "Vehicles & Transportation": [],
         "Lifestyle & Entertainment": [],
-        "Action & Adventure": []
+        "Action & Crime Scenarios": []
     }
     for act in ACTIVITY_REGISTRY.values():
-        grp = act.get("group", "Walking & Exploration")
+        grp = group_mapping.get(act.get("group", ""), "Walking & Exploration")
         if grp in groups:
             groups[grp].append(act)
+
+    # Check group usage history to prioritize groups that have not been used recently
+    recent_group_usage = []
+    for h in history:
+        act_id = h.get("activity_type")
+        act = ACTIVITY_REGISTRY.get(act_id)
+        if act:
+            g = group_mapping.get(act.get("group", ""), "")
+            if g and g not in recent_group_usage:
+                recent_group_usage.append(g)
 
     def score_candidate(cand):
         c_id = cand["id"]
@@ -1420,12 +1536,20 @@ def select_intelligent_daily_activities(preferred_activity_ids: list = None) -> 
     for g in groups:
         groups[g].sort(key=score_candidate, reverse=True)
 
-    # Sort groups by the novelty score of their best candidate
+    # Rank the 4 scene groups by novelty / rotation recency so all 4 groups rotate evenly
+    import random
     group_scores = []
     for gname, cand_list in groups.items():
         if cand_list:
             top_cand = cand_list[0]
-            group_scores.append((score_candidate(top_cand), gname, top_cand))
+            cand_score = score_candidate(top_cand)
+            # Group recency bonus: Groups not in recent history get +20000 bonus
+            if gname not in recent_group_usage:
+                group_bonus = 20000.0 + random.uniform(5.0, 15.0)
+            else:
+                group_bonus = (recent_group_usage.index(gname) * 50.0) + random.uniform(1.0, 5.0)
+            total_score = cand_score + group_bonus
+            group_scores.append((total_score, gname, top_cand))
 
     group_scores.sort(key=lambda x: x[0], reverse=True)
 
