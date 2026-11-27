@@ -29,7 +29,7 @@ ACTIVITY_REGISTRY = {
         "allowed_categories": ["Facts & Secrets", "Stories & Lore"],
         "title": "Vice City Airport: Fully Modeled Terminals, Security Gates & Tarmac Access",
         "description": "Exploration of Escobar International Airport: fully rendered multi-level interior terminals, working baggage claim carousels, responsive security checkpoints, and seamless outdoor runway tarmac access without loading screens.",
-        "banner": ("AIRPORT TERMINAL", "IN GTA 6 IS", "MASSIVE??"),
+        "banner": ("AIRPORT ADVENTURE", "IN GTA 6 IS", "MASSIVE??"),
         "location": "Escobar International Airport (Terminal 3 to Gate Concourse)",
         "time_of_day": "Bright Midday Sun with Glass Terminal Caustics",
         "weather": "Clear tropical sky visible through panoramic airport windows",
@@ -916,6 +916,204 @@ ACTIVITY_REGISTRY = {
                 "transition_type": "fade", "camera_movement": "Slow cinematic crane pull-back as wanted stars begin flashing and disappear",
                 "action_progression": "The vehicle idles in the dark alleyway as headlights click off and sirens fade in the distance.",
                 "prev_scene_connection": "Final pursuit evasion and escape resolution.",
+                "next_scene_connection": "Fade to outro."
+            }
+        ]
+    },
+
+    "crash_physics": {
+        "id": "crash_physics",
+        "group": "Vehicles & Transportation",
+        "name": "Vehicle Crash Dynamics & Soft-Body Deformation",
+        "default_category": "Cars & Comparisons",
+        "allowed_categories": ["Cars & Comparisons", "Facts & Secrets"],
+        "title": "GTA 6 Vehicle Crash Dynamics: Soft-Body Metal Deformation, Frame Twisting & Pole Impacts",
+        "description": "Comprehensive technical breakdown of GTA 6's next-generation vehicle collision and soft-body deformation physics: concrete utility pole collisions, crumple zones, windshield spider-webbing, and post-crash recovery.",
+        "banner": ("CRASH PHYSICS", "IN GTA 6 ARE", "MIND-BLOWING??"),
+        "location": "Suburban Vice City Boulevard & Palm Avenue Intersection",
+        "time_of_day": "Midday Sun with High-Contrast Road Glare",
+        "weather": "Clear tropical afternoon with warm sunlight reflecting off car bodywork",
+        "characters": "Jason Duval (Precision Driver)",
+        "vehicle": "Pfister Comet S2 Sportscar (Impact Deformation Test)",
+        "central_event": "High-Speed Pole Collision & Soft-Body Metal Deformation Analysis",
+        "narrative_arc": "High-Speed Approach -> Loss of Traction -> Concrete Pole Collision -> Frame Deformation -> Radiator Steam -> Drift Recovery",
+        "resolution": "Rockstar Games has engineered the most mathematically authentic vehicle destruction engine in open-world history.",
+        "source": {
+            "title": "Digital Foundry Technical Analysis - GTA VI Physics & Deformation Tech",
+            "url": "https://www.digitalfoundry.net/articles/gta-6-damage-physics",
+            "source_name": "Digital Foundry Tech Breakdown",
+            "reliability_score": 0.95,
+            "published_at": "2023-12-07"
+        },
+        "claims": [
+            ("GTA 6 incorporates progressive soft-body metal deformation with volumetric panel crumpling.", 1, 0, "OFFICIAL"),
+            ("Fixed roadside objects like concrete poles transfer realistic inertia, crushing front quarter panels.", 1, 0, "VERIFIED_VISUAL"),
+            ("Windshields feature procedural safety-glass spider-webbing and detached bumper physics.", 1, 0, "VERIFIED_VISUAL")
+        ],
+        "scenes": [
+            {
+                "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Yellow Pfister Comet S2 speeding aggressively along suburban Vice City palm tree street",
+                "narration_text": "Rockstar Games has completely rebuilt vehicle collision physics in Grand Theft Auto VI, introducing true multi-point soft-body metal deformation.",
+                "subtitle_text": "Rockstar Games has completely rebuilt vehicle collision physics in Grand Theft Auto VI, introducing true multi-point soft-body metal deformation.",
+                "transition_type": "fade", "camera_movement": "Low chase camera tracking the sportscar accelerating toward suburban intersection",
+                "action_progression": "The Pfister Comet accelerates violently down the asphalt as tire squeal echoes past residential hedges.",
+                "prev_scene_connection": "Opening visual hook establishing vehicle speed and handling.",
+                "next_scene_connection": "Vehicle begins sudden aggressive oversteer heading toward the roadside curb."
+            },
+            {
+                "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Sportscar losing rear grip on tight corner apex, sliding sideways toward concrete utility pole",
+                "narration_text": "Notice the weight transfer as the rear tires break traction. Independent suspension geometry compresses under extreme lateral G-forces.",
+                "subtitle_text": "Notice the weight transfer as the rear tires break traction. Independent suspension geometry compresses under extreme lateral G-forces.",
+                "transition_type": "cut", "camera_movement": "Mid-height tracking camera capturing counter-steer lock and tire smoke",
+                "action_progression": "The rear end breaks loose into a heavy counter-steer slide heading dangerously close to the roadside pole.",
+                "prev_scene_connection": "Direct progression from straight acceleration into loss of traction.",
+                "next_scene_connection": "Front right quarter-panel impacting the concrete utility pole."
+            },
+            {
+                "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Front right fender violently impacting concrete utility pole with dynamic metal crumpling and shattered glass",
+                "narration_text": "Impact! The front fender crumples with procedural accuracy. Rather than predefined dent morphs, the steel compresses around the solid concrete obstacle.",
+                "subtitle_text": "Impact! The front fender crumples with procedural accuracy. Rather than predefined dent morphs, the steel compresses around the solid concrete obstacle.",
+                "transition_type": "cut", "camera_movement": "Dynamic impact camera shaking violently with physics collision impulse",
+                "action_progression": "The vehicle slams into the pole, violently shearing the front bumper and crushing the right fender.",
+                "prev_scene_connection": "Direct continuation from the high-speed skid to the physical collision.",
+                "next_scene_connection": "Car rebounding off the pole as radiator steam and debris billow."
+            },
+            {
+                "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Vehicle rebounding from pole with radiator steam venting and deformed hood panel buckled upward",
+                "narration_text": "Watch the hood buckle upwards and the headlamp housing shatter. Internal engine components now have collision meshes that deform under structural load.",
+                "subtitle_text": "Watch the hood buckle upwards and the headlamp housing shatter. Internal engine components now have collision meshes that deform under structural load.",
+                "transition_type": "cut", "camera_movement": "Close rotational orbit inspecting the deformed right quarter panel and buckled hood",
+                "action_progression": "Steam vents from the cracked radiator as the chassis settles back onto the pavement.",
+                "prev_scene_connection": "Continuation of physics aftermath immediately following impact.",
+                "next_scene_connection": "Driver engaging reverse gear and spinning the tires to disengage."
+            },
+            {
+                "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+                "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
+                "visual_prompt": "Damaged sportscar reversing away with asymmetrical steering wobble and scraping bumper",
+                "narration_text": "Post-impact driving dynamics reflect the mechanical trauma: alignment pulling to the right, tire rubbing against crumpled wheel arches, and reduced top speed.",
+                "subtitle_text": "Post-impact driving dynamics reflect the mechanical trauma: alignment pulling to the right, tire rubbing against crumpled wheel arches, and reduced top speed.",
+                "transition_type": "cut", "camera_movement": "Low angle side camera following the deformed front wheel struggling to steer straight",
+                "action_progression": "Jason reverses cleanly away from the curb and re-enters the roadway, steering against the damaged suspension.",
+                "prev_scene_connection": "Transition from standstill impact inspection to active mechanical recovery.",
+                "next_scene_connection": "Vehicle accelerating down the avenue into the distance."
+            },
+            {
+                "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Battle-damaged sportscar speeding away into the sunny Vice City horizon with damaged exhaust echoing",
+                "narration_text": "Will GTA 6 have the best driving and damage physics of any game ever made? What crash tests do you want to see next? Drop your thoughts below!",
+                "subtitle_text": "Will GTA 6 have the best driving and damage physics of any game ever made? What crash tests do you want to see next? Drop your thoughts below!",
+                "transition_type": "fade", "camera_movement": "Rising crane sweep trailing the damaged sportscar heading into the sunset",
+                "action_progression": "The Pfister disappears down the palm tree avenue as the scene concludes.",
+                "prev_scene_connection": "Final cinematic driving resolution.",
+                "next_scene_connection": "Fade to outro."
+            }
+        ]
+    },
+
+    "street_fitness": {
+        "id": "street_fitness",
+        "group": "Lifestyle & Entertainment",
+        "name": "Character Fitness, Stamina & Neighborhood Life",
+        "default_category": "Stories & Lore",
+        "allowed_categories": ["Stories & Lore", "Facts & Secrets"],
+        "title": "Vice City Living World: Character Cardio Workouts, Muscle Fatigue & Street Encounters",
+        "description": "Exploring GTA 6's living open world and character vitality systems: on-foot jogging through residential streets, dynamic cardio recovery, crouching vehicle inspections, and contextual neighborhood NPC encounters.",
+        "banner": ("STREET LIVING WORLD", "IN GTA 6 IS", "UNMATCHED??"),
+        "location": "Little Haiti Residential Enclave & Suburban Parking District",
+        "time_of_day": "Warm Afternoon Sunlight with Long Palm Shadows",
+        "weather": "Sunny Florida afternoon with gentle breeze rustling palm fronds",
+        "characters": "Jason Duval (Athletic Attire)",
+        "vehicle": "None (On-Foot Pedestrian Jogging & Fitness)",
+        "central_event": "Neighborhood On-Foot Exploration & Character Fitness Mechanics",
+        "narrative_arc": "Residential Street Jog -> Cardio Workout Trigger -> Muscle Fatigue Recovery -> Parking Lot Vehicle Inspection -> Crouch Examination -> Sunset Walk",
+        "resolution": "From physical cardio stamina systems to living neighborhood AI, GTA 6 brings unprecedented depth to every pedestrian moment.",
+        "source": {
+            "title": "IGN Gameplay Analysis - GTA VI Living World & Character Systems",
+            "url": "https://www.ign.com/articles/gta-6-character-mechanics-breakdown",
+            "source_name": "IGN Gameplay Breakdown",
+            "reliability_score": 0.95,
+            "published_at": "2023-12-06"
+        },
+        "claims": [
+            ("GTA 6 features dynamic character fitness and cardio stamina meters that deplete and regenerate realistically.", 1, 0, "VERIFIED_VISUAL"),
+            ("Characters physically react to heavy exertion with panting animations and temporary muscle recovery delays.", 1, 0, "VERIFIED_VISUAL"),
+            ("Residential neighborhoods feature interactive pedestrian encounters, parked exotic cars, and contextual inspections.", 1, 0, "OFFICIAL")
+        ],
+        "scenes": [
+            {
+                "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Jason jogging smoothly along a sunlit Vice City neighborhood sidewalk lined with lush palm trees",
+                "narration_text": "Grand Theft Auto VI is bringing back comprehensive character physical conditioning, introducing dynamic cardio workouts, muscle stamina, and true living neighborhoods.",
+                "subtitle_text": "Grand Theft Auto VI is bringing back comprehensive character physical conditioning, introducing dynamic cardio workouts, muscle stamina, and true living neighborhoods.",
+                "transition_type": "fade", "camera_movement": "Mid-height steadycam tracking smoothly alongside Jason jogging down the sidewalk",
+                "action_progression": "Jason maintains a steady jogging cadence as afternoon sunlight filters through swaying palm fronds.",
+                "prev_scene_connection": "Opening visual hook establishing on-foot character motion and neighborhood atmosphere.",
+                "next_scene_connection": "Camera follows Jason as physical exertion triggers the on-screen stamina notification."
+            },
+            {
+                "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Cardio Workout stamina notification appearing on screen as Jason slows to catch his breath",
+                "narration_text": "Sustained running directly engages the character's cardio system. The HUD alerts you to rest and recover, with realistic breathing audio and visible chest heave.",
+                "subtitle_text": "Sustained running directly engages the character's cardio system. The HUD alerts you to rest and recover, with realistic breathing audio and visible chest heave.",
+                "transition_type": "cut", "camera_movement": "Over-the-shoulder tracking shot showing the dynamic stamina gauge and exhaustion animations",
+                "action_progression": "Jason slows his pace to a brisk walk as the stamina meter begins gradual recovery.",
+                "prev_scene_connection": "Direct progression from active sprint to cardio recovery.",
+                "next_scene_connection": "Turning into a sunlit residential parking courtyard with parked luxury vehicles."
+            },
+            {
+                "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Jason walking into a quiet residential parking lot with high-end luxury SUVs parked in the sun",
+                "narration_text": "Every neighborhood in Vice City has its own economic tier. Here in this quiet enclave, multi-million dollar SUVs and exotic sports coupes sit parked in open driveways.",
+                "subtitle_text": "Every neighborhood in Vice City has its own economic tier. Here in this quiet enclave, multi-million dollar SUVs and exotic sports coupes sit parked in open driveways.",
+                "transition_type": "cut", "camera_movement": "Wide cinematic tracking shot gliding past parked vehicles and tropical landscaping",
+                "action_progression": "Jason scans the parked vehicles as he walks across the warm asphalt toward an exotic red SUV.",
+                "prev_scene_connection": "Transition from residential street into parking courtyard.",
+                "next_scene_connection": "Jason approaching the vehicle to inspect it closely."
+            },
+            {
+                "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Jason crouching down beside a luxury red SUV to inspect its forged alloy wheels and brake calipers",
+                "narration_text": "Contextual inspection animations let you crouch down and study intricate details: custom carbon-ceramic brake discs, tread wear, and unique wheel configurations.",
+                "subtitle_text": "Contextual inspection animations let you crouch down and study intricate details: custom carbon-ceramic brake discs, tread wear, and unique wheel configurations.",
+                "transition_type": "cut", "camera_movement": "Low-angle close-up rotating smoothly around Jason crouching beside the vehicle wheel",
+                "action_progression": "Jason crouches low, examining the intricate gold-finished multi-spoke wheel design.",
+                "prev_scene_connection": "Direct continuation from walking up to the vehicle to crouching in inspection.",
+                "next_scene_connection": "Standing back up and looking down the quiet neighborhood street."
+            },
+            {
+                "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+                "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
+                "visual_prompt": "Standing up as civilian neighbors converse on nearby lawns and street traffic idles past",
+                "narration_text": "NPCs react naturally to your presence. Linger too long near high-end property and homeowners look over suspiciously or notify local security patrols.",
+                "subtitle_text": "NPCs react naturally to your presence. Linger too long near high-end property and homeowners look over suspiciously or notify local security patrols.",
+                "transition_type": "cut", "camera_movement": "Smooth crane rise looking out over the peaceful suburban neighborhood skyline",
+                "action_progression": "Jason stands upright, stretches his shoulders, and continues walking down the quiet sidewalk.",
+                "prev_scene_connection": "Transition from vehicle inspection back to open-world pedestrian traversal.",
+                "next_scene_connection": "Walking into the golden sunset at the end of the avenue."
+            },
+            {
+                "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Jason walking toward the sunset horizon as evening shadows lengthen across the neighborhood",
+                "narration_text": "Are you spending time exploring every corner of Vice City on foot? What neighborhood secrets are you hunting first? Tell us in the comments below!",
+                "subtitle_text": "Are you spending time exploring every corner of Vice City on foot? What neighborhood secrets are you hunting first? Tell us in the comments below!",
+                "transition_type": "fade", "camera_movement": "Cinematic pull-back crane shot framing Jason walking into the warm golden twilight",
+                "action_progression": "The sun dips below the palm tree canopy as nocturnal insects begin chirping in the warm breeze.",
+                "prev_scene_connection": "Final peaceful lifestyle and narrative resolution.",
                 "next_scene_connection": "Fade to outro."
             }
         ]
