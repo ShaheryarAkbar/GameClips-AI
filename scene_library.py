@@ -49,7 +49,7 @@ ACTIVITY_REGISTRY = {
         ],
         "scenes": [
             {
-                "scene_number": 1, "start_time": 0.0, "end_time": 6.5,
+                "scene_number": 1, "start_time": 0.0, "end_time": 10.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Twin-engine luxury speedboat accelerating away from the Vice City marina into open turquoise waters",
                 "narration_text": "Water physics in Grand Theft Auto VI represent a massive leap forward. Full throttle out into Biscayne Bay.",
@@ -60,7 +60,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Accelerating into the main coastal channel."
             },
             {
-                "scene_number": 2, "start_time": 6.5, "end_time": 13.5,
+                "scene_number": 2, "start_time": 10.0, "end_time": 20.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Speedboat cutting through ocean waves creating high-fidelity foam spray and white water wake",
                 "narration_text": "Notice the hydrodynamic wave displacement. Every ripple reacts organically to the hull at over seventy knots.",
@@ -71,7 +71,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Banking hard into an ocean turn."
             },
             {
-                "scene_number": 3, "start_time": 13.5, "end_time": 20.5,
+                "scene_number": 3, "start_time": 20.0, "end_time": 30.5,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Speedboat banking aggressively into a sharp turn with realistic water resistance and propeller cavitations",
                 "narration_text": "Banking hard into the turn, dynamic water resistance pushes back against the twin rudders with true physical weight.",
@@ -82,7 +82,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Speeding past luxury yachts anchored near the coast."
             },
             {
-                "scene_number": 4, "start_time": 20.5, "end_time": 27.5,
+                "scene_number": 4, "start_time": 30.5, "end_time": 41.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Speedboat cruising past anchored multi-deck luxury superyachts with realistic wake reflections",
                 "narration_text": "Passing anchored luxury yachts, ray-traced subsurface scattering illuminates marine depths beneath the crystal waves.",
@@ -93,7 +93,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Heading toward the open Atlantic horizon."
             },
             {
-                "scene_number": 5, "start_time": 27.5, "end_time": 34.5,
+                "scene_number": 5, "start_time": 41.0, "end_time": 51.5,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Bow view skimming open ocean swells framing the distant Vice City skyline in golden sunlight",
                 "narration_text": "From deep sea fishing to offshore smuggling runs, GTA 6 gives watercraft a critical role in the living world.",
@@ -104,7 +104,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Final coastal panorama concluding the marine run."
             },
             {
-                "scene_number": 6, "start_time": 34.5, "end_time": 40.0,
+                "scene_number": 6, "start_time": 51.5, "end_time": 62.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Wide cinematic shot of the speedboat speeding into the sun with sparkling wake trailing miles behind",
                 "narration_text": "Are you hitting the water in GTA 6? What vessel are you taking out first? Let us know in the comments below!",
@@ -147,7 +147,7 @@ ACTIVITY_REGISTRY = {
         ],
         "scenes": [
             {
-                "scene_number": 1, "start_time": 0.0, "end_time": 7.5,
+                "scene_number": 1, "start_time": 0.0, "end_time": 10.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Propeller-driven fan airboat idling beside wooden marsh dock under morning swamp mist",
                 "narration_text": "Grand Theft Auto VI officially delivers the most untamed wilderness in gaming history. Welcome to the Leonida Grassrivers.",
@@ -158,7 +158,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Accelerating into the shallow wetlands."
             },
             {
-                "scene_number": 2, "start_time": 7.5, "end_time": 15.0,
+                "scene_number": 2, "start_time": 10.0, "end_time": 20.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Airboat skimming at high speed across shallow water flattening tall sawgrass and kicking up mist",
                 "narration_text": "Skimming across inches of water, the airboat glides effortlessly over mud and sawgrass with realistic surface friction.",
@@ -169,7 +169,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Encountering wild alligators in the swamp."
             },
             {
-                "scene_number": 3, "start_time": 15.0, "end_time": 22.5,
+                "scene_number": 3, "start_time": 20.0, "end_time": 30.5,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Massive alligator sliding off muddy bank into the water right as the airboat roars past",
                 "narration_text": "Wildlife in the Grassrivers is fully dynamic. Massive alligators guard territorial water channels with predatory AI.",
@@ -180,7 +180,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Drifting around a winding swamp bend."
             },
             {
-                "scene_number": 4, "start_time": 22.5, "end_time": 30.0,
+                "scene_number": 4, "start_time": 30.5, "end_time": 41.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Airboat drifting sideways through narrow mangrove channel kicking up brown swamp water and leaves",
                 "narration_text": "Steering with aerodynamic air rudders, you can slide the airboat sideways around tight mangrove bends without losing momentum.",
@@ -191,7 +191,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Entering dense volumetric fog bank."
             },
             {
-                "scene_number": 5, "start_time": 30.0, "end_time": 37.5,
+                "scene_number": 5, "start_time": 41.0, "end_time": 51.5,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Airboat emerging from dense marsh mist into an open lake with flocks of wading birds taking flight",
                 "narration_text": "Volumetric weather and reactive ecosystems bring the swamp to life, from startled herons taking flight to echoing predator calls.",
@@ -202,7 +202,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Final wilderness panoramic overview."
             },
             {
-                "scene_number": 6, "start_time": 37.5, "end_time": 45.0,
+                "scene_number": 6, "start_time": 51.5, "end_time": 62.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Wide panoramic view of the airboat gliding across the vast Leonida Everglades under dramatic skies",
                 "narration_text": "Are you exploring the wild swamps of Leonida in GTA 6? What are you hunting first? Let us know below!",
@@ -1042,7 +1042,7 @@ ACTIVITY_REGISTRY = {
         ],
         "scenes": [
             {
-                "scene_number": 1, "start_time": 0.0, "end_time": 8.5,
+                "scene_number": 1, "start_time": 0.0, "end_time": 10.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Heavy 4x4 off-road truck with oversized knobby tires idling on wilderness trail surrounded by tall swamp grass",
                 "narration_text": "Leaving the paved avenues of Vice City behind, Grand Theft Auto VI introduces the most advanced terrain deformation physics in open-world history.",
@@ -1053,7 +1053,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Accelerating onto the rocky wilderness trail."
             },
             {
-                "scene_number": 2, "start_time": 8.5, "end_time": 17.5,
+                "scene_number": 2, "start_time": 10.0, "end_time": 20.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Truck climbing over rugged rocks with massive independent suspension travel flexing over boulders",
                 "narration_text": "Independent live axles and multi-link suspension articulate dynamically over boulders and fallen logs, transferring torque to tires with genuine grip.",
@@ -1064,7 +1064,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Descending toward a deep swamp water crossing."
             },
             {
-                "scene_number": 3, "start_time": 17.5, "end_time": 26.5,
+                "scene_number": 3, "start_time": 20.0, "end_time": 30.5,
                 "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
                 "visual_prompt": "Truck fording deep swamp mud bog, tires slinging thick procedural mud that splatters realistically onto body panels",
                 "narration_text": "Swamp mud deformation is procedural: tires dig deep furrows, slinging dynamic mud that realistically coats doors, windows, and wheel arches.",
@@ -1075,7 +1075,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Climbing out of mud onto coastal sand dunes."
             },
             {
-                "scene_number": 4, "start_time": 26.5, "end_time": 35.5,
+                "scene_number": 4, "start_time": 30.5, "end_time": 41.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Truck cresting a massive coastal sand dune with ocean waves crashing in the background",
                 "narration_text": "Emerging onto coastal sand dunes, loose sand displacement requires momentum management to avoid digging the heavy chassis into deep ruts.",
@@ -1086,7 +1086,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Cruising along the open coastal beach shore."
             },
             {
-                "scene_number": 5, "start_time": 35.5, "end_time": 44.5,
+                "scene_number": 5, "start_time": 41.0, "end_time": 51.5,
                 "visual_type": "ORIGINAL_SIMULATION", "is_fictional": 1,
                 "visual_prompt": "Truck cruising along tidal shore with wild alligator sunning on sandbank nearby",
                 "narration_text": "Watch the shoreline carefully: wild alligators and wetland fauna react dynamically to vehicle engine rumble, retreating into deep water channels.",
@@ -1097,7 +1097,7 @@ ACTIVITY_REGISTRY = {
                 "next_scene_connection": "Stopping at scenic river overlook."
             },
             {
-                "scene_number": 6, "start_time": 44.5, "end_time": 53.0,
+                "scene_number": 6, "start_time": 51.5, "end_time": 62.0,
                 "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
                 "visual_prompt": "Mud-coated 4x4 truck parked on coastal bluff overlooking expansive Leonida wilderness at sunset",
                 "narration_text": "Are you building a heavy 4x4 crawler to conquer the Leonida backcountry? Drop your favorite off-road setup below!",

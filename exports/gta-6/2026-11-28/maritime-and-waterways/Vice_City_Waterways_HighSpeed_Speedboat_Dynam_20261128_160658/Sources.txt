@@ -1,6 +1,6 @@
 === FACTUAL SOURCES & CITATIONS FOR: Vice City Waterways: High-Speed Speedboat Dynamics, Ocean Wake Physics & Coastal Vistas ===
 Game: Grand Theft Auto VI
-Export Date: 2026-11-28 15:11:53
+Export Date: 2026-11-28 16:06:58
 
 [1] Rockstar Games Official - GTA VI Marine Hydrodynamics & Coastal Systems (Rockstar Official Intel)
     URL: https://www.rockstargames.com/VI
