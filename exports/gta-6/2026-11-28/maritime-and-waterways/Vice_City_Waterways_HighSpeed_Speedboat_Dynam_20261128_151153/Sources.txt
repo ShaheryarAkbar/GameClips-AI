@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Vice City Waterways: High-Speed Speedboat Dynamics, Ocean Wake Physics & Coastal Vistas ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-28 15:11:53
+
+[1] Rockstar Games Official - GTA VI Marine Hydrodynamics & Coastal Systems (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Grand Theft Auto VI features dynamic fluid simulation with realistic boat wake displacement and foaming physics.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI Marine Hydrodynamics & Coastal Systems (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Twin outboard engines realistically tilt, trim, and respond to water resistance at high speeds.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI Marine Hydrodynamics & Coastal Systems (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Ocean waterways feature authentic tidal currents and ray-traced subsurface water scattering.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+

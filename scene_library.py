@@ -18,6 +18,202 @@ from database import get_connection
 
 # Full Registry of GTA 6 Activity Blueprints
 ACTIVITY_REGISTRY = {
+    "speedboat_coastal": {
+        "id": "speedboat_coastal",
+        "group": "Maritime & Waterways",
+        "name": "Vice City High-Speed Speedboat Dynamics",
+        "default_category": "Maritime & Waterways",
+        "allowed_categories": ["Maritime & Waterways", "Vehicles & Transportation", "Action & Adventure"],
+        "title": "Vice City Waterways: High-Speed Speedboat Dynamics, Ocean Wake Physics & Coastal Vistas",
+        "description": "High-speed navigation through Vice City's open coastal waterways: twin-engine performance speedboat cutting through turquoise ocean surf, dynamic fluid displacement, foam wake modeling, and passing luxury yachts beneath the metropolitan skyline.",
+        "banner": ("SPEEDBOAT SPEED", "IN GTA 6 IS", "INSANE??"),
+        "location": "Vice City Coastal Waterways & Biscayne Bay",
+        "time_of_day": "Bright Midday Sun with Turquoise Ocean Reflections",
+        "weather": "Clear coastal tropical sky with sparkling sea spray",
+        "characters": "Jason Duval & Lucia Caminos (Speedboat Pilots)",
+        "vehicle": "Pegassi Speeder Twin-Engine Luxury Speedboat",
+        "central_event": "High-Speed Offshore Speedboat Navigation & Ocean Wake Simulation",
+        "narrative_arc": "Marina Throttle Up -> Coastal Channel Acceleration -> Open Water High-Speed Banking -> Ocean Wake Displacement -> Yacht Harbor Passing -> Skyline Panoramic Horizon",
+        "resolution": "With hyper-realistic water transparency and hydrodynamic wave simulation, Grand Theft Auto VI transforms coastal navigation into an unmatched open-world experience.",
+        "source": {
+            "title": "Rockstar Games Official - GTA VI Marine Hydrodynamics & Coastal Systems",
+            "url": "https://www.rockstargames.com/VI",
+            "source_name": "Rockstar Official Intel",
+            "reliability_score": 1.0,
+            "published_at": "2023-12-05"
+        },
+        "claims": [
+            ("Grand Theft Auto VI features dynamic fluid simulation with realistic boat wake displacement and foaming physics.", 1, 0, "OFFICIAL"),
+            ("Twin outboard engines realistically tilt, trim, and respond to water resistance at high speeds.", 1, 0, "VERIFIED_VISUAL"),
+            ("Ocean waterways feature authentic tidal currents and ray-traced subsurface water scattering.", 1, 0, "OFFICIAL")
+        ],
+        "scenes": [
+            {
+                "scene_number": 1, "start_time": 0.0, "end_time": 6.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Twin-engine luxury speedboat accelerating away from the Vice City marina into open turquoise waters",
+                "narration_text": "Water physics in Grand Theft Auto VI represent a massive leap forward. Full throttle out into Biscayne Bay.",
+                "subtitle_text": "Water physics in Grand Theft Auto VI represent a massive leap forward. Full throttle out into Biscayne Bay.",
+                "transition_type": "fade", "camera_movement": "Low-angle chase view skimming millimeters above the turquoise sea surface",
+                "action_progression": "Twin outboard engines roar as the hull planes onto the surface of the water.",
+                "prev_scene_connection": "Opening visual hook establishing marine scale and water rendering.",
+                "next_scene_connection": "Accelerating into the main coastal channel."
+            },
+            {
+                "scene_number": 2, "start_time": 6.5, "end_time": 13.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Speedboat cutting through ocean waves creating high-fidelity foam spray and white water wake",
+                "narration_text": "Notice the hydrodynamic wave displacement. Every ripple reacts organically to the hull at over seventy knots.",
+                "subtitle_text": "Notice the hydrodynamic wave displacement. Every ripple reacts organically to the hull at over seventy knots.",
+                "transition_type": "cut", "camera_movement": "Dynamic side tracking shot framing the bow cutting through ocean swells",
+                "action_progression": "The hull cuts through a wave crest, sending realistic sea spray across the windshield.",
+                "prev_scene_connection": "Continuation of high-speed acceleration through open water.",
+                "next_scene_connection": "Banking hard into an ocean turn."
+            },
+            {
+                "scene_number": 3, "start_time": 13.5, "end_time": 20.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Speedboat banking aggressively into a sharp turn with realistic water resistance and propeller cavitations",
+                "narration_text": "Banking hard into the turn, dynamic water resistance pushes back against the twin rudders with true physical weight.",
+                "subtitle_text": "Banking hard into the turn, dynamic water resistance pushes back against the twin rudders with true physical weight.",
+                "transition_type": "cut", "camera_movement": "High-angle orbital pan wrapping around the banking hull as water curls beneath",
+                "action_progression": "The boat leans sharply as twin propellers churn a massive curved arc of white foam.",
+                "prev_scene_connection": "Direct progression into high-g ocean maneuver.",
+                "next_scene_connection": "Speeding past luxury yachts anchored near the coast."
+            },
+            {
+                "scene_number": 4, "start_time": 20.5, "end_time": 27.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Speedboat cruising past anchored multi-deck luxury superyachts with realistic wake reflections",
+                "narration_text": "Passing anchored luxury yachts, ray-traced subsurface scattering illuminates marine depths beneath the crystal waves.",
+                "subtitle_text": "Passing anchored luxury yachts, ray-traced subsurface scattering illuminates marine depths beneath the crystal waves.",
+                "transition_type": "cut", "camera_movement": "Mid-level tracking shot contrasting the sleek speedboat against towering yacht hulls",
+                "action_progression": "The speedboat slices between anchored vessels as passengers on the decks look down.",
+                "prev_scene_connection": "Navigating through the coastal yacht anchorage.",
+                "next_scene_connection": "Heading toward the open Atlantic horizon."
+            },
+            {
+                "scene_number": 5, "start_time": 27.5, "end_time": 34.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Bow view skimming open ocean swells framing the distant Vice City skyline in golden sunlight",
+                "narration_text": "From deep sea fishing to offshore smuggling runs, GTA 6 gives watercraft a critical role in the living world.",
+                "subtitle_text": "From deep sea fishing to offshore smuggling runs, GTA 6 gives watercraft a critical role in the living world.",
+                "transition_type": "cut", "camera_movement": "Ascending crane shot rising over the boat's stern toward the skyline",
+                "action_progression": "The boat powers forward into open ocean swells bathed in golden tropical sun.",
+                "prev_scene_connection": "Transitioning out toward open ocean.",
+                "next_scene_connection": "Final coastal panorama concluding the marine run."
+            },
+            {
+                "scene_number": 6, "start_time": 34.5, "end_time": 40.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Wide cinematic shot of the speedboat speeding into the sun with sparkling wake trailing miles behind",
+                "narration_text": "Are you hitting the water in GTA 6? What vessel are you taking out first? Let us know in the comments below!",
+                "subtitle_text": "Are you hitting the water in GTA 6? What vessel are you taking out first? Let us know in the comments below!",
+                "transition_type": "fade", "camera_movement": "Slow wide pull-back framing the sparkling ocean and distant city towers",
+                "action_progression": "Speedboat fades into the sun-drenched horizon leaving a pristine white wake.",
+                "prev_scene_connection": "Grand cinematic overview concluding the speedboat run.",
+                "next_scene_connection": "Fade to outro."
+            }
+        ]
+    },
+    "swamp_airboat": {
+        "id": "swamp_airboat",
+        "group": "Wilderness & Wildlife",
+        "name": "Leonida Grassrivers Airboat Safari & Alligator Encounters",
+        "default_category": "Wilderness & Wildlife",
+        "allowed_categories": ["Wilderness & Wildlife", "Vehicles & Transportation", "Stories & Lore"],
+        "title": "Leonida Grassrivers: Swamp Airboat Maneuvers, Alligator AI & Wetlands Ecosystem",
+        "description": "Thrilling expedition across the Leonida Everglades: propeller-driven fan airboat skimming through shallow wetlands, volumetric swamp mist, responsive marsh wildlife, and close encounters with apex predator alligators.",
+        "banner": ("SWAMP AIRBOAT", "IN GTA 6 IS", "UNREAL??"),
+        "location": "Leonida Grassrivers & Everglades Marsh Wetlands",
+        "time_of_day": "Misty Morning with Low-Hanging Volumetric Fog",
+        "weather": "Humid tropical morning with marsh mist and sunlight rays",
+        "characters": "Jason Duval (Wetlands Explorer)",
+        "vehicle": "Everglades Fan Airboat with V8 Propeller",
+        "central_event": "High-Speed Fan Airboat Navigation Through Everglades & Wildlife Encounters",
+        "narrative_arc": "Dock Departure -> Propeller Spool & Marsh Glide -> Shallow Water High-Speed Drift -> Alligator Encounter & Reeds -> Volumetric Mist Bank -> Wilderness Sunset Overlook",
+        "resolution": "The living biodiversity and dynamic wetland physics of the Grassrivers prove that Leonida's wilderness is just as alive and dangerous as the streets of Vice City.",
+        "source": {
+            "title": "Rockstar Games Official - GTA VI Leonida Wildlife & Grassrivers Ecosystem",
+            "url": "https://www.rockstargames.com/VI",
+            "source_name": "Rockstar Official Intel",
+            "reliability_score": 1.0,
+            "published_at": "2023-12-05"
+        },
+        "claims": [
+            ("The Grassrivers wetlands feature fully simulated shallow-water ecosystems with reactive fan airboat physics.", 1, 0, "OFFICIAL"),
+            ("Alligators feature predatory AI, territorial hunting zones, and dynamic interactions with watercraft.", 1, 0, "VERIFIED_VISUAL"),
+            ("Marsh vegetation physically bends and flattens under boat hulls and wind wash.", 1, 0, "OFFICIAL")
+        ],
+        "scenes": [
+            {
+                "scene_number": 1, "start_time": 0.0, "end_time": 7.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Propeller-driven fan airboat idling beside wooden marsh dock under morning swamp mist",
+                "narration_text": "Grand Theft Auto VI officially delivers the most untamed wilderness in gaming history. Welcome to the Leonida Grassrivers.",
+                "subtitle_text": "Grand Theft Auto VI officially delivers the most untamed wilderness in gaming history. Welcome to the Leonida Grassrivers.",
+                "transition_type": "fade", "camera_movement": "Slow tracking shot across marsh reeds framing the massive rear fan cage",
+                "action_progression": "The V8 engine ignites, spinning the gigantic fan blade and rippling marsh water.",
+                "prev_scene_connection": "Opening visual hook establishing the dense Everglades atmosphere.",
+                "next_scene_connection": "Accelerating into the shallow wetlands."
+            },
+            {
+                "scene_number": 2, "start_time": 7.5, "end_time": 15.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Airboat skimming at high speed across shallow water flattening tall sawgrass and kicking up mist",
+                "narration_text": "Skimming across inches of water, the airboat glides effortlessly over mud and sawgrass with realistic surface friction.",
+                "subtitle_text": "Skimming across inches of water, the airboat glides effortlessly over mud and sawgrass with realistic surface friction.",
+                "transition_type": "cut", "camera_movement": "Low chase steadycam tracking millimeters above the marsh grass",
+                "action_progression": "The flat bottom hull skims across reeds as water droplets spray against the screen.",
+                "prev_scene_connection": "Continuation of high-speed marsh gliding.",
+                "next_scene_connection": "Encountering wild alligators in the swamp."
+            },
+            {
+                "scene_number": 3, "start_time": 15.0, "end_time": 22.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Massive alligator sliding off muddy bank into the water right as the airboat roars past",
+                "narration_text": "Wildlife in the Grassrivers is fully dynamic. Massive alligators guard territorial water channels with predatory AI.",
+                "subtitle_text": "Wildlife in the Grassrivers is fully dynamic. Massive alligators guard territorial water channels with predatory AI.",
+                "transition_type": "cut", "camera_movement": "Mid-level tracking whip panning from the boat bow to an alligator snapping its jaws",
+                "action_progression": "An alligator submerges and thrashes its tail as the airboat maneuvers past the mud bank.",
+                "prev_scene_connection": "Close wildlife interaction in the swamp.",
+                "next_scene_connection": "Drifting around a winding swamp bend."
+            },
+            {
+                "scene_number": 4, "start_time": 22.5, "end_time": 30.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Airboat drifting sideways through narrow mangrove channel kicking up brown swamp water and leaves",
+                "narration_text": "Steering with aerodynamic air rudders, you can slide the airboat sideways around tight mangrove bends without losing momentum.",
+                "subtitle_text": "Steering with aerodynamic air rudders, you can slide the airboat sideways around tight mangrove bends without losing momentum.",
+                "transition_type": "cut", "camera_movement": "Overhead drone shot tracking the airboat performing a high-speed drift",
+                "action_progression": "The stern kicks out wide, spraying muddy water across hanging moss branches.",
+                "prev_scene_connection": "Demonstrating unique airboat handling.",
+                "next_scene_connection": "Entering dense volumetric fog bank."
+            },
+            {
+                "scene_number": 5, "start_time": 30.0, "end_time": 37.5,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Airboat emerging from dense marsh mist into an open lake with flocks of wading birds taking flight",
+                "narration_text": "Volumetric weather and reactive ecosystems bring the swamp to life, from startled herons taking flight to echoing predator calls.",
+                "subtitle_text": "Volumetric weather and reactive ecosystems bring the swamp to life, from startled herons taking flight to echoing predator calls.",
+                "transition_type": "cut", "camera_movement": "Forward pushing crane as dozens of white birds scatter into the humid sky",
+                "action_progression": "The airboat emerges into a wide open clearing as the engine settles into a steady cruise.",
+                "prev_scene_connection": "Clearing the dense channel into open wetlands.",
+                "next_scene_connection": "Final wilderness panoramic overview."
+            },
+            {
+                "scene_number": 6, "start_time": 37.5, "end_time": 45.0,
+                "visual_type": "3D_GAMEPLAY_FOOTAGE", "is_fictional": 0,
+                "visual_prompt": "Wide panoramic view of the airboat gliding across the vast Leonida Everglades under dramatic skies",
+                "narration_text": "Are you exploring the wild swamps of Leonida in GTA 6? What are you hunting first? Let us know below!",
+                "subtitle_text": "Are you exploring the wild swamps of Leonida in GTA 6? What are you hunting first? Let us know below!",
+                "transition_type": "fade", "camera_movement": "Slow ascending crane shot looking down at the winding marsh waterways",
+                "action_progression": "The airboat continues into the vast expanse of the untouched Florida wilderness.",
+                "prev_scene_connection": "Final scenic vista concluding the Everglades adventure.",
+                "next_scene_connection": "Fade to outro."
+            }
+        ]
+    },
     "convenience_store_heist": {
         "id": "convenience_store_heist",
         "group": "Action & Crime Scenarios",
