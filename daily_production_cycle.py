@@ -41,12 +41,12 @@ def get_visual_config_for_activity(act: dict) -> dict:
     """
     act_id = act["id"]
     banner = act.get("banner", ("GTA 6 INTEL", "IN GTA 6 IS", "INSANE??"))
-    duration = 55.0
+    duration = 62.0
 
     bike_source = os.path.join(BASE_DIR, "assets", "video", "gta_bike_superbike.mp4")
     walking_source = os.path.join(BASE_DIR, "assets", "video", "gta_walking_vicecity.mp4")
     offroad_source = os.path.join(BASE_DIR, "assets", "video", "gta_offroad_truck.mp4")
-    longplay_source = os.path.join(BASE_DIR, "assets", "video", "gta_longplay.mp4")
+    longplay_source = os.path.join(BASE_DIR, "assets", "video", "gta_freeroam_longplay.mp4")
     ref_sample = os.path.join(BASE_DIR, "assets", "video", "gta_reference_sample.mp4")
     ref_master = os.path.join(BASE_DIR, "assets", "video", "gta_reference_master.mp4")
     airport_plane_source = os.path.join(BASE_DIR, "assets", "video", "gta_airport_planes.mp4")
@@ -54,19 +54,21 @@ def get_visual_config_for_activity(act: dict) -> dict:
     heist_source = os.path.join(BASE_DIR, "assets", "video", "gta_trailer_heist_45s.mp4")
     boat_source = os.path.join(BASE_DIR, "assets", "video", "gta_trailer_boat_40s.mp4")
     airboat_source = os.path.join(BASE_DIR, "assets", "video", "gta_trailer_airboat_45s.mp4")
+    speedboat_raw = os.path.join(BASE_DIR, "assets", "video", "gta_speedboat_raw.mp4")
+    airboat_raw = os.path.join(BASE_DIR, "assets", "video", "gta_airboat_raw.mp4")
 
     if act_id == "speedboat_coastal":
         return {
-            "source": boat_source if os.path.isfile(boat_source) else (trailer_source if os.path.isfile(trailer_source) else ref_master),
-            "start_ts": "00:00:00",
-            "duration": 40.0,
+            "source": speedboat_raw if os.path.isfile(speedboat_raw) else boat_source,
+            "start_ts": "00:00:18",
+            "duration": 62.0,
             "banner": ("SPEEDBOAT SPEED", "IN GTA 6 IS", "INSANE??")
         }
     elif act_id == "swamp_airboat":
         return {
-            "source": airboat_source if os.path.isfile(airboat_source) else (trailer_source if os.path.isfile(trailer_source) else ref_master),
-            "start_ts": "00:00:00",
-            "duration": 45.0,
+            "source": airboat_raw if os.path.isfile(airboat_raw) else airboat_source,
+            "start_ts": "00:00:05",
+            "duration": 62.0,
             "banner": ("SWAMP AIRBOAT", "IN GTA 6 IS", "UNREAL??")
         }
     elif act_id == "convenience_store_heist":
@@ -149,7 +151,7 @@ def get_visual_config_for_activity(act: dict) -> dict:
     elif act_id == "offroad_truck":
         return {
             "source": offroad_source if os.path.isfile(offroad_source) else ref_master,
-            "start_ts": "00:00:05",
+            "start_ts": "00:00:02",
             "duration": duration,
             "banner": ("OFF-ROAD TRUCK", "IN GTA 6 IS", "CRAZY??")
         }
