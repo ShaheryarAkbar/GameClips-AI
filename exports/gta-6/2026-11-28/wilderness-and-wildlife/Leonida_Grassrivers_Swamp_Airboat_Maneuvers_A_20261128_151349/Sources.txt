@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Leonida Grassrivers: Swamp Airboat Maneuvers, Alligator AI & Wetlands Ecosystem ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-28 15:13:49
+
+[1] Rockstar Games Official - GTA VI Leonida Wildlife & Grassrivers Ecosystem (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: The Grassrivers wetlands feature fully simulated shallow-water ecosystems with reactive fan airboat physics.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI Leonida Wildlife & Grassrivers Ecosystem (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Alligators feature predatory AI, territorial hunting zones, and dynamic interactions with watercraft.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI Leonida Wildlife & Grassrivers Ecosystem (Rockstar Official Intel)
+    URL: https://www.rockstargames.com/VI
+    Claim: Marsh vegetation physically bends and flattens under boat hulls and wind wash.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+

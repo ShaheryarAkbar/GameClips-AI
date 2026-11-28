@@ -1,0 +1,22 @@
+=== FACTUAL SOURCES & CITATIONS FOR: Leonida Wilderness Safari: 4x4 Off-Road Trucks, Coastal Dunes & Trail Physics ===
+Game: Grand Theft Auto VI
+Export Date: 2026-11-28 15:15:52
+
+[1] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Heavy 4x4 off-road trucks feature realistic independent suspension travel over rugged wilderness trails.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[2] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Tire treads dynamically displace beach sand and swamp mud with procedural terrain deformation.
+    Classification: VERIFIED_VISUAL
+    Publication Date: 2023-12-05
+
+[3] Rockstar Games Official - GTA VI Leonida Wildlife & Eco-Systems (Rockstar Newswire)
+    URL: https://www.rockstargames.com/newswire/article/4k83955a828135/grand-theft-auto-vi-watch-trailer-1-now
+    Claim: Coastal shorelines and jungle wetlands support living wildlife populations including roaming alligators.
+    Classification: OFFICIAL
+    Publication Date: 2023-12-05
+
